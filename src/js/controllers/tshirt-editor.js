@@ -1,4 +1,4 @@
-function SandboxController ($scope) {
+function TshirtEditorController ($scope) {
   //let vm = this;
   $scope.resize = function(evt,ui) {
     //console.log (evt,ui);
@@ -8,6 +8,6 @@ function SandboxController ($scope) {
 
 }
 
-SandboxController.$inject = ['$scope'];
+TshirtEditorController.$inject = ['$scope'];
 
-export default SandboxController;
+export default TshirtEditorController;

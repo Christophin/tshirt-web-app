@@ -13,8 +13,29 @@ function Config ($stateProvider, $urlRouterProvider) {
     // })
     .state('root.home', {
       url: '/home',
-      templateUrl: 'templates/tshirt-front-sandbox.tpl.html',
-      controller: 'SandboxController as sandboxVm'
+      templateUrl: 'templates/landing-page.tpl.html',
+      controller: 'LandingPageController as landingpageVm'
+    })
+    .state('root.shirt-editor', {
+      abstract:true,
+      templateUrl: 'templates/tshirt-editor.tpl.html',
+    })
+    .state('root.shirt-editor.container', {
+      url: '/custom',
+      views: {
+        'left-editor': {
+          templateUrl: 'templates/left-editor.tpl.html',
+          controller: 'LeftEditorController as lefteditorVm'
+        },
+        'center-editor': {
+          templateUrl: 'templates/center-editor.tpl.html',
+          controller: 'CenterEditorController as centereditorVm'
+        },
+        'right-editor': {
+          templateUrl: 'templates/right-editor.tpl.html',
+          controller: 'RightEditorController as righteditorVm'
+        }
+      }
     })
     .state('page-not-found', {
       url: '/not-found',
