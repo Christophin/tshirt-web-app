@@ -6,7 +6,7 @@
 
 #tshirt-editor {
   text-align: center;
-  width: 1000px;
+  // width: 1000px;
   height: 700px;
   margin: 50px auto;
   //background-color: lightgrey;
@@ -15,5 +15,22 @@
 
 .editor-container {
   display: inline-block;
+
+  height: 100%;
   // float: left;
+}
+
+#left-editor {
+  width: 27%;
+  border: 0.5px lightgrey dotted;
+}
+
+#center-editor {
+  width: 45%;
+  border: 0.5px lightgrey dotted;
+}
+
+#right-editor {
+  width: 27%;
+  border: 0.5px lightgrey dotted;
 }
