@@ -13,7 +13,12 @@ function Config ($stateProvider, $urlRouterProvider) {
     // })
     .state('root.home', {
       url: '/home',
-      templateUrl: 'templates/tshirt-front-sandbox.tpl.html',
+      templateUrl: 'templates/landing-page.tpl.html',
+      controller: 'LandingPageController as landingpageVm'
+    })
+    .state('root.sandbox', {
+      url: '/custom',
+      templateUrl: 'templates/tshirt-sandbox.tpl.html',
       controller: 'SandboxController as sandboxVm'
     })
     .state('page-not-found', {

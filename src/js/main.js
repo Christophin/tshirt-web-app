@@ -15,6 +15,7 @@ import resizable from './resizable';
 import LayoutController from './controllers/layout';
 //import UserController from './controllers/user';
 import SandboxController from './controllers/sandbox';
+import LandingPageController from './controllers/landing-page';
 
 
 
@@ -27,4 +28,5 @@ angular
   //.service('AccountService', AccountService)
   .controller('LayoutController', LayoutController)
   //.controller('UserController', UserController);
-  .controller('SandboxController', SandboxController);
+  .controller('SandboxController', SandboxController)
+  .controller('LandingPageController', LandingPageController);
