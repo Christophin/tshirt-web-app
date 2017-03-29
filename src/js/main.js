@@ -14,11 +14,11 @@ import resizable from './resizable';
 
 import LayoutController from './controllers/layout';
 //import UserController from './controllers/user';
-import SandboxController from './controllers/sandbox';
+import TshirtEditorController from './controllers/tshirt-editor';
 import LandingPageController from './controllers/landing-page';
-import LeftSandboxController from './controllers/left-sandbox';
-import CenterSandboxController from './controllers/center-sandbox';
-import RightSandboxController from './controllers/right-sandbox';
+import LeftEditorController from './controllers/left-editor';
+import CenterEditorController from './controllers/center-editor';
+import RightEditorController from './controllers/right-editor';
 
 
 angular
@@ -30,8 +30,8 @@ angular
   //.service('AccountService', AccountService)
   .controller('LayoutController', LayoutController)
   //.controller('UserController', UserController);
-  .controller('SandboxController', SandboxController)
+  .controller('TshirtEditorController', TshirtEditorController)
   .controller('LandingPageController', LandingPageController)
-  .controller('LeftSandboxController', LeftSandboxController)
-  .controller('CenterSandboxController', CenterSandboxController)
-  .controller('RightSandboxController', RightSandboxController);
+  .controller('LeftEditorController', LeftEditorController)
+  .controller('CenterEditorController', CenterEditorController)
+  .controller('RightEditorController', RightEditorController);

@@ -4,12 +4,16 @@
   box-sizing: border-box;
 }
 
-#sandbox {
+#tshirt-editor {
   text-align: center;
   width: 1000px;
   height: 700px;
   margin: 50px auto;
   //background-color: lightgrey;
   border: 1px solid lightgrey;
+}
 
+.editor-container {
+  display: inline-block;
+  // float: left;
 }

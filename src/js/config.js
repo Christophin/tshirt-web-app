@@ -18,23 +18,23 @@ function Config ($stateProvider, $urlRouterProvider) {
     })
     .state('root.shirt-editor', {
       abstract:true,
-      templateUrl: 'templates/tshirt-sandbox.tpl.html',
+      templateUrl: 'templates/tshirt-editor.tpl.html',
       // controller: 'SandboxController as sandboxVm'
     })
-    .state('root.shirt-editor.sandbox', {
+    .state('root.shirt-editor.container', {
       url: '/custom',
       views: {
-        'left-sandbox': {
-          templateUrl: 'templates/left-sandbox.tpl.html',
-          controller: 'LeftSandboxController as leftsandboxVm'
+        'left-editor': {
+          templateUrl: 'templates/left-editor.tpl.html',
+          controller: 'LeftEditorController as lefteditorVm'
         },
-        'center-sandbox': {
-          templateUrl: 'templates/center-sandbox.tpl.html',
-          controller: 'CenterSandboxController as centersandboxVm'
+        'center-editor': {
+          templateUrl: 'templates/center-editor.tpl.html',
+          controller: 'CenterEditorController as centereditorVm'
         },
-        'right-sandbox': {
-          templateUrl: 'templates/right-sandbox.tpl.html',
-          controller: 'RightSandboxController as rightsandboxVm'
+        'right-editor': {
+          templateUrl: 'templates/right-editor.tpl.html',
+          controller: 'RightEditorController as righteditorVm'
         }
       }
     })
