@@ -1,0 +1,40 @@
+@import "../../node_modules/materialize-css/sass/materialize";
+
+* {
+  box-sizing: border-box;
+}
+
+#sandbox {
+  text-align: center;
+  width: 600px;
+  height: 600px;
+  margin: 0px auto;
+  //background-color: lightgrey;
+  overflow: visible;
+}
+
+.sandbox-container {
+  width: 600px;
+  height: 400px;
+  border: 1px red solid;
+}
+
+.box1 {
+  background-color: white;
+  display: inline-block;;
+  border: 1px black solid;
+  margin: 5px;
+}
+.box2 {
+  background-color: white;
+  border: 1px black solid;
+  display: inline-block;
+  margin: 5px;
+}
+
+.bag2{
+  display: inline-block;;
+  background-color: green;
+  border: 1px black solid;
+  margin: 5px;
+}
