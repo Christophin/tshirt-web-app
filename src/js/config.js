@@ -35,7 +35,7 @@ function Config ($stateProvider, $urlRouterProvider) {
     })
     .state('page-not-found', {
       url: '/not-found',
-      template: '<h2>No such page. Haha. Youre dumb.</h2>'
+      template: '<h2>Page does not exist</h2>'
     });
 
   $urlRouterProvider.when('', '/home');
