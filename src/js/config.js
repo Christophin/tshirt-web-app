@@ -17,8 +17,8 @@ function Config ($stateProvider, $urlRouterProvider) {
       controller: 'LandingPageController as landingpageVm'
     })
     .state('root.shirt-editor', {
-      abstract:true,
       templateUrl: 'templates/tshirt-editor.tpl.html',
+      contrller: 'TshirtEditorController as tshirteditorVm'
     })
     .state('root.shirt-editor.container', {
       url: '/custom',
@@ -26,10 +26,6 @@ function Config ($stateProvider, $urlRouterProvider) {
         'left-editor': {
           templateUrl: 'templates/left-editor.tpl.html',
           controller: 'LeftEditorController as lefteditorVm'
-        },
-        'center-editor': {
-          templateUrl: 'templates/center-editor.tpl.html',
-          controller: 'CenterEditorController as centereditorVm'
         },
         'right-editor': {
           templateUrl: 'templates/right-editor.tpl.html',
