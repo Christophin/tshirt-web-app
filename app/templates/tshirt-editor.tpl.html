@@ -11,17 +11,19 @@
 </div> -->
 
 
-<div id="tshirt-editor" class="tshirt-editor">
+<div id="tshirt-editor" class="tshirt-editor row">
     <!-- LEFT PANE -->
-  <div id="left-editor" class="editor-container" ui-view="left-editor"></div>
+  <div id="left-editor" class="col s4 editor-container" ui-view="left-editor"></div>
 
 
 
-  <div id="center-editor" class="editor-container">
-    <p>SANDBOX</p>
+  <div id="center-editor" class="col s6 editor-container">
+    <div class="tshirt-img">
+      <img src="./images/tshirts/White Front T-Shirt-450x550.png" alt="">
+    </div>
   </div>
 
 
   <!-- RIGHT PANE -->
-  <div id="right-editor" class="editor-container" ui-view="right-editor"></div>
+  <div id="right-editor" class="col s2 editor-container" ui-view="right-editor"></div>
 </div>

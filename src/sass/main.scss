@@ -6,27 +6,23 @@
 
 #tshirt-editor {
   text-align: center;
-  height: 700px;
-  margin: 50px auto;
+  //max-height: 700px;
+  margin-top: 50px;
   border: 1px solid lightgrey;
 }
 
-.editor-container {
-  height: 100%;
-  float: left;
-}
-
 #left-editor {
-  width: 27%;
   border: 0.5px lightgrey dotted;
 }
 
 #center-editor {
-  width: 45%;
   border: 0.5px lightgrey dotted;
 }
 
 #right-editor {
-  width: 27%;
   border: 0.5px lightgrey dotted;
+}
+
+.tshirt-img img {
+  object-fit: contain;
 }
