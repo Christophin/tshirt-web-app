@@ -1,4 +1,4 @@
-<div id="sandbox" class="sandbox">
+<!-- <div id="sandbox" class="sandbox">
   <h3>SANDBOX AREA</h3>
   <div class="sandbox-container">
     <div class="box1" jqyoui-draggable="{animate:true}" data-drag="true"
@@ -8,4 +8,11 @@
         on-resize="resize($evt, $ui)" src="https://www.placecage.com/200/200" alt="">
     </div>
   </div>
+</div> -->
+
+
+<div id="sandbox" class="sandbox">
+  <div class="left-sandbox" ui-view="left-sandbox"></div>
+  <div class="center-sandbox" ui-view="center-sandbox"></div>
+  <div class="right-sandbox" ui-view="right-sandbox"></div>
 </div>

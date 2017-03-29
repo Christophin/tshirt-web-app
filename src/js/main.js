@@ -16,7 +16,9 @@ import LayoutController from './controllers/layout';
 //import UserController from './controllers/user';
 import SandboxController from './controllers/sandbox';
 import LandingPageController from './controllers/landing-page';
-
+import LeftSandboxController from './controllers/left-sandbox';
+import CenterSandboxController from './controllers/center-sandbox';
+import RightSandboxController from './controllers/right-sandbox';
 
 
 angular
@@ -29,4 +31,7 @@ angular
   .controller('LayoutController', LayoutController)
   //.controller('UserController', UserController);
   .controller('SandboxController', SandboxController)
-  .controller('LandingPageController', LandingPageController);
+  .controller('LandingPageController', LandingPageController)
+  .controller('LeftSandboxController', LeftSandboxController)
+  .controller('CenterSandboxController', CenterSandboxController)
+  .controller('RightSandboxController', RightSandboxController);
