@@ -19,7 +19,6 @@ function Config ($stateProvider, $urlRouterProvider) {
     .state('root.shirt-editor', {
       abstract:true,
       templateUrl: 'templates/tshirt-editor.tpl.html',
-      // controller: 'SandboxController as sandboxVm'
     })
     .state('root.shirt-editor.container', {
       url: '/custom',
