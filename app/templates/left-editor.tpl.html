@@ -7,8 +7,6 @@
         </ul>
     </div>
     <div id="add-text" class="col s12 text-ux">Text Build Goes Here</div>
-     <!--ng-show vm.catData, render the image grid-->
-     <!--ng-hide, render the links-->
     <div id="add-art" class="col s12 art-ux" >
         <div class="currentCliparts" ng-show="leftVm.catData">
             <div class="back">
@@ -16,7 +14,9 @@
             </div>
             <ul>
                 <li ng-repeat="image in leftVm.catData">
-                    <img class="current-clipart" ng-src="{{image.url}}" alt="" />
+                    <a href ng-click="leftVm.tossImage(image.url)">
+                        <img class="current-clipart" ng-src="{{image.url}}" alt="" />
+                    </a>
                 </li>
             </ul>
         </div>
