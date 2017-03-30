@@ -9,19 +9,16 @@
       <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
     </div> -->
 
-        <img id="tshirt" ng-src="./images/tshirts/White Front T-Shirt-450x550.png" alt=""/>
+    <img id="tshirt" ng-src="./images/tshirts/White Front T-Shirt-450x550.png" alt=""/>
 
-        <div id="drag-container">
-            <div ng-repeat="image in tshirtVm.images track by $index">
-                <div class="drag-object" jqyoui-draggable="{animate:true}" data-drag="true"
-                data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}">
-                 <img class="clipart" resizable
-                    on-resize="resize($evt, $ui)" ng-src="{{image}}" />
-                </div>
-            </div>
-        </div>
-
-
+    <div id="drag-container">
+      <div class="drag-object" jqyoui-draggable="{animate:true}" data-drag="true"
+      data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
+      ng-repeat="image in tshirtVm.images track by $index">
+        <img class="clipart" resizable
+          on-resize="resize($evt, $ui)" ng-src="{{image}}" />
+      </div>
+    </div>
   </div>
 
 
