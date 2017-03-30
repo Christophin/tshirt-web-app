@@ -18,18 +18,18 @@ function Config ($stateProvider, $urlRouterProvider) {
     })
     .state('root.shirt-editor', {
       templateUrl: 'templates/tshirt-editor.tpl.html',
-      contrller: 'TshirtEditorController as tshirteditorVm'
+      contrller: 'TshirtEditorController as tshirtVm'
     })
     .state('root.shirt-editor.container', {
       url: '/custom',
       views: {
         'left-editor': {
           templateUrl: 'templates/left-editor.tpl.html',
-          controller: 'LeftEditorController as lefteditorVm'
+          controller: 'LeftEditorController as leftVm'
         },
         'right-editor': {
           templateUrl: 'templates/right-editor.tpl.html',
-          controller: 'RightEditorController as righteditorVm'
+          controller: 'RightEditorController as rightVm'
         }
       }
     })

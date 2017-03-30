@@ -6,7 +6,7 @@ import 'angular-materialize';
 
 
 import AppConfig from './config';
-// import SERVER from './server';
+import SERVER from './server';
 // import setup from './setup';
 import resizable from './resizable';
 
@@ -26,7 +26,7 @@ angular
   .config(AppConfig)
   .directive('resizable', resizable)
   // .run(setup)
-  // .constant('SERVER', SERVER)
+  .constant('SERVER', SERVER)
   //.service('AccountService', AccountService)
   .controller('LayoutController', LayoutController)
   //.controller('UserController', UserController);
