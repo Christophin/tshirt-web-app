@@ -9,7 +9,7 @@
 #tshirt-editor {
   text-align: center;
   width: 1000px;
-  //max-height: 700px;
+  max-height: 700px;
   margin-top: 50px;
   border: 1px solid lightgrey;
 }
@@ -20,39 +20,35 @@
 
 #center-editor {
   border: 0.5px lightgrey dotted;
+  position: relative;
+
+  #tshirt {
+  object-fit: contain;
+  z-index: 0;
+  }
 }
 
 #right-editor {
   border: 0.5px lightgrey dotted;
 }
 
-.tshirt-img {
-  position: relative;
-
-}
-
-.tshirt-img img {
-  object-fit: contain;
-  z-index: 0;
-  // width: 100%;
-  // height: auto;
-}
-
-.containment {
-  width: 214px;
-  height: 289px;
+#drag-container {
+  width: 217px;
+  height: 300px;
   border: 1px red solid;
   position: absolute;
   top: 88px;
-  left: 133px;
+  left: 145px;
 
-  // top: 21%;
-  // left: 51%;
-}
+  .drag-object {
+    display: inline-block;
+    top:50px;
+  }
 
-.clipart {
-// position: absolute;
-z-index: 1;
-// top: 200px;
-// left: 735px;
+  .clipart {
+    width: 100px;
+    height: 100px;
+    border: 1px black;
+    border-style: dashed;
+  }
 }
