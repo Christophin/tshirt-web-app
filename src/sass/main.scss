@@ -2,10 +2,13 @@
 
 * {
   box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 #tshirt-editor {
   text-align: center;
+  width: 1000px;
   //max-height: 700px;
   margin-top: 50px;
   border: 1px solid lightgrey;
@@ -23,6 +26,33 @@
   border: 0.5px lightgrey dotted;
 }
 
+.tshirt-img {
+  position: relative;
+
+}
+
 .tshirt-img img {
   object-fit: contain;
+  z-index: 0;
+  // width: 100%;
+  // height: auto;
+}
+
+.containment {
+  width: 214px;
+  height: 289px;
+  border: 1px red solid;
+  position: absolute;
+  top: 88px;
+  left: 133px;
+
+  // top: 21%;
+  // left: 51%;
+}
+
+.clipart {
+// position: absolute;
+z-index: 1;
+// top: 200px;
+// left: 735px;
 }
