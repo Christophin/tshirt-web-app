@@ -2,10 +2,32 @@
 <div class="row">
     <div class="col s12">
         <ul tabs reload="allTabContentLoaded" class="tabs-fixed-width">
-            <li class="tab col s3"><a href="#addtext">Add Text</a></li>
-            <li class="tab col s3"><a class="active" href="#addart">Add Art</a></li>
+            <li class="tab col s3"><a href="#add-text">Add Text</a></li>
+            <li class="tab col s3"><a class="active" href="#add-art">Add Art</a></li>
         </ul>
     </div>
-    <div id="addtext" class="col s12 text-ux">Text Build Goes Here</div>
-    <div id="addart" class="col s12 art-ux">Clip Art Goes Here</div>
+    <div id="add-text" class="col s12 text-ux">Text Build Goes Here</div>
+     <!--ng-show vm.catData, render the image grid-->
+     <!--ng-hide, render the links-->
+    <div id="add-art" class="col s12 art-ux" >
+        <div class="currentCliparts" ng-show="leftVm.catData">
+            <div class="back">
+                <a href ng-click="leftVm.emptyCatData()">back</a>
+            </div>
+            <ul>
+                <li ng-repeat="image in leftVm.catData">
+                    <img class="current-clipart" ng-src="{{image.url}}" alt="" />
+                </li>
+            </ul>
+        </div>
+        <div class="col s5" ng-hide="leftVm.catData">
+            <ul class="categories">
+                <li ng-repeat="(cat, catname) in leftVm.categories">
+                    <a href ng-click="leftVm.showCategory(catname)">
+                        {{ catname }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
