@@ -1,11 +1,10 @@
 function TshirtEditorController ($scope) {
-  //let vm = this;
-  $scope.resize = function(evt,ui) {
-    //console.log (evt,ui);
-    $scope.w = ui.size.width;
-    $scope.h = ui.size.height;
-  };
+  let vm = this;
+  vm.images = [];
 
+  $scope.$on('image', (event, url) =>  {
+    vm.images.push(url);
+  } )
 }
 
 TshirtEditorController.$inject = ['$scope'];

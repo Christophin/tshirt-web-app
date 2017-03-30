@@ -18,7 +18,7 @@ function Config ($stateProvider, $urlRouterProvider) {
     })
     .state('root.shirt-editor', {
       templateUrl: 'templates/tshirt-editor.tpl.html',
-      contrller: 'TshirtEditorController as tshirtVm'
+      controller: 'TshirtEditorController as tshirtVm'
     })
     .state('root.shirt-editor.container', {
       url: '/custom',

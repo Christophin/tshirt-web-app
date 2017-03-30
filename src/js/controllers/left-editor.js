@@ -1,7 +1,8 @@
-function LeftSandboxController ($http, SERVER) {
+function LeftSandboxController ($scope, $http, SERVER) {
     let vm = this;
     vm.showCategory = showCategory;
     vm.emptyCatData = emptyCatData;
+    vm.tossImage = tossImage;
     vm.catData = null;
     vm.categories = {
         shapes: 'Shapes/Symbols',
@@ -29,19 +30,20 @@ function LeftSandboxController ($http, SERVER) {
     function showCategory (name) {
         $http.get(`${SERVER}/cliparts?category=${name}`)
             .then(resp =>   {
-                console.log(resp);
                 vm.catData = resp.data;
-                console.log(vm.catData);
 
             })
 
     }
     function emptyCatData() {
         vm.catData = null;
-        console.log(vm.catData);
+    }
+
+    function tossImage(url) {
+        $scope.$emit('image', url);
     }
 }
 
-LeftSandboxController.$inject = ['$http', 'SERVER'];
+LeftSandboxController.$inject = ['$scope', '$http', 'SERVER'];
 
 export default LeftSandboxController;
