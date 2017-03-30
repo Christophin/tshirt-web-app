@@ -14,7 +14,7 @@
         <div id="drag-container">
             <div ng-repeat="image in tshirtVm.images track by $index">
                 <div class="drag-object" jqyoui-draggable="{animate:true}" data-drag="true"
-                data-drop="true" data-jqyoui-options="{ containment: 'parent'}">
+                data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}">
                  <img class="clipart" resizable
                     on-resize="resize($evt, $ui)" ng-src="{{image}}" />
                 </div>
