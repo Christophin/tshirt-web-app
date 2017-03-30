@@ -18,9 +18,18 @@
 
 
   <div id="center-editor" class="col s6 editor-container">
-    <div class="tshirt-img">
-      <img src="./images/tshirts/White Front T-Shirt-450x550.png" alt="">
-    </div>
+
+      <div class="tshirt-img">
+        <img src="./images/tshirts/White Front T-Shirt-450x550.png" alt="">
+        <div class="containment">
+          <div class="clipart" jqyoui-draggable="{animate:true}" data-drag="true"
+           data-drop="true" data-jqyoui-options="{containment: 'parent'}">
+            <img resizable
+              on-resize="resize($evt, $ui)" src="https://img.clipartfest.com/43cd7d44f5ef084a9bc8ec3ca7f03483_blitz20clipart-lightning-bolt-clipart-png_2100-2400.png"  alt=""/>
+          </div>
+        </div>
+      </div>
+
   </div>
 
 
