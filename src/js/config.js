@@ -14,7 +14,7 @@ function Config ($stateProvider, $urlRouterProvider) {
     .state('root.home', {
       url: '/home',
       templateUrl: 'templates/landing-page.tpl.html',
-      controller: 'LandingPageController as landingpageVm'
+      controller: 'LandingPageController as landingPageVm'
     })
     .state('root.shirt-editor', {
       templateUrl: 'templates/tshirt-editor.tpl.html',
