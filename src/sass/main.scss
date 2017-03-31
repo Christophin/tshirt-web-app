@@ -57,10 +57,17 @@
     height: 100px;
   }
 
-
-
 .current-clipart {
   width: 50px;
   height: 50px;
   float: left;
+}
+
+#swatch-list {
+  .swatch {
+    width:20px;
+    height: 20px;
+    display: inline-block;
+    border: 1px black solid;
+  }
 }
