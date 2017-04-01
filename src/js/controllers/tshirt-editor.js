@@ -5,15 +5,20 @@ function TshirtEditorController ($scope) {
     color: '',
     ts_front_url: '',
     ts_back_url: '',
-    tsFrontImages: []
   };
 
   vm.images = [];
   vm.tshirtUrl= './images/tshirts/White Front T-Shirt-450x550.png';
   vm.texts = [];
 
-  $scope.$on('image', (event, url) =>  {
-    vm.images.push(url);
+  vm.getPosition = getPosition;
+
+  $scope.$on('image', (event, image) =>  {
+    vm.images.push({
+      url :image.url
+    });
+    vm.projectInfo.tsFrontImages = vm.images;
+    console.log(vm.projectInfo);
   });
 
   $scope.$on('tshirtUrl', (event, data) => {
@@ -22,13 +27,24 @@ function TshirtEditorController ($scope) {
     vm.projectInfo.color = data.id;
     vm.projectInfo.ts_front_url = data.url;
     vm.projectInfo.ts_back_url = data.url;
-    console.log(vm.projectInfo);
   });
 
   $scope.$on('addText', (event, text) => {
     console.log(text, 'from the inside of parent');
     vm.texts.push(text);
   });
+
+  function getPosition ($event) {
+    let imgPosition = vm.projectInfo.tsFrontImages;
+    let x = angular.element($event.target.offsetParent.offsetParent).prop('offsetLeft');
+    let y = angular.element($event.target.offsetParent.offsetParent).prop('offsetTop');
+    imgPosition[0].x_position = x;
+    imgPosition[0].y_posiotion = y;
+    console.log(vm.projectInfo);
+
+
+    //console.log($event);
+  }
 }
 
 TshirtEditorController.$inject = ['$scope'];

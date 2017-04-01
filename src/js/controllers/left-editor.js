@@ -40,8 +40,8 @@ function LeftSandboxController ($scope, $http, SERVER) {
         vm.catData = null;
     }
 
-    function tossImage(url) {
-        $scope.$emit('image', url);
+    function tossImage(image) {
+        $scope.$emit('image', image);
     }
 
     function addText(text) {
