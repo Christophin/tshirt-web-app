@@ -1,21 +1,83 @@
 function TshirtEditorController ($scope) {
   let vm = this;
+  vm.projectInfo = {
+    name: '',
+    color: '',
+    ts_front_url: '',
+    ts_back_url: '',
+  };
+
   vm.images = [];
   vm.tshirtUrl= './images/tshirts/White Front T-Shirt-450x550.png';
   vm.texts = [];
 
-  $scope.$on('image', (event, url) =>  {
-    vm.images.push(url);
+  vm.getPosition = getPosition;
+  //vm.resize = resize;
+
+  $scope.$on('image', (event, image) =>  {
+    vm.images.push({
+      url :image.url
+    });
+    vm.projectInfo.tsFrontImages = vm.images;
+
+  // BACK IMAGES MADE
+    vm.projectInfo.tsBackImages = vm.images;
+
   });
 
-  $scope.$on('tshirtUrl', (event, url) => {
-    vm.tshirtUrl = url;
+  $scope.$on('tshirtUrl', (event, data) => {
+    vm.tshirtUrl = data.url;
+    vm.projectInfo.name = data.id;
+    vm.projectInfo.color = data.id;
+    vm.projectInfo.ts_front_url = data.url;
+    vm.projectInfo.ts_back_url = data.url;
   });
 
   $scope.$on('addText', (event, text) => {
-    console.log(text, 'from the inside of parent');
+    //console.log(text, 'from the inside of parent');
     vm.texts.push(text);
   });
+
+  $scope.$on('needShirt', () => {
+
+    $scope.$broadcast('projectInfo', vm.projectInfo);
+  });
+
+
+  function getPosition ($event) {
+    let imgPosition = vm.projectInfo.tsFrontImages;
+    let backimgPosition = vm.projectInfo.tsBackImages;
+    let x = angular.element($event.target.offsetParent.offsetParent).prop('offsetLeft');
+    let y = angular.element($event.target.offsetParent.offsetParent).prop('offsetTop');
+    let h = angular.element($event.target).prop('clientHeight');
+    let w = angular.element($event.target).prop('clientWidth');
+    imgPosition[0].x_position = x;
+    imgPosition[0].y_position = y;
+    imgPosition[0].height = h;
+    imgPosition[0].width = w;
+
+    // for back shirt-editor
+    backimgPosition[0].x_position = x;
+    backimgPosition[0].y_position = y;
+    backimgPosition[0].height = h;
+    backimgPosition[0].width = w;
+
+
+
+
+    //console.log($event);
+  }
+
+  // function resize (evt, ui) {
+  //   console.log(evt, 'evt')
+  //   console.log(ui, 'ui');
+  //   vm.w = ui.size.width;
+  //   vm.h = ui.size.height;
+  //   console.log("width", vm.w);
+  //   console.log("height", vm.h);
+  // }
+
+
 }
 
 TshirtEditorController.$inject = ['$scope'];

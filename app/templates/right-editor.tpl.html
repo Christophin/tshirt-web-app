@@ -3,7 +3,13 @@
   <ul id="swatch-list" class="list">
     <li id="{{data.id}}" class="swatch {{data.class}}"
       ng-repeat="(colorName, data) in rightVm.tshirtColor"
-      ng-click="rightVm.switchTshirt(data.url)">
+      ng-click="rightVm.switchTshirt(data)">
     </li>
   </ul>
+</div>
+
+<div class="save">
+  <form ng-submit="rightVm.saveProject()">
+    <button>Save Project</button>
+  </form>
 </div>

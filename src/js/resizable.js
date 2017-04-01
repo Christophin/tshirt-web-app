@@ -1,5 +1,5 @@
 function resizable () {
-  //console.log('from resizable');
+  console.log('from resizable');
   return {
     restrict: 'A',
     scope: {
@@ -19,6 +19,7 @@ function resizable () {
       });
     }
   };
+
 }
 
 export default resizable;
