@@ -18,6 +18,13 @@
         <img class="clipart" resizable
           on-resize="resize($evt, $ui)" ng-src="{{image}}" />
       </div>
+
+      <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
+      data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
+      ng-repeat="text in tshirtVm.texts track by $index">
+        <div class="text">{{text}}</div>
+      </div>
+
     </div>
   </div>
 

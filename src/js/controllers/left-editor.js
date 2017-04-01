@@ -2,6 +2,7 @@ function LeftSandboxController ($scope, $http, SERVER) {
     let vm = this;
     vm.showCategory = showCategory;
     vm.emptyCatData = emptyCatData;
+    vm.addText = addText;
     vm.tossImage = tossImage;
     vm.catData = null;
     vm.categories = {
@@ -41,6 +42,11 @@ function LeftSandboxController ($scope, $http, SERVER) {
 
     function tossImage(url) {
         $scope.$emit('image', url);
+    }
+
+    function addText(text) {
+      console.log(text);
+      $scope.$emit('addText', text);
     }
 }
 
