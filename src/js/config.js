@@ -33,6 +33,11 @@ function Config ($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    .state('root.user', {
+      url: '/user/:userId',
+      templateUrl: 'templates/profile.tpl.html',
+      controller: 'ProfileController as profileVm'
+    })
     .state('page-not-found', {
       url: '/not-found',
       template: '<h2>Page does not exist</h2>'
