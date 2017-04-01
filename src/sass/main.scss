@@ -27,8 +27,10 @@
   position: relative;
 
   #tshirt {
-  object-fit: contain;
-  z-index: 0;
+    width: 450px;
+    height: 550px;
+    object-fit: contain;
+    z-index: 0;
   }
 }
 
@@ -50,6 +52,13 @@
     border: 1px black;
     border-style: dashed;
     }
+
+    .text {
+      font-size: 2em;
+      padding-left: 10px;
+      padding-right: 10px;
+      cursor: pointer;
+    }
   }
 
   .clipart {
@@ -57,10 +66,19 @@
     height: 100px;
   }
 
-
-
 .current-clipart {
   width: 50px;
   height: 50px;
   float: left;
+}
+
+#swatch-list {
+  .swatch  {
+    width:20px;
+    height: 20px;
+    display: inline-block;
+    border: 1px black solid;
+    cursor: pointer;
+    margin: 0px 2px 1px 1px;
+  }
 }
