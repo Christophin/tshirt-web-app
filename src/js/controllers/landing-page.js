@@ -18,6 +18,7 @@ function LandingPageController ($http, SERVER, $cookies) {
         return $http.post(`${SERVER}/login`, user).then(resp => {
             console.log(resp);
             $cookies.put('access-token', resp.data.token);
+            $cookies.put('user-id', resp.data.user.id);
             $http.defaults.headers.common['access-token'] = resp.data.token;
             return resp;
         });

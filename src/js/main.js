@@ -7,7 +7,7 @@ import 'angular-materialize';
 
 import AppConfig from './config';
 import SERVER from './server';
-// import setup from './setup';
+import setup from './setup';
 import resizable from './resizable';
 
 //import AccountService from './services/account';
@@ -19,13 +19,14 @@ import LandingPageController from './controllers/landing-page';
 import LeftEditorController from './controllers/left-editor';
 import CenterEditorController from './controllers/center-editor';
 import RightEditorController from './controllers/right-editor';
+import ProfileController from './controllers/profile';
 
 
 angular
   .module('app', ['ui.router', 'ngCookies', 'ngDragDrop', 'ui.materialize'])
   .config(AppConfig)
   .directive('resizable', resizable)
-  // .run(setup)
+  .run(setup)
   .constant('SERVER', SERVER)
   //.service('AccountService', AccountService)
   .controller('LayoutController', LayoutController)
@@ -34,4 +35,5 @@ angular
   .controller('LandingPageController', LandingPageController)
   .controller('LeftEditorController', LeftEditorController)
   .controller('CenterEditorController', CenterEditorController)
-  .controller('RightEditorController', RightEditorController);
+  .controller('RightEditorController', RightEditorController)
+  .controller('ProfileController', ProfileController);
