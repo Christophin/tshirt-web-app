@@ -45,7 +45,6 @@ function LeftSandboxController ($scope, $http, SERVER) {
     }
 
     function addText(text) {
-      console.log(text);
       $scope.$emit('addText', text);
     }
 }

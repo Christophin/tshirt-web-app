@@ -42,6 +42,9 @@ function TshirtEditorController ($scope) {
     $scope.$broadcast('projectInfo', vm.projectInfo);
   });
 
+  $scope.$on('tossProject', (event, project) => {
+    console.log(project, 'from tshirt-editor');
+  });
 
   function getPosition ($event) {
     let imgPosition = vm.projectInfo.tsFrontImages;

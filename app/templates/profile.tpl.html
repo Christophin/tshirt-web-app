@@ -1,5 +1,7 @@
 <div id="saved-projects" class="save-projects">
   <ul id="saved-list">
-    <li id="project-name" class="projects" ng-repeat="project in "></li>
+    <li id="{{project.name}}" class="projects" ng-repeat="project in profileVm.projects">
+      <a href ng-click="profileVm.loadProject(project)">{{project.name}}</a>
+    </li>
   </ul>
 </div>

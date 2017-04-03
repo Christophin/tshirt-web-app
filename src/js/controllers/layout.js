@@ -1,11 +1,10 @@
-function LayoutController ($state, $cookies, $rootScope) {
+function LayoutController ($state, $cookies, $rootScope, $scope) {
   let vm = this;
 
   vm.goProfile = goProfile;
   vm.logOut = logOut;
 
   function goProfile () {
-      console.log('hello');
       let userId = $cookies.get('user-id');
       $state.go('root.user', { userId: userId });
   }
@@ -18,8 +17,12 @@ function LayoutController ($state, $cookies, $rootScope) {
       $state.go('root.home');
     };
 
+    $scope.$on('project', (event, project) => {
+      console.log('from layout', project);
+      $scope.$broadcast('tossProject', project);
+    })
 }
 
-LayoutController.$inject = ['$state', '$cookies', '$rootScope'];
+LayoutController.$inject = ['$state', '$cookies', '$rootScope', '$scope'];
 
 export default LayoutController;
