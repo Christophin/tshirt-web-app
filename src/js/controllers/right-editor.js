@@ -62,13 +62,15 @@ function RightSandboxController ($scope, $http, SERVER) {
   vm.saveProject = saveProject;
 
   function saveProject () {
-    console.log('save work');
     $scope.$emit('needShirt');
   }
 
   $scope.$on('projectInfo', (event, projectInfo) => {
     console.log(projectInfo);
-    $http.post(`${SERVER}/tshirt`, projectInfo);
+    $http.post(`${SERVER}/tshirt`, projectInfo)
+        .then(resp => {
+          console.log(resp)
+        });
   });
 
   vm.switchTshirt = switchTshirt;

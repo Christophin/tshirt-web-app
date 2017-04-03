@@ -1,5 +1,4 @@
 function resizable () {
-  console.log('from resizable');
   return {
     restrict: 'A',
     scope: {

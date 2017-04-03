@@ -39,7 +39,6 @@ function TshirtEditorController ($scope) {
   });
 
   $scope.$on('needShirt', () => {
-
     $scope.$broadcast('projectInfo', vm.projectInfo);
   });
 
