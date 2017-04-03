@@ -9,13 +9,14 @@
 #tshirt-editor {
   text-align: center;
   width: 1000px;
-  max-height: 700px;
+  height: 560px;
   margin-top: 50px;
   border: 1px solid lightgrey;
 }
 
 #left-editor {
   border: 0.5px lightgrey dotted;
+  height: 560px;
 }
 
 .categories {
@@ -24,6 +25,7 @@
 
 #center-editor {
   border: 0.5px lightgrey dotted;
+  height: 560px;
   position: relative;
 
   #tshirt {
@@ -36,6 +38,7 @@
 
 #right-editor {
   border: 0.5px lightgrey dotted;
+  height: 560px;
 }
 
 #drag-container {
