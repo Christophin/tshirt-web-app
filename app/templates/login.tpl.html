@@ -1,0 +1,50 @@
+<div class="user-login">
+  <div class="register">
+      <p>Register</p>
+      <div class="row">
+          <form class="col s6" ng-submit="loginVm.register(user)">
+              <div class="row">
+                  <div class="input-field col s6">
+                      <input id="first_name" type="text" class="validate">
+                      <label for="first_name">First Name</label>
+                  </div>
+                  <div class="input-field col s6">
+                      <input id="last_name" type="text" class="validate">
+                      <label for="last_name">Last Name</label>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="input-field col s12">
+                      <input id="email" type="email" class="validate" ng-model="user.email">
+                      <label for="email">Email</label>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="input-field col s12">
+                      <input id="password" type="password" class="validate" ng-model="user.password">
+                      <label for="password">Password</label>
+                  </div>
+              </div>
+              <button>Register</button>
+          </form>
+          <div class="login">
+              <p>Login</p>
+              <form class="col s6" ng-submit="loginVm.login(loginInfo)">
+                  <div class="row">
+                      <div class="input-field col s12">
+                          <input id="email" type="email" class="validate" ng-model="loginInfo.email">
+                          <label for="email">Email</label>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s12">
+                          <input id="password" type="password" class="validate" ng-model="loginInfo.password">
+                          <label for="password">Password</label>
+                      </div>
+                  </div>
+                  <button>Login</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>

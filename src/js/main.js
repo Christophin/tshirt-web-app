@@ -13,13 +13,12 @@ import resizable from './resizable';
 //import AccountService from './services/account';
 
 import LayoutController from './controllers/layout';
-//import UserController from './controllers/user';
 import TshirtEditorController from './controllers/tshirt-editor';
 import LandingPageController from './controllers/landing-page';
 import LeftEditorController from './controllers/left-editor';
-import CenterEditorController from './controllers/center-editor';
 import RightEditorController from './controllers/right-editor';
 import ProfileController from './controllers/profile';
+import LoginController from './controllers/login';
 
 
 angular
@@ -30,10 +29,9 @@ angular
   .constant('SERVER', SERVER)
   //.service('AccountService', AccountService)
   .controller('LayoutController', LayoutController)
-  //.controller('UserController', UserController);
   .controller('TshirtEditorController', TshirtEditorController)
   .controller('LandingPageController', LandingPageController)
   .controller('LeftEditorController', LeftEditorController)
-  .controller('CenterEditorController', CenterEditorController)
   .controller('RightEditorController', RightEditorController)
+  .controller('LoginController', LoginController)
   .controller('ProfileController', ProfileController);

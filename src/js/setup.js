@@ -4,7 +4,7 @@ function setup ($rootScope, $cookies, $http) {
     let token = $cookies.get('access-token');
 
     if (token) {
-        $rootScope.loggedIn = true;
+        $rootScope.login = true;
         $http.defaults.headers.common['access-token'] = token;
     }
 

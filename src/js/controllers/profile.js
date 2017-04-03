@@ -1,5 +1,6 @@
 function ProfileController ($http, SERVER) {
     let vm = this;
+
     function showProjects ()    {
         $http.get(`${SERVER}/tshirt`)
             .then(resp =>   {
@@ -9,6 +10,7 @@ function ProfileController ($http, SERVER) {
             .catch(error => console.log(error))
     }
     showProjects();
+
 }
 
 ProfileController.$inject = ['$http', 'SERVER'];
