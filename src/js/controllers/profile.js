@@ -3,6 +3,7 @@ function ProfileController ($http, SERVER, $rootScope, $state ) {
 
     vm.projects = [];
     vm.loadProject = loadProject;
+    vm.linkShop = linkShop;
 
     function showProjects ()    {
         $http.get(`${SERVER}/tshirt`)
@@ -18,6 +19,14 @@ function ProfileController ($http, SERVER, $rootScope, $state ) {
       $rootScope.savedProject = project;
       console.log('from loadProject()', project);
       $state.go('root.shirt-editor.container');
+    }
+
+    function linkShop (name) {
+      let shopObj = {
+        shop: name
+      }
+     $http.post(`${SERVER}/shopify/link`, shopObj)
+
     }
 
 }
