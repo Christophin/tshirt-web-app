@@ -68,7 +68,7 @@ function RightSandboxController ($scope, $http, SERVER) {
   }
 
   $scope.$on('projectInfo', (event, projectInfo) => {
-    console.log(projectInfo);
+    //console.log(projectInfo);
     $http.post(`${SERVER}/tshirt`, projectInfo)
         .then(resp => {
           console.log(resp)

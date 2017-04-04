@@ -1,32 +1,32 @@
 function TshirtEditorController ($scope, $rootScope) {
   let vm = this;
 
-  vm.savedProject = $rootScope.savedProject;
   vm.projectInfo = {
     name: '',
     color: '',
     ts_front_url: '',
     ts_back_url: '',
+    tsFrontImages: [],
+    tsBackImages: []
   };
 
-
-
-  vm.images = [];
   vm.tshirtUrl= './images/tshirts/White Front T-Shirt-450x550.png';
   vm.texts = [];
-
   vm.getPosition = getPosition;
   //vm.resize = resize;
 
+  function init () {
+    if ($rootScope.savedProject != null) {
+      vm.projectInfo = $rootScope.savedProject;
+    }
+  }
+
+  init();
+
   $scope.$on('image', (event, image) =>  {
-    vm.images.push({
-      url :image.url
-    });
-    vm.projectInfo.tsFrontImages = vm.images;
-
-  // BACK IMAGES MADE
-    vm.projectInfo.tsBackImages = vm.images;
-
+    vm.projectInfo.tsFrontImages.push({
+      url: image.url
+    })
   });
 
   $scope.$on('tshirtUrl', (event, data) => {
@@ -51,27 +51,20 @@ function TshirtEditorController ($scope, $rootScope) {
   });
 
   function getPosition ($event) {
-    let imgPosition = vm.projectInfo.tsFrontImages;
-    let backimgPosition = vm.projectInfo.tsBackImages;
-    let x = angular.element($event.target.offsetParent.offsetParent).prop('offsetLeft');
-    let y = angular.element($event.target.offsetParent.offsetParent).prop('offsetTop');
-    let h = angular.element($event.target).prop('clientHeight');
-    let w = angular.element($event.target).prop('clientWidth');
-    imgPosition[0].x_position = x;
-    imgPosition[0].y_position = y;
-    imgPosition[0].height = h;
-    imgPosition[0].width = w;
-
-    // for back shirt-editor
-    backimgPosition[0].x_position = x;
-    backimgPosition[0].y_position = y;
-    backimgPosition[0].height = h;
-    backimgPosition[0].width = w;
-    //console.log($event);
+    let container = angular.element($event.target.offsetParent.offsetParent);
+    let target = angular.element($event.target);
+    let image = vm.projectInfo.tsFrontImages.find(x => x.url === target.attr('ng-src'));
+    if (image) {
+      image.x_position = container.prop('offsetLeft');
+      image.y_position = container.prop('offsetTop');
+      image.height = target.prop('clientHeight');
+      image.width = target.prop('clientWidth');
+    } else {
+      console.log("Shit. this should never happen. no matching image in projectInfo");
+    }
   }
 
-
-  console.log('from editor', vm.savedProject);
+  //console.log('from editor', vm.savedProject);
 
   // function resize (evt, ui) {
   //   console.log(evt, 'evt')
