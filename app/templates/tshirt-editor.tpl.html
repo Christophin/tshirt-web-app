@@ -11,13 +11,27 @@
 
     <img id="tshirt" ng-src="{{tshirtVm.tshirtUrl}}" alt=""/>
 
+    <!-- From Saved Project Logic -->
+    <!-- <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
+    data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
+    ng-repeat="image in tshirtVm.savedImages track by $index">
+      <img class="clipart" resizable
+        on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
+      ng-style="{'top':'{{image.x_position}}'}"/>
+    </div> -->
+
+    <!-- From Clipart -->
     <div id="drag-container">
       <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
       data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
-      ng-repeat="image in tshirtVm.images track by $index">
+      ng-repeat="image in tshirtVm.projectInfo.tsFrontImages track by $index"
+      ng-style="{'top':'{{image.y_position}}px','left':'{{image.x_position}}px','width':'{{image.width}}px','height':'{{image.height}}px'}">
         <img class="clipart" resizable
-          on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)" />
+          on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
+        />
       </div>
+
+
 
       <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
       data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"

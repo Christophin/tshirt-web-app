@@ -1,33 +1,39 @@
-function TshirtEditorController ($scope) {
+function TshirtEditorController ($scope, $rootScope) {
   let vm = this;
+
   vm.projectInfo = {
     name: '',
     color: '',
     ts_front_url: '',
     ts_back_url: '',
+    tsFrontImages: [],
+    tsBackImages: []
   };
-
-  vm.images = [];
+  init();
   vm.tshirtUrl= './images/tshirts/White Front T-Shirt-450x550.png';
   vm.texts = [];
-
   vm.getPosition = getPosition;
   //vm.resize = resize;
+  console.log('before init function', vm.projectInfo);
+  function init () {
+    if ($rootScope.savedProject != null) {
+      vm.projectInfo = $rootScope.savedProject;
+      console.log('after init', vm.projectInfo);
+    } else {
+      console.log('no $rootscope saved');
+    }
+  }
+
+
 
   $scope.$on('image', (event, image) =>  {
-    vm.images.push({
-      url :image.url
-    });
-    vm.projectInfo.tsFrontImages = vm.images;
-
-  // BACK IMAGES MADE
-    vm.projectInfo.tsBackImages = vm.images;
-
+    vm.projectInfo.tsFrontImages.push({
+      url: image.url
+    })
   });
 
   $scope.$on('tshirtUrl', (event, data) => {
     vm.tshirtUrl = data.url;
-    vm.projectInfo.name = data.id;
     vm.projectInfo.color = data.id;
     vm.projectInfo.ts_front_url = data.url;
     vm.projectInfo.ts_back_url = data.url;
@@ -38,7 +44,8 @@ function TshirtEditorController ($scope) {
     vm.texts.push(text);
   });
 
-  $scope.$on('needShirt', () => {
+  $scope.$on('needShirt', (name) => {
+    vm.projectInfo.name = name.targetScope.name;
     $scope.$broadcast('projectInfo', vm.projectInfo);
   });
 
@@ -47,28 +54,20 @@ function TshirtEditorController ($scope) {
   });
 
   function getPosition ($event) {
-    let imgPosition = vm.projectInfo.tsFrontImages;
-    let backimgPosition = vm.projectInfo.tsBackImages;
-    let x = angular.element($event.target.offsetParent.offsetParent).prop('offsetLeft');
-    let y = angular.element($event.target.offsetParent.offsetParent).prop('offsetTop');
-    let h = angular.element($event.target).prop('clientHeight');
-    let w = angular.element($event.target).prop('clientWidth');
-    imgPosition[0].x_position = x;
-    imgPosition[0].y_position = y;
-    imgPosition[0].height = h;
-    imgPosition[0].width = w;
-
-    // for back shirt-editor
-    backimgPosition[0].x_position = x;
-    backimgPosition[0].y_position = y;
-    backimgPosition[0].height = h;
-    backimgPosition[0].width = w;
-
-
-
-
-    //console.log($event);
+    let container = angular.element($event.target.offsetParent.offsetParent);
+    let target = angular.element($event.target);
+    let image = vm.projectInfo.tsFrontImages.find(x => x.url === target.attr('ng-src'));
+    if (image) {
+      image.x_position = container.prop('offsetLeft') - 57;
+      image.y_position = container.prop('offsetTop');
+      image.height = target.prop('clientHeight');
+      image.width = target.prop('clientWidth');
+    } else {
+      console.log("Shit. this should never happen. no matching image in projectInfo");
+    }
   }
+
+  //console.log('from editor', vm.savedProject);
 
   // function resize (evt, ui) {
   //   console.log(evt, 'evt')
@@ -79,9 +78,8 @@ function TshirtEditorController ($scope) {
   //   console.log("height", vm.h);
   // }
 
-
 }
 
-TshirtEditorController.$inject = ['$scope'];
+TshirtEditorController.$inject = ['$scope', '$rootScope'];
 
 export default TshirtEditorController;

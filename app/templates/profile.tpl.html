@@ -1,4 +1,20 @@
 <div id="saved-projects" class="save-projects">
+  <div class="col">
+    <a class="btn" data-target="demoModal" modal>Link My Shopfiy</a>
+  </div>
+  <!-- Modal Structure -->
+  <div id="demoModal" class="modal">
+    <div class="modal-content">
+      <h4>Link Shop</h4>
+      <span>https://
+      <input type="text" placeholder="shop name" ng-model="shopName">
+      myshopify.com</span>
+    </div>
+    <div class="modal-footer">
+      <a href="#!/home" class="modal-action modal-close waves-effect waves-green btn-flat"
+      ng-click="profileVm.linkShop(shopName)">Link It</a>
+    </div>
+  </div>
   <ul id="saved-list">
     <li id="{{project.name}}" class="projects" ng-repeat="project in profileVm.projects">
       <a href ng-click="profileVm.loadProject(project)">{{project.name}}</a>
