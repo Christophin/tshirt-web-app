@@ -14,11 +14,11 @@ function TshirtEditorController ($scope, $rootScope) {
   vm.texts = [];
   vm.getPosition = getPosition;
   //vm.resize = resize;
-  console.log('before init function', vm.projectInfo);
+  //console.log('before init function', vm.projectInfo);
   function init () {
     if ($rootScope.savedProject != null) {
       vm.projectInfo = $rootScope.savedProject;
-      console.log('after init', vm.projectInfo);
+      //console.log('after init', vm.projectInfo);
     } else {
       console.log('no $rootscope saved');
     }
@@ -55,6 +55,7 @@ function TshirtEditorController ($scope, $rootScope) {
 
   function getPosition ($event) {
     let container = angular.element($event.target.offsetParent.offsetParent);
+    console.log(angular.element($event.target.offsetParent));
     let target = angular.element($event.target);
     let image = vm.projectInfo.tsFrontImages.find(x => x.url === target.attr('ng-src'));
     if (image) {
@@ -74,8 +75,6 @@ function TshirtEditorController ($scope, $rootScope) {
   //   console.log(ui, 'ui');
   //   vm.w = ui.size.width;
   //   vm.h = ui.size.height;
-  //   console.log("width", vm.w);
-  //   console.log("height", vm.h);
   // }
 
 }

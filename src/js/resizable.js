@@ -6,10 +6,12 @@ function resizable () {
 
     },
     link: function postLink(scope, elem, attrs) {
-      //console.log(attrs);
-      //console.log(scope);
+      let initHeight = attrs.initheight;
+      let initWidth = attrs.initwidth;
       elem.resizable({aspectRatio: true});
+      elem.parent('.ui-wrapper').css({'height': `${initHeight}px`, 'width': `${initWidth}px`});
       elem.on('resize', function (evt, ui) {
+
         scope.$apply(function() {
           if (scope.callback) {
             scope.callback({$evt: evt, $ui: ui });
