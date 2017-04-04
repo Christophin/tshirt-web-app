@@ -16,7 +16,7 @@ function ProfileController ($http, SERVER, $rootScope, $state ) {
 
     function loadProject (project) {
       $rootScope.savedProject = project;
-      
+      console.log('from loadProject()', project);
       $state.go('root.shirt-editor.container');
     }
 

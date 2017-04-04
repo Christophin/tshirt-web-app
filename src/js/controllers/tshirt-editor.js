@@ -9,19 +9,22 @@ function TshirtEditorController ($scope, $rootScope) {
     tsFrontImages: [],
     tsBackImages: []
   };
-
+  init();
   vm.tshirtUrl= './images/tshirts/White Front T-Shirt-450x550.png';
   vm.texts = [];
   vm.getPosition = getPosition;
   //vm.resize = resize;
-
+  console.log('before init function', vm.projectInfo);
   function init () {
     if ($rootScope.savedProject != null) {
       vm.projectInfo = $rootScope.savedProject;
+      console.log('after init', vm.projectInfo);
+    } else {
+      console.log('no $rootscope saved');
     }
   }
 
-  init();
+
 
   $scope.$on('image', (event, image) =>  {
     vm.projectInfo.tsFrontImages.push({
@@ -55,7 +58,7 @@ function TshirtEditorController ($scope, $rootScope) {
     let target = angular.element($event.target);
     let image = vm.projectInfo.tsFrontImages.find(x => x.url === target.attr('ng-src'));
     if (image) {
-      image.x_position = container.prop('offsetLeft');
+      image.x_position = container.prop('offsetLeft') - 57;
       image.y_position = container.prop('offsetTop');
       image.height = target.prop('clientHeight');
       image.width = target.prop('clientWidth');

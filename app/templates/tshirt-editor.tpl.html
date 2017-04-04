@@ -25,7 +25,7 @@
       <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
       data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
       ng-repeat="image in tshirtVm.projectInfo.tsFrontImages track by $index"
-      ng-style="{'top':'{{image.y_position}}', 'left':'{{image.x_position}}'}">
+      ng-style="{'top':'{{image.y_position}}px','left':'{{image.x_position}}px','width':'{{image.width}}px','height':'{{image.height}}px'}">
         <img class="clipart" resizable
           on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
         />
