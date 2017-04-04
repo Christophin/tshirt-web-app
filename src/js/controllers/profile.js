@@ -1,4 +1,4 @@
-function ProfileController ($http, SERVER, $scope, $state) {
+function ProfileController ($http, SERVER, $rootScope, $state ) {
     let vm = this;
 
     vm.projects = [];
@@ -15,13 +15,12 @@ function ProfileController ($http, SERVER, $scope, $state) {
     showProjects();
 
     function loadProject (project) {
-      console.log(project, "fron loadProject");
-      $scope.$emit('project', project);
+      $rootScope.savedProject = project;
       $state.go('root.shirt-editor.container');
     }
 
 }
 
-ProfileController.$inject = ['$http', 'SERVER', '$scope', '$state'];
+ProfileController.$inject = ['$http', 'SERVER', '$rootScope', '$state'];
 
 export default ProfileController;

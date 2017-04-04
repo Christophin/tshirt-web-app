@@ -1,6 +1,7 @@
 function RightSandboxController ($scope, $http, SERVER) {
 
   let vm = this;
+
   vm.tshirtColor = {
     white: {
       url: './images/tshirts/White Front T-Shirt-450x550.png',
@@ -60,9 +61,10 @@ function RightSandboxController ($scope, $http, SERVER) {
   };
 
   vm.saveProject = saveProject;
+  vm.shopifyUpload = shopifyUpload;
 
-  function saveProject () {
-    $scope.$emit('needShirt');
+  function saveProject (name) {
+    $scope.$emit('needShirt', name);
   }
 
   $scope.$on('projectInfo', (event, projectInfo) => {
@@ -79,6 +81,27 @@ function RightSandboxController ($scope, $http, SERVER) {
     $scope.$emit('tshirtUrl', url);
   }
 
+  function shopifyUpload () {
+    console.log('shopifyUpload')
+    $http({
+      method: 'POST',
+      url: `${SERVER}/admin/products.json`,
+      data: {
+        'product': {
+          'title': 'Tshirt Name',
+          'vendor': 'designer tee',
+          'product_type': 'T-Shirt',
+          'images': [
+            {
+              'src': './images/tshirts/White Front T-Shirt-450x550.png'
+            }
+          ]
+        }
+      }
+    })
+    .then(resp => console.log(resp))
+    .catch(error => console.log(error));
+  }
 
 }
 

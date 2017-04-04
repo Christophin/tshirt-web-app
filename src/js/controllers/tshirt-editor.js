@@ -1,11 +1,15 @@
-function TshirtEditorController ($scope) {
+function TshirtEditorController ($scope, $rootScope) {
   let vm = this;
+
+  vm.savedProject = $rootScope.savedProject;
   vm.projectInfo = {
     name: '',
     color: '',
     ts_front_url: '',
     ts_back_url: '',
   };
+
+
 
   vm.images = [];
   vm.tshirtUrl= './images/tshirts/White Front T-Shirt-450x550.png';
@@ -27,7 +31,6 @@ function TshirtEditorController ($scope) {
 
   $scope.$on('tshirtUrl', (event, data) => {
     vm.tshirtUrl = data.url;
-    vm.projectInfo.name = data.id;
     vm.projectInfo.color = data.id;
     vm.projectInfo.ts_front_url = data.url;
     vm.projectInfo.ts_back_url = data.url;
@@ -38,7 +41,8 @@ function TshirtEditorController ($scope) {
     vm.texts.push(text);
   });
 
-  $scope.$on('needShirt', () => {
+  $scope.$on('needShirt', (name) => {
+    vm.projectInfo.name = name.targetScope.name;
     $scope.$broadcast('projectInfo', vm.projectInfo);
   });
 
@@ -63,12 +67,11 @@ function TshirtEditorController ($scope) {
     backimgPosition[0].y_position = y;
     backimgPosition[0].height = h;
     backimgPosition[0].width = w;
-
-
-
-
     //console.log($event);
   }
+
+
+  console.log('from editor', vm.savedProject);
 
   // function resize (evt, ui) {
   //   console.log(evt, 'evt')
@@ -79,9 +82,8 @@ function TshirtEditorController ($scope) {
   //   console.log("height", vm.h);
   // }
 
-
 }
 
-TshirtEditorController.$inject = ['$scope'];
+TshirtEditorController.$inject = ['$scope', '$rootScope'];
 
 export default TshirtEditorController;

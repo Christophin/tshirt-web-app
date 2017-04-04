@@ -17,10 +17,6 @@ function LayoutController ($state, $cookies, $rootScope, $scope) {
       $state.go('root.home');
     };
 
-    $scope.$on('project', (event, project) => {
-      console.log('from layout', project);
-      $scope.$broadcast('tossProject', project);
-    })
 }
 
 LayoutController.$inject = ['$state', '$cookies', '$rootScope', '$scope'];
