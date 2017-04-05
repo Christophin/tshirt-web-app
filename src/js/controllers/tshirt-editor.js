@@ -47,13 +47,16 @@ function TshirtEditorController ($scope, $rootScope) {
     $scope.$broadcast('projectInfo', vm.projectInfo);
   });
 
+
+
   $scope.$on('needImage', () => {
     domtoimage.toBlob(document.getElementById('center-editor'))
-      .then(function (blob) {
-        console.log('blob', blob);
-        window.client.upload(blob).then(resp => resp);
+      .then((blob) => {
+        blob.name = vm.projectInfo.name;
+        window.client.upload(blob).then((result) => {
+          console.log(result);
+        });
       });
-
   });
 
   function getPosition ($event) {
