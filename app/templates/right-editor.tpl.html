@@ -28,7 +28,7 @@
   <form class="submit" ng-submit="rightVm.shopifyUpload()">
     <button>Buy Shirt</button>
   </form>
-  <form class="export" ng-submit="rightVm.exportProject()">
+  <form class="export" ng-submit="rightVm.exportProject()" ng-show="shopifyLinked">
     <button>Export to Shopfiy</button>
   </form>
 
