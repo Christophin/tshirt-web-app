@@ -21,14 +21,15 @@
           <input type="text" placeholder="Project Name" ng-model="name">
       </div>
       <div class="modal-footer">
-          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"
+          <a class="modal-action modal-close waves-effect waves-green btn-flat"
           ng-click="rightVm.saveProject(name)">Save</a>
       </div>
   </div>
-
-  </form>
   <form class="submit" ng-submit="rightVm.shopifyUpload()">
     <button>Buy Shirt</button>
+  </form>
+  <form class="export" ng-submit="rightVm.exportProject()">
+    <button>Export to Shopfiy</button>
   </form>
 
 </div>

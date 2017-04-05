@@ -14,10 +14,16 @@
 
     </div>
     <div id="add-art" class="col s12 art-ux" >
+      <div class="upload">
+        <input type="button" value="Upload" ng-click="leftVm.showPicker()" />
+      </div>
+
         <div class="currentCliparts" ng-show="leftVm.catData">
             <div class="back">
                 <a href ng-click="leftVm.emptyCatData()">back</a>
             </div>
+            <!-- FOR UPLOADING FILES -->
+
             <ul>
                 <li ng-repeat="image in leftVm.catData">
                     <a href ng-click="leftVm.tossImage(image)">
@@ -26,6 +32,7 @@
                 </li>
             </ul>
         </div>
+
         <div class="col s5" ng-hide="leftVm.catData">
             <ul class="categories">
                 <li ng-repeat="(cat, catname) in leftVm.categories">
