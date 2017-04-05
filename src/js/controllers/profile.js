@@ -1,4 +1,4 @@
-function ProfileController ($http, SERVER, $rootScope, $state ) {
+function ProfileController ($http, SERVER, $rootScope, $state, $cookies) {
     let vm = this;
 
     vm.projects = [];
@@ -22,15 +22,22 @@ function ProfileController ($http, SERVER, $rootScope, $state ) {
     }
 
     function linkShop (name) {
-      let shopObj = {
-        shop: name
-      }
-     $http.post(`${SERVER}/shopify/link`, shopObj)
-
+        let user_id = $cookies.get('user-id');
+        window.location = `${SERVER}/shopify/link?shop=${name}&user_id=${user_id}`;
     }
 
+    function CheckShopifyLinked() {
+        $http.get(`${SERVER}/shopify/user`)
+            .then(resp => {
+                console.log(resp);
+                $cookies.put('access_token', resp.data.token);
+                $http.defaults.headers.common['access_token'] = resp.data.token;
+                $rootScope.shopifyLinked = true;
+            })
+    }
+    CheckShopifyLinked()
 }
 
-ProfileController.$inject = ['$http', 'SERVER', '$rootScope', '$state'];
+ProfileController.$inject = ['$http', 'SERVER', '$rootScope', '$state', '$cookies'];
 
 export default ProfileController;

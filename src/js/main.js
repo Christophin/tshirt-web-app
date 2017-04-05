@@ -19,6 +19,7 @@ import LeftEditorController from './controllers/left-editor';
 import RightEditorController from './controllers/right-editor';
 import ProfileController from './controllers/profile';
 import LoginController from './controllers/login';
+import CallbackController from './controllers/callback';
 
 
 angular
