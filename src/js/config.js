@@ -11,6 +11,11 @@ function Config ($stateProvider, $urlRouterProvider) {
     //   templateUrl: 'templates/sign-up.tpl.html',
     //   controller: 'UserController as usersVm'
     // })
+    .state('callback', {
+      url: '/callback',
+      templateUrl: `<div>Authenticating</div>`,
+      controller: 'CallbackController as callbackVm'
+    })
     .state('root.home', {
       url: '/home',
       templateUrl: 'templates/landing-page.tpl.html',
