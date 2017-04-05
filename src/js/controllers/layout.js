@@ -1,4 +1,4 @@
-function LayoutController ($state, $cookies, $rootScope, $scope) {
+function LayoutController ($state, $cookies, $rootScope, $scope, $http) {
   let vm = this;
 
   vm.goProfile = goProfile;
@@ -11,14 +11,17 @@ function LayoutController ($state, $cookies, $rootScope, $scope) {
 
   function logOut () {
       $rootScope.login = false;
+      $rootScope.shopifyLinked = false;
       $cookies.remove('access-token');
       $cookies.remove('user-id');
+      $cookies.remove('access_token');
+      $http.defaults.headers.common['access_token'] = null;
       $http.defaults.headers.common['access-token'] = null;
       $state.go('root.home');
-    };
+    }
 
 }
 
-LayoutController.$inject = ['$state', '$cookies', '$rootScope', '$scope'];
+LayoutController.$inject = ['$state', '$cookies', '$rootScope', '$scope', '$http'];
 
 export default LayoutController;
