@@ -15,21 +15,10 @@ function TshirtEditorController ($scope, $rootScope) {
   vm.tshirtUrl= './images/tshirts/White Front T-Shirt-450x550.png';
   vm.texts = [];
   vm.getPosition = getPosition;
-<<<<<<< HEAD
 
   function init () {
     if ($rootScope.savedProject != null) {
       vm.projectInfo = $rootScope.savedProject;
-=======
-  //vm.resize = resize;
-  //console.log('before init function', vm.projectInfo);
-  function init () {
-    if ($rootScope.savedProject != null) {
-      vm.projectInfo = $rootScope.savedProject;
-      //console.log('after init', vm.projectInfo);
-    } else {
-      console.log('no $rootscope saved');
->>>>>>> 5efb4cab92ae122c4018274308df3c4e2f5835a2
     }
   }
 
@@ -82,19 +71,6 @@ function TshirtEditorController ($scope, $rootScope) {
       image.width = target.prop('clientWidth');
     }
   }
-<<<<<<< HEAD
-=======
-
-  //console.log('from editor', vm.savedProject);
-
-  // function resize (evt, ui) {
-  //   console.log(evt, 'evt')
-  //   console.log(ui, 'ui');
-  //   vm.w = ui.size.width;
-  //   vm.h = ui.size.height;
-  // }
-
->>>>>>> 5efb4cab92ae122c4018274308df3c4e2f5835a2
 }
 
 TshirtEditorController.$inject = ['$scope', '$rootScope'];
