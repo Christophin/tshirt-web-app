@@ -1,9 +1,12 @@
+
 function LeftSandboxController ($scope, $http, SERVER) {
     let vm = this;
+
     vm.showCategory = showCategory;
     vm.emptyCatData = emptyCatData;
     vm.addText = addText;
     vm.tossImage = tossImage;
+    vm.showPicker = showPicker;
     vm.catData = null;
     vm.categories = {
         shapes: 'Shapes/Symbols',
@@ -32,7 +35,6 @@ function LeftSandboxController ($scope, $http, SERVER) {
         $http.get(`${SERVER}/cliparts?category=${name}`)
             .then(resp =>   {
                 vm.catData = resp.data;
-
             })
 
     }
@@ -46,6 +48,21 @@ function LeftSandboxController ($scope, $http, SERVER) {
 
     function addText(text) {
       $scope.$emit('addText', text);
+    }
+
+    function showPicker() {
+        window.client.pick({
+        }).then(function(result) {
+
+            let clipartUpload = {
+              url: result.filesUploaded[0].url,
+              name: result.filesUploaded[0].filename,
+              category: 'Emojis'
+            }
+            console.log(clipartUpload);
+            $http.post(`${SERVER}/cliparts`, clipartUpload)
+            .then (resp => console.log(resp));
+        });
     }
 }
 

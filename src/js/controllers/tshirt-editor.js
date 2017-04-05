@@ -1,3 +1,5 @@
+import domtoimage from 'dom-to-image';
+
 function TshirtEditorController ($scope, $rootScope) {
   let vm = this;
 
@@ -13,23 +15,19 @@ function TshirtEditorController ($scope, $rootScope) {
   vm.tshirtUrl= './images/tshirts/White Front T-Shirt-450x550.png';
   vm.texts = [];
   vm.getPosition = getPosition;
-  //vm.resize = resize;
-  console.log('before init function', vm.projectInfo);
+
   function init () {
     if ($rootScope.savedProject != null) {
       vm.projectInfo = $rootScope.savedProject;
-      console.log('after init', vm.projectInfo);
-    } else {
-      console.log('no $rootscope saved');
     }
   }
-
-
 
   $scope.$on('image', (event, image) =>  {
     vm.projectInfo.tsFrontImages.push({
       url: image.url
-    })
+      //url: 'https://cdn.filestackcontent.com/suCkWNUiTwqkVSzGo8eL'
+
+    });
   });
 
   $scope.$on('tshirtUrl', (event, data) => {
@@ -49,8 +47,13 @@ function TshirtEditorController ($scope, $rootScope) {
     $scope.$broadcast('projectInfo', vm.projectInfo);
   });
 
-  $scope.$on('tossProject', (event, project) => {
-    console.log(project, 'from tshirt-editor');
+  $scope.$on('needImage', () => {
+    domtoimage.toBlob(document.getElementById('center-editor'))
+      .then(function (blob) {
+        console.log('blob', blob);
+        window.client.upload(blob).then(resp => resp);
+      });
+
   });
 
   function getPosition ($event) {
@@ -62,22 +65,8 @@ function TshirtEditorController ($scope, $rootScope) {
       image.y_position = container.prop('offsetTop');
       image.height = target.prop('clientHeight');
       image.width = target.prop('clientWidth');
-    } else {
-      console.log("Shit. this should never happen. no matching image in projectInfo");
     }
   }
-
-  //console.log('from editor', vm.savedProject);
-
-  // function resize (evt, ui) {
-  //   console.log(evt, 'evt')
-  //   console.log(ui, 'ui');
-  //   vm.w = ui.size.width;
-  //   vm.h = ui.size.height;
-  //   console.log("width", vm.w);
-  //   console.log("height", vm.h);
-  // }
-
 }
 
 TshirtEditorController.$inject = ['$scope', '$rootScope'];

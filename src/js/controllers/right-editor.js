@@ -1,4 +1,4 @@
-function RightSandboxController ($scope, $http, SERVER) {
+function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
 
   let vm = this;
 
@@ -62,9 +62,17 @@ function RightSandboxController ($scope, $http, SERVER) {
 
   vm.saveProject = saveProject;
   vm.shopifyUpload = shopifyUpload;
+  vm.switchTshirt = switchTshirt;
+  vm.exportProject = exportProject;
 
   function saveProject (name) {
     $scope.$emit('needShirt', name);
+    let userID = $cookies.get('user-id');
+    $state.go('root.user', { userId: userID });
+  }
+
+  function exportProject () {
+    $scope.$emit('needImage');
   }
 
   $scope.$on('projectInfo', (event, projectInfo) => {
@@ -74,8 +82,6 @@ function RightSandboxController ($scope, $http, SERVER) {
           console.log(resp)
         });
   });
-
-  vm.switchTshirt = switchTshirt;
 
   function switchTshirt (url) {
     $scope.$emit('tshirtUrl', url);
@@ -105,6 +111,6 @@ function RightSandboxController ($scope, $http, SERVER) {
 
 }
 
-RightSandboxController.$inject = ['$scope', '$http', 'SERVER'];
+RightSandboxController.$inject = ['$scope', '$http', 'SERVER', '$state', '$cookies'];
 
 export default RightSandboxController;

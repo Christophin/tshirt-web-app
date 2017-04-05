@@ -10,16 +10,7 @@
     </div> -->
 
     <img id="tshirt" ng-src="{{tshirtVm.tshirtUrl}}" alt=""/>
-
-    <!-- From Saved Project Logic -->
-    <!-- <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
-    data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
-    ng-repeat="image in tshirtVm.savedImages track by $index">
-      <img class="clipart" resizable
-        on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
-      ng-style="{'top':'{{image.x_position}}'}"/>
-    </div> -->
-
+    
     <!-- From Clipart -->
     <div id="drag-container">
       <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
