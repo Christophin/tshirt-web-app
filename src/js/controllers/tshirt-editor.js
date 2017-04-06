@@ -20,6 +20,10 @@ function TshirtEditorController ($scope, $rootScope) {
   vm.tshirtSide = true;
   vm.getPosition = getPosition;
   vm.rotateShirt = rotateShirt;
+  vm.frontImageCount = 0;
+  vm.backImageCount = 0;
+  vm.frontTextCount = 0;
+  vm.backImageCount = 0;
 
   function init () {
     if ($rootScope.savedProject != null) {
@@ -28,13 +32,17 @@ function TshirtEditorController ($scope, $rootScope) {
   }
 
   $scope.$on('image', (event, image) =>  {
+
     if (vm.tshirtSide === true) {
       vm.projectInfo.tsFrontImages.push({
-        url: image.url
+        url: image.url,
+        htmlId: `frontImage${vm.frontImageCount}`
       });
+      vm.frontImageCount++;
     } else {
       vm.projectInfo.tsBackImages.push({
-        url: image.url
+        url: image.url,
+        htmlId: `backImage${vm.backImageCount}`
       });
     }
     console.log(vm.projectInfo.tsFrontImages);
@@ -51,12 +59,16 @@ function TshirtEditorController ($scope, $rootScope) {
   $scope.$on('addText', (event, text) => {
     if (vm.tshirtSide === true) {
       vm.projectInfo.tsFrontText.push({
-        text: text
+        text: text,
+        htmlId: `frontText${vm.frontTextCount}`
       });
+      vm.frontTextCount++;
     } else {
       vm.projectInfo.tsBackText.push({
-        text: text
+        text: text,
+        htmlId: `backText${vm.backTextCount}`
       });
+      vm.backTextCount++;
     }
     console.log(vm.projectInfo.tsFrontText);
   });
@@ -86,15 +98,37 @@ function TshirtEditorController ($scope, $rootScope) {
 
   function getPosition ($event) {
     let container = angular.element($event.target.offsetParent.offsetParent);
-    console.log(angular.element($event.target.offsetParent));
+    let textContainer = angular.element($event.target.offsetParent);
     let target = angular.element($event.target);
-    let image = vm.projectInfo.tsFrontImages.find(x => x.url === target.attr('ng-src'));
-    if (image) {
-      image.x_position = container.prop('offsetLeft') - 57;
-      image.y_position = container.prop('offsetTop');
-      image.height = target.prop('clientHeight');
-      image.width = target.prop('clientWidth');
+    let frontImage = vm.projectInfo.tsFrontImages.find(x => x.htmlId === target.attr('id'));
+    let backImage = vm.projectInfo.tsBackImages.find(x => x.htmlId === target.attr('id'));
+    let frontText = vm.projectInfo.tsFrontText.find(x => x.htmlId === target.attr('id'));
+    let backText = vm.projectInfo.tsBackText.find(x => x.htmlId === target.attr('id'));
+
+    if (frontImage) {
+      frontImage.x_position = container.prop('offsetLeft') - 57;
+      frontImage.y_position = container.prop('offsetTop');
+      frontImage.height = target.prop('clientHeight');
+      frontImage.width = target.prop('clientWidth');
     }
+    if (backImage) {
+      backImage.x_position = container.prop('offsetLeft') - 57;
+      backImage.y_position = container.prop('offsetTop');
+      backImage.height = target.prop('clientHeight');
+      backImage.width = target.prop('clientWidth');
+    }
+    if (frontText) {
+      frontText.x_position = textContainer.prop('offsetLeft') - 57;
+      frontText.y_position = textContainer.prop('offsetTop');
+    }
+    if (backText) {
+      backText.x_position = textContainer.prop('offsetLeft') - 57;
+      backText.y_position = textContainer.prop('offsetTop');
+    }
+    console.log('Front Images',vm.projectInfo.tsFrontImages);
+    console.log('Back Images',vm.projectInfo.tsBackImages);
+    console.log('Front Text',vm.projectInfo.tsFrontText);
+    console.log('Back Text',vm.projectInfo.tsBackText);
   }
 
   function rotateShirt () {
