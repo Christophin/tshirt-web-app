@@ -92,7 +92,7 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
   function shopifyUpload () {
     $http({
       method: 'POST',
-      url: `${SERVER}/admin/products.json`,
+      url: `${SERVER}/shopify/add`,
       data: {
         'product': {
           'title': 'Tshirt Name',

@@ -1,6 +1,6 @@
 import domtoimage from 'dom-to-image';
 
-function TshirtEditorController ($scope, $rootScope) {
+function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
   let vm = this;
 
   vm.projectInfo = {
@@ -91,7 +91,14 @@ function TshirtEditorController ($scope, $rootScope) {
       .then((blob) => {
         blob.name = vm.projectInfo.name;
         window.client.upload(blob).then((result) => {
-          console.log(result);
+          let data = {
+            product: {
+              title: vm.projectInfo.name,
+              imageUrl: result.url
+            }
+          };
+          $http.post(`${SERVER}/shopify/tossShirt`, data)
+              .then(shirt => console.log(shirt));
         });
       });
   });
@@ -138,6 +145,6 @@ function TshirtEditorController ($scope, $rootScope) {
   }
 }
 
-TshirtEditorController.$inject = ['$scope', '$rootScope'];
+TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER'];
 
 export default TshirtEditorController;
