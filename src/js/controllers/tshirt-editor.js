@@ -12,9 +12,13 @@ function TshirtEditorController ($scope, $rootScope) {
     tsBackImages: []
   };
   init();
-  vm.tshirtUrl= './images/tshirts/White Front T-Shirt-450x550.png';
+
+  vm.frontTshirtUrl = './images/tshirts/White Front T-Shirt-450x550.png';
+  vm.backTshirtUrl = './images/tshirts/White Back T-Shirt.png';
   vm.texts = [];
+  vm.tshirtSide = true;
   vm.getPosition = getPosition;
+  vm.rotateShirt = rotateShirt;
 
   function init () {
     if ($rootScope.savedProject != null) {
@@ -25,20 +29,17 @@ function TshirtEditorController ($scope, $rootScope) {
   $scope.$on('image', (event, image) =>  {
     vm.projectInfo.tsFrontImages.push({
       url: image.url
-      //url: 'https://cdn.filestackcontent.com/suCkWNUiTwqkVSzGo8eL'
-
     });
   });
 
   $scope.$on('tshirtUrl', (event, data) => {
-    vm.tshirtUrl = data.url;
+    vm.frontTshirtUrl = data.url;
     vm.projectInfo.color = data.id;
     vm.projectInfo.ts_front_url = data.url;
-    vm.projectInfo.ts_back_url = data.url;
+    vm.projectInfo.ts_back_url = data.backUrl;
   });
 
   $scope.$on('addText', (event, text) => {
-    //console.log(text, 'from the inside of parent');
     vm.texts.push(text);
   });
 
@@ -46,8 +47,6 @@ function TshirtEditorController ($scope, $rootScope) {
     vm.projectInfo.name = name.targetScope.name;
     $scope.$broadcast('projectInfo', vm.projectInfo);
   });
-
-
 
   $scope.$on('needImage', () => {
     domtoimage.toBlob(document.getElementById('center-editor'))
@@ -70,6 +69,11 @@ function TshirtEditorController ($scope, $rootScope) {
       image.height = target.prop('clientHeight');
       image.width = target.prop('clientWidth');
     }
+  }
+
+  function rotateShirt () {
+    vm.tshirtSide = !vm.tshirtSide;
+
   }
 }
 

@@ -5,6 +5,7 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
   vm.tshirtColor = {
     white: {
       url: './images/tshirts/White Front T-Shirt-450x550.png',
+      backUrl: './images/tshirts/White Back T-Shirt.png',
       class: 'white',
       id: 'white'
     },
@@ -79,16 +80,15 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
     //console.log(projectInfo);
     $http.post(`${SERVER}/tshirt`, projectInfo)
         .then(resp => {
-          console.log(resp)
+          console.log(resp);
         });
   });
 
-  function switchTshirt (url) {
-    $scope.$emit('tshirtUrl', url);
+  function switchTshirt (data) {
+    $scope.$emit('tshirtUrl', data);
   }
 
   function shopifyUpload () {
-    console.log('shopifyUpload')
     $http({
       method: 'POST',
       url: `${SERVER}/admin/products.json`,
