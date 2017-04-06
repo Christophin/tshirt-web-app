@@ -9,13 +9,14 @@ function TshirtEditorController ($scope, $rootScope) {
     ts_front_url: '',
     ts_back_url: '',
     tsFrontImages: [],
-    tsBackImages: []
+    tsBackImages: [],
+    tsFrontText: [],
+    tsBackText: []
   };
   init();
 
   vm.frontTshirtUrl = './images/tshirts/White Front T-Shirt-450x550.png';
   vm.backTshirtUrl = './images/tshirts/White Back T-Shirt.png';
-  vm.texts = [];
   vm.tshirtSide = true;
   vm.getPosition = getPosition;
   vm.rotateShirt = rotateShirt;
@@ -27,9 +28,16 @@ function TshirtEditorController ($scope, $rootScope) {
   }
 
   $scope.$on('image', (event, image) =>  {
-    vm.projectInfo.tsFrontImages.push({
-      url: image.url
-    });
+    if (vm.tshirtSide === true) {
+      vm.projectInfo.tsFrontImages.push({
+        url: image.url
+      });
+    } else {
+      vm.projectInfo.tsBackImages.push({
+        url: image.url
+      });
+    }
+    console.log(vm.projectInfo.tsFrontImages);
   });
 
   $scope.$on('tshirtUrl', (event, data) => {
@@ -41,7 +49,16 @@ function TshirtEditorController ($scope, $rootScope) {
   });
 
   $scope.$on('addText', (event, text) => {
-    vm.texts.push(text);
+    if (vm.tshirtSide === true) {
+      vm.projectInfo.tsFrontText.push({
+        text: text
+      });
+    } else {
+      vm.projectInfo.tsBackText.push({
+        text: text
+      });
+    }
+    console.log(vm.projectInfo.tsFrontText);
   });
 
   $scope.$on('needShirt', (name) => {
@@ -50,7 +67,15 @@ function TshirtEditorController ($scope, $rootScope) {
   });
 
   $scope.$on('needImage', () => {
-    domtoimage.toBlob(document.getElementById('center-editor'))
+    domtoimage.toBlob(document.getElementById('tshirt-sandbox'))
+      .then((blob) => {
+        blob.name = vm.projectInfo.name;
+        window.client.upload(blob).then((result) => {
+          console.log(result);
+        });
+      });
+    vm.tshirtSide= !vm.tshirtSide;
+    domtoimage.toBlob(document.getElementById('tshirt-sandbox'))
       .then((blob) => {
         blob.name = vm.projectInfo.name;
         window.client.upload(blob).then((result) => {
@@ -74,6 +99,7 @@ function TshirtEditorController ($scope, $rootScope) {
 
   function rotateShirt () {
     vm.tshirtSide = !vm.tshirtSide;
+    console.log('Project Info: ', vm.projectInfo);
 
   }
 }
