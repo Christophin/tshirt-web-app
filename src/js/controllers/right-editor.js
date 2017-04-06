@@ -11,6 +11,7 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
     },
     sportsGrey: {
       url: './images/tshirts/Sport Grey Front T-Shirt-450x550.png',
+      backUrl: './images/tshirts/Sports Grey Back T-Shirt.png',
       class: 'grey',
       id: 'sports-grey'
     },

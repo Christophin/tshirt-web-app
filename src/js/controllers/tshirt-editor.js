@@ -34,6 +34,7 @@ function TshirtEditorController ($scope, $rootScope) {
 
   $scope.$on('tshirtUrl', (event, data) => {
     vm.frontTshirtUrl = data.url;
+    vm.backTshirtUrl = data.backUrl;
     vm.projectInfo.color = data.id;
     vm.projectInfo.ts_front_url = data.url;
     vm.projectInfo.ts_back_url = data.backUrl;
