@@ -5,30 +5,67 @@
 
 
   <div id="center-editor" class="col s6 editor-container">
-    <!-- <div class="center-controls">
-      <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
-    </div> -->
-
-    <img id="tshirt" ng-src="{{tshirtVm.tshirtUrl}}" alt=""/>
-
-    <!-- From Clipart -->
-    <div id="drag-container">
-      <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
-      data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
-      ng-repeat="image in tshirtVm.projectInfo.tsFrontImages track by $index"
-      ng-style="{'top':'{{image.y_position}}px','left':'{{image.x_position}}px'}">
-        <img class="clipart" resizable init-width="{{ image.width }}" init-height="{{ image.height }}"
-          on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
-        ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
+    <div id="option-button">
+      <div id="editor-button" class="fixed-action-btn horizontal click-to-toggle">
+        <a class="btn-floating btn-medium red">
+          <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul>
+          <li ng-click="tshirtVm.rotateShirt()"><a class="alt-options btn-floating red"><i class="material-icons">swap_horiz</i></a></li>
+          <li><a class="alt-options btn-floating yellow darken-1"><i class="material-icons">play_for_work</i></a></li>
+          <li><a class="alt-options btn-floating green"><i class="material-icons">print</i></a></li>
+        </ul>
       </div>
+    </div>
+    <div id="tshirt-sandbox">
+      <img id="front-tshirt" ng-src="{{tshirtVm.frontTshirtUrl}}" ng-show="tshirtVm.tshirtSide"/>
+      <img id="back-tshirt" ng-src="{{tshirtVm.backTshirtUrl}}" ng-hide="tshirtVm.tshirtSide"/>
 
-      <!--From Text-->
-      <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
-      data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
-      ng-repeat="text in tshirtVm.texts track by $index">
-        <div class="text">{{text}}</div>
+      <!-- From Clipart -->
+        <!--Front Images Array  -->
+      <div id="drag-container">
+        <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
+        data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
+        ng-repeat="image in tshirtVm.projectInfo.tsFrontImages"
+        ng-style="{'top':'{{image.y_position}}px','left':'{{image.x_position}}px'}"
+        ng-if="tshirtVm.tshirtSide">
+          <img id="frontImage{{$index}}" class="clipart" resizable init-width="{{ image.width }}" init-height="{{ image.height }}"
+            on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
+          ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
+        </div>
+
+        <!--Back Images Array  -->
+        <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
+        data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
+        ng-repeat="image in tshirtVm.projectInfo.tsBackImages"
+        ng-style="{'top':'{{image.y_position}}px','left':'{{image.x_position}}px'}"
+        ng-if="!tshirtVm.tshirtSide">
+          <img id="backImage{{$index}}" class="clipart" resizable init-width="{{ image.width }}" init-height="{{ image.height }}"
+            on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
+          ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
+        </div>
+
+
+        <!--From Text-->
+          <!--Front Text Array  -->
+        <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
+        data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
+        ng-repeat="frontText in tshirtVm.projectInfo.tsFrontText"
+        ng-if="tshirtVm.tshirtSide" >
+          <div id="frontText{{$index}}" class="text"
+          ng-mouseup="tshirtVm.getPosition($event)">{{frontText.text}}</div>
+        </div>
+
+        <!--Back Text Array  -->
+        <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
+        data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
+        ng-repeat="backText in tshirtVm.projectInfo.tsBackText"
+        ng-if="!tshirtVm.tshirtSide" >
+          <div id="backText{{$index}}" class="text"
+          ng-mouseup="tshirtVm.getPosition($event)">{{backText.text}}</div>
+        </div>
+
       </div>
-
     </div>
   </div>
 

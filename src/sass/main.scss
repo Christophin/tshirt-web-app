@@ -10,14 +10,14 @@
 #tshirt-editor {
   text-align: center;
   width: 1000px;
-  height: 560px;
+  height: 605px;
   margin-top: 50px;
   border: 1px solid lightgrey;
 }
 
 #left-editor {
   border: 0.5px lightgrey dotted;
-  height: 560px;
+  height: 605px;
 }
 
 .categories {
@@ -26,29 +26,57 @@
 
 #center-editor {
   border: 0.5px lightgrey dotted;
-  height: 560px;
+  height: 605px;
   position: relative;
 
-  #tshirt {
+  #front-tshirt {
     width: 450px;
     height: 550px;
     object-fit: contain;
     z-index: 0;
   }
+  #back-tshirt {
+    width: 450px;
+    height: 550px;
+    object-fit: contain;
+    z-index: 0;
+  }
+
+  #tshirt-sandbox {
+
+  }
+
+  #option-button {
+    position: relative;
+    height: 50px;
+    overflow: auto;
+    // top: 10px;
+    // left: 400px;
+
+    #editor-button {
+      position: absolute;
+      top: 8px;
+
+      .alt-options {
+        top: -16px;
+      }
+    }
+  }
+
 }
 
 #right-editor {
   border: 0.5px lightgrey dotted;
-  height: 560px;
+  height: 605px;
 }
 
 #drag-container {
   width: 217px;
   height: 300px;
-  border: 1px red solid;
+  border: 2px darkgrey solid;
   position: absolute;
-  top: 88px;
-  left: 145px;
+  top: 135px;
+  left: 143px;
 
   .drag-object {
     display: inline-block;

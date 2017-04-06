@@ -29,7 +29,6 @@ function ProfileController ($http, SERVER, $rootScope, $state, $cookies) {
     function CheckShopifyLinked() {
         $http.get(`${SERVER}/shopify/user`)
             .then(resp => {
-                console.log(resp);
                 $cookies.put('access_token', resp.data.token);
                 $http.defaults.headers.common['access_token'] = resp.data.token;
                 $rootScope.shopifyLinked = true;
