@@ -23,7 +23,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
   vm.frontImageCount = 0;
   vm.backImageCount = 0;
   vm.frontTextCount = 0;
-  vm.backImageCount = 0;
+  vm.backTextCount = 0;
 
   function init () {
     if ($rootScope.savedProject != null) {
@@ -113,28 +113,28 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
     let backText = vm.projectInfo.tsBackText.find(x => x.htmlId === target.attr('id'));
 
     if (frontImage) {
-      frontImage.x_position = container.prop('offsetLeft') - 57;
+      frontImage.x_position = container.prop('offsetLeft');
       frontImage.y_position = container.prop('offsetTop');
       frontImage.height = target.prop('clientHeight');
       frontImage.width = target.prop('clientWidth');
     }
     if (backImage) {
-      backImage.x_position = container.prop('offsetLeft') - 57;
+      backImage.x_position = container.prop('offsetLeft');
       backImage.y_position = container.prop('offsetTop');
       backImage.height = target.prop('clientHeight');
       backImage.width = target.prop('clientWidth');
     }
     if (frontText) {
-      frontText.x_position = textContainer.prop('offsetLeft') - 57;
+      frontText.x_position = textContainer.prop('offsetLeft');
       frontText.y_position = textContainer.prop('offsetTop');
     }
     if (backText) {
-      backText.x_position = textContainer.prop('offsetLeft') - 57;
+      backText.x_position = textContainer.prop('offsetLeft');
       backText.y_position = textContainer.prop('offsetTop');
     }
-    console.log('Front Images',vm.projectInfo.tsFrontImages);
-    console.log('Back Images',vm.projectInfo.tsBackImages);
-    console.log('Front Text',vm.projectInfo.tsFrontText);
+    // console.log('Front Images',vm.projectInfo.tsFrontImages);
+    //console.log('Back Images',vm.projectInfo.tsBackImages);
+    // console.log('Front Text',vm.projectInfo.tsFrontText);
     console.log('Back Text',vm.projectInfo.tsBackText);
   }
 
