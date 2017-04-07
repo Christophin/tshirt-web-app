@@ -22,8 +22,11 @@ function ProfileController ($http, SERVER, $rootScope, $state, $cookies) {
     }
 
     function linkShop (name) {
-        let user_id = $cookies.get('user-id');
-        window.location = `${SERVER}/shopify/link?shop=${name}&user_id=${user_id}`;
+        $http.get(`${SERVER}/shopify/link?shop=${name}`)
+            .then(resp => {
+                window.location = resp.data.url;
+            })
+
     }
 
     function CheckShopifyLinked() {
