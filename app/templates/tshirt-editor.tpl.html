@@ -23,13 +23,13 @@
 
       <!-- From Clipart -->
         <!--Front Images Array  -->
-      <div id="drag-container">
+      <div id="drag-container" class="stack-container">
         <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
         data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
         ng-repeat="image in tshirtVm.projectInfo.tsFrontImages"
         ng-style="{'top':'{{image.y_position}}px','left':'{{image.x_position}}px'}"
         ng-if="tshirtVm.tshirtSide">
-          <img id="frontImage{{$index}}" class="clipart" resizable init-width="{{ image.width }}" init-height="{{ image.height }}"
+          <img id="frontImage{{$index}}" class="clipart stack-target" resizable initwidth="{{ image.width }}" initheight="{{ image.height }}"
             on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
           ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
         </div>

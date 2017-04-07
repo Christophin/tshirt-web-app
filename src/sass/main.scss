@@ -83,6 +83,7 @@
     top:50px;
     border: 1px black;
     border-style: dashed;
+    position: absolute;
     }
 
     .text {
@@ -96,6 +97,7 @@
   .clipart {
     width: 100px;
     height: 100px;
+
   }
 
 .current-clipart {
@@ -103,6 +105,14 @@
   height: 50px;
   float: left;
 }
+
+// .stack-container {
+//   position: relative;
+//
+//   .stack-target {
+//     position: absolute;
+//   }
+// }
 
 #swatch-list {
   .swatch  {
