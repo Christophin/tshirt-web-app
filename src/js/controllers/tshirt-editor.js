@@ -20,11 +20,20 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
   vm.tshirtSide = true;
   vm.getPosition = getPosition;
   vm.rotateShirt = rotateShirt;
+<<<<<<< HEAD
   vm.frontDeleteImage = frontDeleteImage;
   vm.frontDeleteText = frontDeleteText;
   vm.backDeleteImage = backDeleteImage;
   vm.backDeleteText = backDeleteText;
   vm.selectedObject = false;
+=======
+  vm.frontImageCount = 0;
+  vm.backImageCount = 0;
+  vm.frontTextCount = 0;
+  vm.backImageCount = 0;
+  vm.shopifyFrontUrl = '';
+  vm.shopifyBackUrl = '';
+>>>>>>> 62b01068e886446edb30c952ad10971bf0c3ea3f
 
   function init () {
     if ($rootScope.savedProject != null) {
@@ -45,7 +54,10 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
         htmlId: `backImage-${vm.projectInfo.tsBackImages.length}`
       });
     }
+<<<<<<< HEAD
     console.log(vm.projectInfo.tsFrontImages)
+=======
+>>>>>>> 62b01068e886446edb30c952ad10971bf0c3ea3f
   });
 
   $scope.$on('tshirtUrl', (event, data) => {
@@ -75,9 +87,49 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
     $scope.$broadcast('projectInfo', vm.projectInfo);
   });
 
+  function createBlob (key) {
+    return domtoimage.toBlob(document.getElementById('tshirt-sandbox'))
+        .then((blob) => {
+            blob.name = key;
+            return blob;
+    })
+  }
+
+  function uploadBlob (blob) {
+    return window.client.upload(blob).then(result => {
+      return result.url;
+    })
+  }
+
+  function buildProduct ([frontImg, backImg]) {
+    return {
+      product: {
+        title: vm.projectInfo.name,
+        frontImg: frontImg,
+        backImg: backImg
+      }
+    }
+  }
+
   $scope.$on('needImage', () => {
+<<<<<<< HEAD
 
 
+=======
+      vm.tshirtSide = true;
+      createBlob('frontBlob').then( (front) => {
+        vm.tshirtSide = false;
+        $scope.$apply();
+        createBlob('backBlob').then( (back) => {
+            let images = Promise.all([front, back].map(uploadBlob));
+            images.then(urls => {
+                let data = buildProduct(urls);
+                $http.post(`${SERVER}/shopify/tossShirt`, data)
+                    .then(shirt => console.log(shirt));
+            })
+        });
+    });
+>>>>>>> 62b01068e886446edb30c952ad10971bf0c3ea3f
   });
 
 
@@ -110,16 +162,17 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
       backText.x_position = textContainer.prop('offsetLeft');
       backText.y_position = textContainer.prop('offsetTop');
     }
+<<<<<<< HEAD
     // console.log('Front Images',vm.projectInfo.tsFrontImages);
     // console.log('Back Images',vm.projectInfo.tsBackImages);
     // console.log('Front Text',vm.projectInfo.tsFrontText);
     // console.log('Back Text',vm.projectInfo.tsBackText);
+=======
+>>>>>>> 62b01068e886446edb30c952ad10971bf0c3ea3f
   }
 
   function rotateShirt () {
     vm.tshirtSide = !vm.tshirtSide;
-    console.log('Project Info: ', vm.projectInfo);
-
   }
 
   function frontDeleteImage ($event) {

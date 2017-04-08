@@ -9,7 +9,6 @@ function ProfileController ($http, SERVER, $rootScope, $state, $cookies) {
         $http.get(`${SERVER}/tshirt`)
             .then(resp =>   {
                 vm.projects = resp.data;
-                //console.log(vm.projects);
             })
             .catch(error => console.log(error))
     }
@@ -17,13 +16,15 @@ function ProfileController ($http, SERVER, $rootScope, $state, $cookies) {
 
     function loadProject (project) {
       $rootScope.savedProject = project;
-      //console.log('from loadProject()', project);
       $state.go('root.shirt-editor.container');
     }
 
     function linkShop (name) {
-        let user_id = $cookies.get('user-id');
-        window.location = `${SERVER}/shopify/link?shop=${name}&user_id=${user_id}`;
+        $http.get(`${SERVER}/shopify/link?shop=${name}`)
+            .then(resp => {
+                window.location = resp.data.url;
+            })
+
     }
 
     function CheckShopifyLinked() {
