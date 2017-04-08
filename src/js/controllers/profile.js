@@ -1,4 +1,4 @@
-function ProfileController ($http, SERVER, $rootScope, $state, $cookies) {
+function ProfileController ($http, SERVER, $rootScope, $state, $cookies, $timeout) {
     let vm = this;
 
     vm.projects = [];
@@ -16,7 +16,7 @@ function ProfileController ($http, SERVER, $rootScope, $state, $cookies) {
 
     function loadProject (project) {
       $rootScope.savedProject = project;
-      $state.go('root.shirt-editor.container');
+      $state.go('root.shirt-editor.container')
     }
 
     function linkShop (name) {
@@ -38,6 +38,6 @@ function ProfileController ($http, SERVER, $rootScope, $state, $cookies) {
     CheckShopifyLinked()
 }
 
-ProfileController.$inject = ['$http', 'SERVER', '$rootScope', '$state', '$cookies'];
+ProfileController.$inject = ['$http', 'SERVER', '$rootScope', '$state', '$cookies', '$timeout'];
 
 export default ProfileController;

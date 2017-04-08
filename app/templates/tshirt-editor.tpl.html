@@ -45,7 +45,7 @@
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           </div>
           <img id="{{image.htmlId}}" class="clipart stack-target" resizable initwidth="{{ image.width }}" initheight="{{ image.height }}"
-            on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
+            on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mousedown="tshirtVm.grabTarget($event)"
           ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
         </div>
 
@@ -59,7 +59,7 @@
           <i class="fa fa-minus-square" aria-hidden="true"></i>
         </div>
           <img id="{{image.htmlId}}" class="clipart" resizable initwidth="{{ image.width }}" initheight="{{ image.height }}"
-            on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
+            on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mousedown="tshirtVm.grabTarget($event)" ng-mouseup="tshirtVm.getPosition($event)"
           ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
         </div>
 

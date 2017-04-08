@@ -1,6 +1,6 @@
 import domtoimage from 'dom-to-image';
 
-function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
+function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
   let vm = this;
 
   vm.projectInfo = {
@@ -13,12 +13,11 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
     tsFrontText: [],
     tsBackText: []
   };
-  init();
 
   vm.frontTshirtUrl = './images/tshirts/White Front T-Shirt-450x550.png';
   vm.backTshirtUrl = './images/tshirts/White Back T-Shirt.png';
   vm.tshirtSide = true;
-  vm.getPosition = getPosition;
+  vm.grabTarget = grabTarget;
   vm.rotateShirt = rotateShirt;
   vm.frontDeleteImage = frontDeleteImage;
   vm.frontDeleteText = frontDeleteText;
@@ -27,12 +26,18 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
   vm.selectedObject = false;
   vm.shopifyFrontUrl = '';
   vm.shopifyBackUrl = '';
+  vm.container = null;
+  vm.textContainer = null;
+  vm.target = null;
 
   function init () {
     if ($rootScope.savedProject != null) {
       vm.projectInfo = $rootScope.savedProject;
+      console.log($rootScope.savedProject)
     }
   }
+
+  $timeout(init(), 500);
 
   $scope.$on('image', (event, image) =>  {
 
@@ -116,37 +121,41 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
     });
   });
 
+  function grabTarget($event)  {
+      vm.container = angular.element($event.target.offsetParent.offsetParent);
+      vm.textContainer = angular.element($event.target.offsetParent);
+      vm.target = angular.element($event.target);
+      $rootScope.startDragging = true;
+  }
 
-  function getPosition ($event) {
-    let container = angular.element($event.target.offsetParent.offsetParent);
-    let textContainer = angular.element($event.target.offsetParent);
-    let target = angular.element($event.target);
-    let frontImage = vm.projectInfo.tsFrontImages.find(x => x.htmlId === target.attr('id'));
-    let backImage = vm.projectInfo.tsBackImages.find(x => x.htmlId === target.attr('id'));
-    let frontText = vm.projectInfo.tsFrontText.find(x => x.htmlId === target.attr('id'));
-    let backText = vm.projectInfo.tsBackText.find(x => x.htmlId === target.attr('id'));
+  $scope.$on('doneDragging', () => {
+    let frontImage = vm.projectInfo.tsFrontImages.find(x => x.htmlId === vm.target.attr('id'));
+    let backImage = vm.projectInfo.tsBackImages.find(x => x.htmlId === vm.target.attr('id'));
+    let frontText = vm.projectInfo.tsFrontText.find(x => x.htmlId === vm.target.attr('id'));
+    let backText = vm.projectInfo.tsBackText.find(x => x.htmlId === vm.target.attr('id'));
 
     if (frontImage) {
-      frontImage.x_position = container.prop('offsetLeft');
-      frontImage.y_position = container.prop('offsetTop');
-      frontImage.height = target.prop('clientHeight');
-      frontImage.width = target.prop('clientWidth');
+      frontImage.x_position = vm.container.prop('offsetLeft');
+      frontImage.y_position = vm.container.prop('offsetTop');
+      frontImage.height = vm.target.prop('clientHeight');
+      frontImage.width = vm.target.prop('clientWidth');
     }
     if (backImage) {
-      backImage.x_position = container.prop('offsetLeft');
-      backImage.y_position = container.prop('offsetTop');
-      backImage.height = target.prop('clientHeight');
-      backImage.width = target.prop('clientWidth');
+      backImage.x_position = vm.container.prop('offsetLeft');
+      backImage.y_position = vm.container.prop('offsetTop');
+      backImage.height = vm.target.prop('clientHeight');
+      backImage.width = vm.target.prop('clientWidth');
     }
     if (frontText) {
-      frontText.x_position = textContainer.prop('offsetLeft');
-      frontText.y_position = textContainer.prop('offsetTop');
+      frontText.x_position = vm.textContainer.prop('offsetLeft');
+      frontText.y_position = vm.textContainer.prop('offsetTop');
     }
     if (backText) {
-      backText.x_position = textContainer.prop('offsetLeft');
-      backText.y_position = textContainer.prop('offsetTop');
+      backText.x_position = vm.textContainer.prop('offsetLeft');
+      backText.y_position = vm.textContainer.prop('offsetTop');
     }
-  }
+    $rootScope.startDragging = false;
+  });
 
   function rotateShirt () {
     vm.tshirtSide = !vm.tshirtSide;
@@ -178,6 +187,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
 
 }
 
-TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER'];
+TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER', '$timeout'];
 
 export default TshirtEditorController;
