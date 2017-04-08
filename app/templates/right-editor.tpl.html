@@ -28,8 +28,25 @@
   <form class="submit" ng-submit="rightVm.shopifyUpload()">
     <button>Buy Shirt</button>
   </form>
-  <form class="export" ng-submit="rightVm.exportProject()" ng-show="shopifyLinked">
-    <button>Export to Shopfiy</button>
-  </form>
+    <div class="export">
+        <form class="export"  ng-show="shopifyLinked">
+            <button data-target="exportModal" modal>Export to Shopfiy</button>
+        </form>
+    </div>
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <h3>Would you like us to populate your storefront for you? (optional)</h3>
+            <form ng-submit="rightVm.exportProject(data)">
+                <input type="text" placeholder="Vendor" ng-model="data.vendor">
+                <input type="text" placeholder="Product Type" ng-model="data.product_type">
+                <input type="number" placeholder="Price" ng-model="data.price">
 
+                <button>Export to my Shopify database</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-green btn-flat"
+               ng-click="rightVm.saveProject(name)">Save</a>
+        </div>
+    </div>
 </div>

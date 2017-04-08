@@ -71,8 +71,9 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
     $scope.$emit('needShirt', name);
   }
 
-  function exportProject () {
-    $scope.$emit('needImage');
+  function exportProject (data) {
+    $scope.$emit('needImage', data);
+      console.log(data)
   }
 
   $scope.$on('projectInfo', (event, projectInfo) => {
