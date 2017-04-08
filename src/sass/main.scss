@@ -77,8 +77,8 @@
   top: 135px;
   left: 143px;
 
-  .selectedObject {
-    background-color: red;
+  .clearCss {
+    border: 0px !important;
   }
 
   .drag-object {
@@ -119,13 +119,13 @@
   float: left;
 }
 
-// .stack-container {
-//   position: relative;
-//
-//   .stack-target {
-//     position: absolute;
-//   }
-// }
+.clearDiv {
+  display: none;
+}
+
+.clearBorder {
+  border: 0px !important;
+}
 
 #swatch-list {
   .swatch  {
@@ -136,4 +136,8 @@
     cursor: pointer;
     margin: 0px 2px 1px 1px;
   }
+}
+
+.ui-resizable-handle {
+
 }

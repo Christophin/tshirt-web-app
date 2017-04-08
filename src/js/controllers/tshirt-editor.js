@@ -1,4 +1,5 @@
 import domtoimage from 'dom-to-image';
+// import $ from 'jquery';
 
 function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
   let vm = this;
@@ -12,6 +13,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
     tsBackImages: [],
     tsFrontText: [],
     tsBackText: [],
+    selectObject: false,
     store: {}
   };
 
@@ -24,7 +26,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
   vm.frontDeleteText = frontDeleteText;
   vm.backDeleteImage = backDeleteImage;
   vm.backDeleteText = backDeleteText;
-  vm.selectedObject = false;
   vm.shopifyFrontUrl = '';
   vm.shopifyBackUrl = '';
   vm.container = null;
@@ -45,14 +46,17 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
     if (vm.tshirtSide === true) {
       vm.projectInfo.tsFrontImages.push({
         url: image.url,
-        htmlId: `frontImage-${vm.projectInfo.tsFrontImages.length}`
+        htmlId: `frontImage-${vm.projectInfo.tsFrontImages.length}`,
+        selectObject: false
       });
     } else {
       vm.projectInfo.tsBackImages.push({
         url: image.url,
-        htmlId: `backImage-${vm.projectInfo.tsBackImages.length}`
+        htmlId: `backImage-${vm.projectInfo.tsBackImages.length}`,
+        selectObject: false
       });
     }
+    console.log(vm.projectInfo.tsFrontImages);
   });
 
   $scope.$on('tshirtUrl', (event, data) => {
@@ -67,12 +71,14 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
     if (vm.tshirtSide === true) {
       vm.projectInfo.tsFrontText.push({
         text: text,
-        htmlId: `frontText-${vm.projectInfo.tsFrontText.length}`
+        htmlId: `frontText-${vm.projectInfo.tsFrontText.length}`,
+        selectObject: false
       });
     } else {
       vm.projectInfo.tsBackText.push({
         text: text,
-        htmlId: `backText-${vm.projectInfo.tsBackText.length}`
+        htmlId: `backText-${vm.projectInfo.tsBackText.length}`,
+        selectObject: false
       });
     }
   });
@@ -111,9 +117,12 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
     console.log(data);
     vm.projectInfo.store = data;
       vm.tshirtSide = true;
+      vm.projectInfo.selectObject = true;
+      angular.element($('.ui-icon').css('display', 'none'));
       createBlob('frontBlob').then( (front) => {
         vm.tshirtSide = false;
         $scope.$apply();
+        angular.element($('.ui-icon').css('display', 'none'));
         createBlob('backBlob').then( (back) => {
             let images = Promise.all([front, back].map(uploadBlob));
             images.then(urls => {
