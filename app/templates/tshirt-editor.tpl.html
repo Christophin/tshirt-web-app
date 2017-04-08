@@ -35,13 +35,15 @@
 
       <!-- From Clipart -->
         <!--Front Images Array  -->
-      <div id="drag-container" class="stack-container">
+      <div id="drag-container" class="stack-container" ng-class="{clearBorder: tshirtVm.projectInfo.selectObject}">
         <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
         data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
         ng-repeat="image in tshirtVm.projectInfo.tsFrontImages"
         ng-style="{'top':'{{image.y_position}}px','left':'{{image.x_position}}px'}"
-        ng-if="tshirtVm.tshirtSide">
-          <div class="delete-button" ng-click="tshirtVm.frontDeleteImage($event)">
+        ng-if="tshirtVm.tshirtSide"
+        ng-class="{clearCss: tshirtVm.projectInfo.selectObject}">
+          <div class="delete-button" ng-click="tshirtVm.frontDeleteImage($event)"
+          ng-class="{clearDiv: tshirtVm.projectInfo.selectObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           </div>
           <img id="{{image.htmlId}}" class="clipart stack-target" resizable initwidth="{{ image.width }}" initheight="{{ image.height }}"
@@ -54,13 +56,15 @@
         data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
         ng-repeat="image in tshirtVm.projectInfo.tsBackImages"
         ng-style="{'top':'{{image.y_position}}px','left':'{{image.x_position}}px'}"
-        ng-if="!tshirtVm.tshirtSide">
-        <div class="delete-button" ng-click="tshirtVm.backDeleteImage($event)">
+        ng-if="!tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.selectObject}">
+        <div class="delete-button" ng-click="tshirtVm.backDeleteImage($event)"
+        ng-class="{clearDiv: tshirtVm.projectInfo.selectObject}">
           <i class="fa fa-minus-square" aria-hidden="true"></i>
         </div>
           <img id="{{image.htmlId}}" class="clipart" resizable initwidth="{{ image.width }}" initheight="{{ image.height }}"
             on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
-          ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
+          ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"
+          />
         </div>
 
 
@@ -70,8 +74,9 @@
         data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
         ng-repeat="frontText in tshirtVm.projectInfo.tsFrontText"
         ng-style="{'top':'{{frontText.y_position}}px','left':'{{frontText.x_position}}px'}"
-        ng-if="tshirtVm.tshirtSide" ng-class="selectedObject">
-          <div class="delete-button" ng-click="tshirtVm.frontDeleteText($event)">
+        ng-if="tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.selectObject}">
+          <div class="delete-button" ng-click="tshirtVm.frontDeleteText($event)"
+          ng-class="{clearDiv: tshirtVm.projectInfo.selectObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           </div>
           <div id="{{frontText.htmlId}}" class="text"
@@ -84,8 +89,9 @@
         data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
         ng-repeat="backText in tshirtVm.projectInfo.tsBackText"
         ng-style="{'top':'{{backText.y_position}}px','left':'{{backText.x_position}}px'}"
-        ng-if="!tshirtVm.tshirtSide" >
-        <div class="delete-button" ng-click="tshirtVm.backDeleteText($event)">
+        ng-if="!tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.selectObject}">
+        <div class="delete-button" ng-click="tshirtVm.backDeleteText($event)"
+        ng-class="{clearDiv: tshirtVm.projectInfo.selectObject}">
           <i class="fa fa-minus-square" aria-hidden="true"></i>
         </div>
           <div id="{{backText.htmlId}}" class="text"
