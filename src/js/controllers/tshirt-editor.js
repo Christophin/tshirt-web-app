@@ -11,7 +11,8 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
     tsFrontImages: [],
     tsBackImages: [],
     tsFrontText: [],
-    tsBackText: []
+    tsBackText: [],
+    store: {}
   };
 
   vm.frontTshirtUrl = './images/tshirts/White Front T-Shirt-450x550.png';
@@ -100,12 +101,15 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       product: {
         title: vm.projectInfo.name,
         frontImg: frontImg,
-        backImg: backImg
+        backImg: backImg,
+        store: vm.projectInfo.store
       }
     }
   }
 
-  $scope.$on('needImage', () => {
+  $scope.$on('needImage', (event, data) => {
+    console.log(data);
+    vm.projectInfo.store = data;
       vm.tshirtSide = true;
       createBlob('frontBlob').then( (front) => {
         vm.tshirtSide = false;
@@ -114,8 +118,9 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
             let images = Promise.all([front, back].map(uploadBlob));
             images.then(urls => {
                 let data = buildProduct(urls);
+                console.log(data);
                 $http.post(`${SERVER}/shopify/tossShirt`, data)
-                    .then(shirt => console.log(shirt));
+                   .then(shirt => console.log(shirt));
             })
         });
     });
