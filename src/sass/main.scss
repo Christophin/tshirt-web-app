@@ -49,7 +49,6 @@
   #option-button {
     position: relative;
     height: 50px;
-    overflow: auto;
     // top: 10px;
     // left: 400px;
 
@@ -78,6 +77,10 @@
   top: 135px;
   left: 143px;
 
+  .selectedObject {
+    background-color: red;
+  }
+
   .drag-object {
     display: inline-block;
     top:50px;
@@ -85,6 +88,15 @@
     border: 1px black;
     border-style: dashed;
     position: absolute;
+
+    .delete-button {
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      z-index: 90;
+      top: -19px;
+      left: -22px;
+    }
     }
 
     .text {
