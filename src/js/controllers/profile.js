@@ -9,7 +9,6 @@ function ProfileController ($http, SERVER, $rootScope, $state, $cookies) {
         $http.get(`${SERVER}/tshirt`)
             .then(resp =>   {
                 vm.projects = resp.data;
-                //console.log(vm.projects);
             })
             .catch(error => console.log(error))
     }
@@ -17,7 +16,6 @@ function ProfileController ($http, SERVER, $rootScope, $state, $cookies) {
 
     function loadProject (project) {
       $rootScope.savedProject = project;
-      //console.log('from loadProject()', project);
       $state.go('root.shirt-editor.container');
     }
 
