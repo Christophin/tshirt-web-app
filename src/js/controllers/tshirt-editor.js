@@ -1,4 +1,5 @@
 import domtoimage from 'dom-to-image';
+// import $ from 'jquery';
 
 function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
   let vm = this;
@@ -108,18 +109,20 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
   $scope.$on('needImage', () => {
       vm.tshirtSide = true;
       vm.projectInfo.selectObject = true;
-    //   createBlob('frontBlob').then( (front) => {
-    //     vm.tshirtSide = false;
-    //     $scope.$apply();
-    //     createBlob('backBlob').then( (back) => {
-    //         let images = Promise.all([front, back].map(uploadBlob));
-    //         images.then(urls => {
-    //             let data = buildProduct(urls);
-    //             $http.post(`${SERVER}/shopify/tossShirt`, data)
-    //                 .then(shirt => console.log(shirt));
-    //         })
-    //     });
-    // });
+      angular.element($('.ui-icon').css('display', 'none'));
+      createBlob('frontBlob').then( (front) => {
+        vm.tshirtSide = false;
+        $scope.$apply();
+        angular.element($('.ui-icon').css('display', 'none'));
+        createBlob('backBlob').then( (back) => {
+            let images = Promise.all([front, back].map(uploadBlob));
+            images.then(urls => {
+                let data = buildProduct(urls);
+                $http.post(`${SERVER}/shopify/tossShirt`, data)
+                    .then(shirt => console.log(shirt));
+            })
+        });
+    });
   });
 
 

@@ -8,8 +8,11 @@ function resizable () {
       let initHeight = attrs.initheight;
       let initWidth = attrs.initwidth;
       elem.resizable({aspectRatio: true});
+      console.log(elem.siblings('.ui-icon'));
+
+      elem.siblings('.ui-icon').attr({'ng-class':`{'clearDiv': tshirtVm.projectInfo.selectObject}`});
       elem.parent('.ui-wrapper').css({'height': `${initHeight}px`, 'width': `${initWidth}px`});
-      console.log(elem.sibling);
+
       elem.on('resize', function (evt, ui) {
 
         scope.$apply(function() {
