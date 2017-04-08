@@ -8,18 +8,30 @@
     <div id="option-button">
       <div id="editor-button" class="fixed-action-btn horizontal click-to-toggle">
         <a class="btn-floating btn-medium red">
-          <i class="large material-icons">mode_edit</i>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
         </a>
         <ul>
-          <li ng-click="tshirtVm.rotateShirt()"><a class="alt-options btn-floating red"><i class="material-icons">swap_horiz</i></a></li>
-          <li><a class="alt-options btn-floating yellow darken-1"><i class="material-icons">play_for_work</i></a></li>
-          <li><a class="alt-options btn-floating green"><i class="material-icons">print</i></a></li>
+          <li ng-click="tshirtVm.rotateShirt()">
+            <a class="alt-options btn-floating red">
+              <i class="fa fa-refresh" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a class="alt-options btn-floating yellow darken-1">
+              <i class="fa fa-download" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a class="alt-options btn-floating green">
+              <i class="fa fa-print" aria-hidden="true"></i>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
     <div id="tshirt-sandbox">
       <img id="front-tshirt" ng-src="{{tshirtVm.frontTshirtUrl}}" ng-show="tshirtVm.tshirtSide"/>
-      <img id="back-tshirt" ng-src="{{tshirtVm.backTshirtUrl}}" ng-hide="tshirtVm.tshirtSide"/>
+      <img id="back-tshirt" ng-src="{{tshirtVm.backTshirtUrl}}" ng-show="!tshirtVm.tshirtSide"/>
 
       <!-- From Clipart -->
         <!--Front Images Array  -->
@@ -29,7 +41,10 @@
         ng-repeat="image in tshirtVm.projectInfo.tsFrontImages"
         ng-style="{'top':'{{image.y_position}}px','left':'{{image.x_position}}px'}"
         ng-if="tshirtVm.tshirtSide">
-          <img id="frontImage{{$index}}" class="clipart stack-target" resizable initwidth="{{ image.width }}" initheight="{{ image.height }}"
+          <div class="delete-button" ng-click="tshirtVm.frontDeleteImage($event)">
+            <i class="fa fa-minus-square" aria-hidden="true"></i>
+          </div>
+          <img id="{{image.htmlId}}" class="clipart stack-target" resizable initwidth="{{ image.width }}" initheight="{{ image.height }}"
             on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
           ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
         </div>
@@ -40,7 +55,10 @@
         ng-repeat="image in tshirtVm.projectInfo.tsBackImages"
         ng-style="{'top':'{{image.y_position}}px','left':'{{image.x_position}}px'}"
         ng-if="!tshirtVm.tshirtSide">
-          <img id="backImage{{$index}}" class="clipart" resizable init-width="{{ image.width }}" init-height="{{ image.height }}"
+        <div class="delete-button" ng-click="tshirtVm.backDeleteImage($event)">
+          <i class="fa fa-minus-square" aria-hidden="true"></i>
+        </div>
+          <img id="{{image.htmlId}}" class="clipart" resizable initwidth="{{ image.width }}" initheight="{{ image.height }}"
             on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mouseup="tshirtVm.getPosition($event)"
           ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
         </div>
@@ -51,17 +69,26 @@
         <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
         data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
         ng-repeat="frontText in tshirtVm.projectInfo.tsFrontText"
-        ng-if="tshirtVm.tshirtSide" >
-          <div id="frontText{{$index}}" class="text"
-          ng-mouseup="tshirtVm.getPosition($event)">{{frontText.text}}</div>
+        ng-style="{'top':'{{frontText.y_position}}px','left':'{{frontText.x_position}}px'}"
+        ng-if="tshirtVm.tshirtSide" ng-class="selectedObject">
+          <div class="delete-button" ng-click="tshirtVm.frontDeleteText($event)">
+            <i class="fa fa-minus-square" aria-hidden="true"></i>
+          </div>
+          <div id="{{frontText.htmlId}}" class="text"
+          ng-mouseup="tshirtVm.getPosition($event)"
+          >{{frontText.text}}</div>
         </div>
 
         <!--Back Text Array  -->
         <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
         data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
         ng-repeat="backText in tshirtVm.projectInfo.tsBackText"
+        ng-style="{'top':'{{backText.y_position}}px','left':'{{backText.x_position}}px'}"
         ng-if="!tshirtVm.tshirtSide" >
-          <div id="backText{{$index}}" class="text"
+        <div class="delete-button" ng-click="tshirtVm.backDeleteText($event)">
+          <i class="fa fa-minus-square" aria-hidden="true"></i>
+        </div>
+          <div id="{{backText.htmlId}}" class="text"
           ng-mouseup="tshirtVm.getPosition($event)">{{backText.text}}</div>
         </div>
 

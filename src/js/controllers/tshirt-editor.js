@@ -20,10 +20,11 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
   vm.tshirtSide = true;
   vm.getPosition = getPosition;
   vm.rotateShirt = rotateShirt;
-  vm.frontImageCount = 0;
-  vm.backImageCount = 0;
-  vm.frontTextCount = 0;
-  vm.backImageCount = 0;
+  vm.frontDeleteImage = frontDeleteImage;
+  vm.frontDeleteText = frontDeleteText;
+  vm.backDeleteImage = backDeleteImage;
+  vm.backDeleteText = backDeleteText;
+  vm.selectedObject = false;
   vm.shopifyFrontUrl = '';
   vm.shopifyBackUrl = '';
 
@@ -38,13 +39,12 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
     if (vm.tshirtSide === true) {
       vm.projectInfo.tsFrontImages.push({
         url: image.url,
-        htmlId: `frontImage${vm.frontImageCount}`
+        htmlId: `frontImage-${vm.projectInfo.tsFrontImages.length}`
       });
-      vm.frontImageCount++;
     } else {
       vm.projectInfo.tsBackImages.push({
         url: image.url,
-        htmlId: `backImage${vm.backImageCount}`
+        htmlId: `backImage-${vm.projectInfo.tsBackImages.length}`
       });
     }
   });
@@ -61,15 +61,13 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
     if (vm.tshirtSide === true) {
       vm.projectInfo.tsFrontText.push({
         text: text,
-        htmlId: `frontText${vm.frontTextCount}`
+        htmlId: `frontText-${vm.projectInfo.tsFrontText.length}`
       });
-      vm.frontTextCount++;
     } else {
       vm.projectInfo.tsBackText.push({
         text: text,
-        htmlId: `backText${vm.backTextCount}`
+        htmlId: `backText-${vm.projectInfo.tsBackText.length}`
       });
-      vm.backTextCount++;
     }
   });
 
@@ -118,6 +116,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
     });
   });
 
+
   function getPosition ($event) {
     let container = angular.element($event.target.offsetParent.offsetParent);
     let textContainer = angular.element($event.target.offsetParent);
@@ -128,23 +127,23 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
     let backText = vm.projectInfo.tsBackText.find(x => x.htmlId === target.attr('id'));
 
     if (frontImage) {
-      frontImage.x_position = container.prop('offsetLeft') - 57;
+      frontImage.x_position = container.prop('offsetLeft');
       frontImage.y_position = container.prop('offsetTop');
       frontImage.height = target.prop('clientHeight');
       frontImage.width = target.prop('clientWidth');
     }
     if (backImage) {
-      backImage.x_position = container.prop('offsetLeft') - 57;
+      backImage.x_position = container.prop('offsetLeft');
       backImage.y_position = container.prop('offsetTop');
       backImage.height = target.prop('clientHeight');
       backImage.width = target.prop('clientWidth');
     }
     if (frontText) {
-      frontText.x_position = textContainer.prop('offsetLeft') - 57;
+      frontText.x_position = textContainer.prop('offsetLeft');
       frontText.y_position = textContainer.prop('offsetTop');
     }
     if (backText) {
-      backText.x_position = textContainer.prop('offsetLeft') - 57;
+      backText.x_position = textContainer.prop('offsetLeft');
       backText.y_position = textContainer.prop('offsetTop');
     }
   }
@@ -152,6 +151,31 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
   function rotateShirt () {
     vm.tshirtSide = !vm.tshirtSide;
   }
+
+  function frontDeleteImage ($event) {
+    let target = angular.element($event.target.offsetParent.nextElementSibling.firstChild);
+    let frontDeleteImage = vm.projectInfo.tsFrontImages.findIndex(x => x.htmlId === target.attr('id'));
+    vm.projectInfo.tsFrontImages.splice(frontDeleteImage, 1);
+  }
+
+  function frontDeleteText ($event) {
+    let target = angular.element($event.target.offsetParent.nextElementSibling.firstChild);
+    let frontDeleteText = vm.projectInfo.tsFrontText.findIndex(x => x.htmlId === target.attr('id'));
+    vm.projectInfo.tsFrontText.splice(frontDeleteText, 1);
+  }
+
+  function backDeleteImage ($event) {
+    let target = angular.element($event.target.offsetParent.nextElementSibling.firstChild);
+    let backDeleteImage = vm.projectInfo.tsBackImages.findIndex(x => x.htmlId === target.attr('id'));
+    vm.projectInfo.tsBackImages.splice(backDeleteImage, 1);
+  }
+
+  function backDeleteText ($event) {
+    let target = angular.element($event.target.offsetParent.nextElementSibling.firstChild);
+    let backDeleteText = vm.projectInfo.tsBackText.findIndex(x => x.htmlId === target.attr('id'));
+    vm.projectInfo.tsBackText.splice(backDeleteText, 1);
+  }
+
 }
 
 TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER'];
