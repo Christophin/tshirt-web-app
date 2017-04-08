@@ -20,20 +20,13 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
   vm.tshirtSide = true;
   vm.getPosition = getPosition;
   vm.rotateShirt = rotateShirt;
-<<<<<<< HEAD
   vm.frontDeleteImage = frontDeleteImage;
   vm.frontDeleteText = frontDeleteText;
   vm.backDeleteImage = backDeleteImage;
   vm.backDeleteText = backDeleteText;
   vm.selectedObject = false;
-=======
-  vm.frontImageCount = 0;
-  vm.backImageCount = 0;
-  vm.frontTextCount = 0;
-  vm.backImageCount = 0;
   vm.shopifyFrontUrl = '';
   vm.shopifyBackUrl = '';
->>>>>>> 62b01068e886446edb30c952ad10971bf0c3ea3f
 
   function init () {
     if ($rootScope.savedProject != null) {
@@ -54,10 +47,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
         htmlId: `backImage-${vm.projectInfo.tsBackImages.length}`
       });
     }
-<<<<<<< HEAD
-    console.log(vm.projectInfo.tsFrontImages)
-=======
->>>>>>> 62b01068e886446edb30c952ad10971bf0c3ea3f
   });
 
   $scope.$on('tshirtUrl', (event, data) => {
@@ -112,10 +101,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
   }
 
   $scope.$on('needImage', () => {
-<<<<<<< HEAD
-
-
-=======
       vm.tshirtSide = true;
       createBlob('frontBlob').then( (front) => {
         vm.tshirtSide = false;
@@ -129,7 +114,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
             })
         });
     });
->>>>>>> 62b01068e886446edb30c952ad10971bf0c3ea3f
   });
 
 
@@ -162,13 +146,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
       backText.x_position = textContainer.prop('offsetLeft');
       backText.y_position = textContainer.prop('offsetTop');
     }
-<<<<<<< HEAD
-    // console.log('Front Images',vm.projectInfo.tsFrontImages);
-    // console.log('Back Images',vm.projectInfo.tsBackImages);
-    // console.log('Front Text',vm.projectInfo.tsFrontText);
-    // console.log('Back Text',vm.projectInfo.tsBackText);
-=======
->>>>>>> 62b01068e886446edb30c952ad10971bf0c3ea3f
   }
 
   function rotateShirt () {
