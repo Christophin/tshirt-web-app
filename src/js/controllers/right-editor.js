@@ -69,18 +69,19 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
 
   function saveProject (name) {
     $scope.$emit('needShirt', name);
-    let userID = $cookies.get('user-id');
-    $state.go('root.user', { userId: userID });
   }
 
-  function exportProject () {
-    $scope.$emit('needImage');
+  function exportProject (data) {
+    $scope.$emit('needImage', data);
+      console.log(data)
   }
 
   $scope.$on('projectInfo', (event, projectInfo) => {
     $http.post(`${SERVER}/tshirt`, projectInfo)
         .then(resp => {
           console.log(resp);
+          let userID = $cookies.get('user-id');
+          $state.go('root.user', { userId: userID });
         })
         .catch(error => console.log(error));
   });
