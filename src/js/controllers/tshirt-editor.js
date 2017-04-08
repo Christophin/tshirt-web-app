@@ -24,6 +24,8 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
   vm.backImageCount = 0;
   vm.frontTextCount = 0;
   vm.backImageCount = 0;
+  vm.shopifyFrontUrl = '';
+  vm.shopifyBackUrl = '';
 
   function init () {
     if ($rootScope.savedProject != null) {
@@ -45,7 +47,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
         htmlId: `backImage${vm.backImageCount}`
       });
     }
-    console.log(vm.projectInfo.tsFrontImages);
   });
 
   $scope.$on('tshirtUrl', (event, data) => {
@@ -70,7 +71,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
       });
       vm.backTextCount++;
     }
-    console.log(vm.projectInfo.tsFrontText);
   });
 
   $scope.$on('needShirt', (name) => {
@@ -78,29 +78,44 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
     $scope.$broadcast('projectInfo', vm.projectInfo);
   });
 
+  function createBlob (key) {
+    return domtoimage.toBlob(document.getElementById('tshirt-sandbox'))
+        .then((blob) => {
+            blob.name = key;
+            return blob;
+    })
+  }
+
+  function uploadBlob (blob) {
+    return window.client.upload(blob).then(result => {
+      return result.url;
+    })
+  }
+
+  function buildProduct ([frontImg, backImg]) {
+    return {
+      product: {
+        title: vm.projectInfo.name,
+        frontImg: frontImg,
+        backImg: backImg
+      }
+    }
+  }
+
   $scope.$on('needImage', () => {
-    domtoimage.toBlob(document.getElementById('tshirt-sandbox'))
-      .then((blob) => {
-        blob.name = vm.projectInfo.name;
-        window.client.upload(blob).then((result) => {
-          console.log(result);
+      vm.tshirtSide = true;
+      createBlob('frontBlob').then( (front) => {
+        vm.tshirtSide = false;
+        $scope.$apply();
+        createBlob('backBlob').then( (back) => {
+            let images = Promise.all([front, back].map(uploadBlob));
+            images.then(urls => {
+                let data = buildProduct(urls);
+                $http.post(`${SERVER}/shopify/tossShirt`, data)
+                    .then(shirt => console.log(shirt));
+            })
         });
-      });
-    vm.tshirtSide= !vm.tshirtSide;
-    domtoimage.toBlob(document.getElementById('tshirt-sandbox'))
-      .then((blob) => {
-        blob.name = vm.projectInfo.name;
-        window.client.upload(blob).then((result) => {
-          let data = {
-            product: {
-              title: vm.projectInfo.name,
-              imageUrl: result.url
-            }
-          };
-          $http.post(`${SERVER}/shopify/tossShirt`, data)
-              .then(shirt => console.log(shirt));
-        });
-      });
+    });
   });
 
   function getPosition ($event) {
@@ -132,16 +147,10 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER) {
       backText.x_position = textContainer.prop('offsetLeft') - 57;
       backText.y_position = textContainer.prop('offsetTop');
     }
-    console.log('Front Images',vm.projectInfo.tsFrontImages);
-    console.log('Back Images',vm.projectInfo.tsBackImages);
-    console.log('Front Text',vm.projectInfo.tsFrontText);
-    console.log('Back Text',vm.projectInfo.tsBackText);
   }
 
   function rotateShirt () {
     vm.tshirtSide = !vm.tshirtSide;
-    console.log('Project Info: ', vm.projectInfo);
-
   }
 }
 

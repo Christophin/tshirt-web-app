@@ -58,8 +58,7 @@ function LeftSandboxController ($scope, $http, SERVER) {
               url: result.filesUploaded[0].url,
               name: result.filesUploaded[0].filename,
               category: 'Emojis'
-            }
-            console.log(clipartUpload);
+            };
             $http.post(`${SERVER}/cliparts`, clipartUpload)
             .then (resp => console.log(resp));
         });

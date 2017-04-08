@@ -16,7 +16,6 @@ function LoginController ($http, SERVER, $cookies, $state, $rootScope) {
     }
     function login (user) {
         return $http.post(`${SERVER}/login`, user).then(resp => {
-            console.log(resp);
             $cookies.put('access-token', resp.data.token);
             $cookies.put('user-id', resp.data.user.id);
             $rootScope.login = true;

@@ -78,11 +78,11 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
   }
 
   $scope.$on('projectInfo', (event, projectInfo) => {
-    //console.log(projectInfo);
     $http.post(`${SERVER}/tshirt`, projectInfo)
         .then(resp => {
           console.log(resp);
-        });
+        })
+        .catch(error => console.log(error));
   });
 
   function switchTshirt (data) {
