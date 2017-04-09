@@ -72,13 +72,15 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       vm.projectInfo.tsFrontText.push({
         text: text,
         htmlId: `frontText-${vm.projectInfo.tsFrontText.length}`,
-        selectObject: false
+        selectObject: false,
+        currentFont: ""
       });
     } else {
       vm.projectInfo.tsBackText.push({
         text: text,
         htmlId: `backText-${vm.projectInfo.tsBackText.length}`,
-        selectObject: false
+        selectObject: false,
+        currentFont: ""
       });
     }
   });
