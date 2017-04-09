@@ -9,8 +9,9 @@ function resizable () {
       let initWidth = attrs.initwidth;
       elem.resizable({aspectRatio: true});
       console.log(elem.siblings('.ui-icon'));
+      elem.siblings('.ui-icon').css('background-color','red !important');
 
-      elem.siblings('.ui-icon').attr({'ng-class':`{'clearDiv': tshirtVm.projectInfo.selectObject}`});
+      // elem.siblings('.ui-icon').css('background-image','url(`../images/resize-icon.png`)!important');
       elem.parent('.ui-wrapper').css({'height': `${initHeight}px`, 'width': `${initWidth}px`});
 
       elem.on('resize', function (evt, ui) {
