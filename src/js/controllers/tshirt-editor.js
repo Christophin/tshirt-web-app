@@ -13,7 +13,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
     tsBackImages: [],
     tsFrontText: [],
     tsBackText: [],
-    selectObject: false,
+    snapShot: false,
     store: {}
   };
 
@@ -119,7 +119,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
     console.log(data);
     vm.projectInfo.store = data;
       vm.tshirtSide = true;
-      vm.projectInfo.selectObject = true;
+      vm.projectInfo.snapShot = true;
       angular.element($('.ui-icon').css('display', 'none'));
       createBlob('frontBlob').then( (front) => {
         vm.tshirtSide = false;
@@ -142,6 +142,12 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       vm.textContainer = angular.element($event.target.offsetParent);
       vm.target = angular.element($event.target);
       $rootScope.startDragging = true;
+      vm.projectInfo.selectObject = true;
+
+      let dragState = vm.projectInfo.tsFrontImages.find(x => x.htmlId === vm.target.attr('id'));
+      console.log('target', vm.target);
+      console.log('dataState', dragState);
+      dragState.selectObject = true;
   }
 
   $scope.$on('doneDragging', () => {
@@ -171,6 +177,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       backText.y_position = vm.textContainer.prop('offsetTop');
     }
     $rootScope.startDragging = false;
+    vm.projectInfo.selectObject = false;
   });
 
   function rotateShirt () {
