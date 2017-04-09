@@ -1,10 +1,10 @@
-<div id="tshirt-editor" class="tshirt-editor row">
+<div id="tshirt-editor" class="tshirt-editor row" >
     <!-- LEFT PANE -->
   <div id="left-editor" class="col s4 editor-container" ui-view="left-editor"></div>
 
 
 
-  <div id="center-editor" class="col s6 editor-container">
+  <div id="center-editor" class="col s6 editor-container" ng-click="tshirtVm.clearTarget($event)">
     <div id="option-button">
       <div id="editor-button" class="fixed-action-btn horizontal click-to-toggle">
         <a class="btn-floating btn-medium red">
@@ -29,7 +29,7 @@
         </ul>
       </div>
     </div>
-    <div id="tshirt-sandbox">
+    <div id="tshirt-sandbox" >
       <img id="front-tshirt" ng-src="{{tshirtVm.frontTshirtUrl}}" ng-show="tshirtVm.tshirtSide"/>
       <img id="back-tshirt" ng-src="{{tshirtVm.backTshirtUrl}}" ng-show="!tshirtVm.tshirtSide"/>
 
@@ -43,10 +43,10 @@
         ng-if="tshirtVm.tshirtSide"
         ng-class="{clearCss: tshirtVm.projectInfo.snapShot}">
           <div class="delete-button" ng-click="tshirtVm.frontDeleteImage($event)"
-          ng-class="{clearDiv: tshirtVm.projectInfo.snapShot, clearDiv: tshirtVm.projectInfo.selectObject}">
+          ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || image.selectObject || !tshirtVm.currentObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           </div>
-            <img id="{{image.htmlId}}" resizable class="clipart"  initwidth="{{ image.width }}" initheight="{{ image.height }}"
+            <img href="#add-art" id="{{image.htmlId}}" resizable class="clipart"  initwidth="{{ image.width }}" initheight="{{ image.height }}"
             on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mousedown="tshirtVm.grabTarget($event)"
             ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
           <!-- <div class="resize-button">
@@ -61,7 +61,7 @@
         ng-style="{'top':'{{image.y_position}}px','left':'{{image.x_position}}px'}"
         ng-if="!tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.snapShot}">
         <div class="delete-button" ng-click="tshirtVm.backDeleteImage($event)"
-        ng-class="{clearDiv: tshirtVm.projectInfo.snapShot}">
+        ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || image.selectObject || !tshirtVm.currentObject}">
           <i class="fa fa-minus-square" aria-hidden="true"></i>
         </div>
           <img id="{{image.htmlId}}" class="clipart" resizable initwidth="{{ image.width }}" initheight="{{ image.height }}"
@@ -78,10 +78,10 @@
         ng-style="{'top':'{{frontText.y_position}}px','left':'{{frontText.x_position}}px'}"
         ng-if="tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.snapShot}">
           <div class="delete-button" ng-click="tshirtVm.frontDeleteText($event)"
-          ng-class="{clearDiv: tshirtVm.projectInfo.snapShot}">
+          ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || frontText.selectObject || !tshirtVm.currentObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           </div>
-          <div id="{{frontText.htmlId}}" ng-class="{tshirtVm.currentFont:}" class="text"
+          <div  id="{{frontText.htmlId}}"  ng-mousedown="tshirtVm.grabTarget($event)" class="text"
           ng-mouseup="tshirtVm.getPosition($event)"
           >{{frontText.text}}</div>
         </div>
@@ -93,11 +93,11 @@
         ng-style="{'top':'{{backText.y_position}}px','left':'{{backText.x_position}}px'}"
         ng-if="!tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.snapShot}">
         <div class="delete-button" ng-click="tshirtVm.backDeleteText($event)"
-        ng-class="{clearDiv: tshirtVm.projectInfo.snapShot}">
+        ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || backText.selectObject || !tshirtVm.currentObject}">
           <i class="fa fa-minus-square" aria-hidden="true"></i>
         </div>
           <div id="{{backText.htmlId}}" class="text"
-          ng-mouseup="tshirtVm.getPosition($event)">{{backText.text}}</div>
+          ng-mouseup="tshirtVm.getPosition($event)" ng-mousedown="tshirtVm.grabTarget($event)">{{backText.text}}</div>
         </div>
 
       </div>

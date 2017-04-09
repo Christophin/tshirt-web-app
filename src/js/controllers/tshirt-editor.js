@@ -4,6 +4,9 @@ import domtoimage from 'dom-to-image';
 function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
   let vm = this;
 
+  $rootScope.textSelected = false;
+  $rootScope.imageSelected = false;
+
   vm.projectInfo = {
     name: '',
     color: '',
@@ -20,6 +23,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
   vm.frontTshirtUrl = './images/tshirts/White Front T-Shirt-450x550.png';
   vm.backTshirtUrl = './images/tshirts/White Back T-Shirt.png';
   vm.tshirtSide = true;
+  vm.clearTarget = clearTarget;
   vm.grabTarget = grabTarget;
   vm.rotateShirt = rotateShirt;
   vm.frontDeleteImage = frontDeleteImage;
@@ -31,6 +35,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
   vm.container = null;
   vm.textContainer = null;
   vm.target = null;
+  vm.targetObject = null;
 
   function init () {
     if ($rootScope.savedProject != null) {
@@ -73,7 +78,8 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
         text: text,
         htmlId: `frontText-${vm.projectInfo.tsFrontText.length}`,
         selectObject: false,
-        currentFont: ""
+        currentFont: "",
+
       });
     } else {
       vm.projectInfo.tsBackText.push({
@@ -137,17 +143,40 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
     });
   });
 
+  function currentTarget()  {
+      let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
+      additions.forEach(x => {
+          x.find(y => {
+              if(y.htmlId === vm.target.attr('id')) {
+                  vm.currentObject = y;
+              }
+          });
+
+      });
+      console.log(vm.currentObject);
+      vm.currentObject.selectObject = true;
+      if (vm.currentObject.url) {
+        $rootScope.imageSelected = true;
+      }
+      if (vm.currentObject.text) {
+          $rootScope.textSelected = true;
+      }
+  }
+
+  function clearTarget(event)  {
+    if (vm.target[0] != event.target)  {
+        vm.currentObject = null;
+        $rootScope.textSelected = false;
+        $rootScope.imageSelected = false;
+    }
+  }
+
   function grabTarget($event)  {
       vm.container = angular.element($event.target.offsetParent.offsetParent);
       vm.textContainer = angular.element($event.target.offsetParent);
       vm.target = angular.element($event.target);
       $rootScope.startDragging = true;
-      vm.projectInfo.selectObject = true;
-
-      let dragState = vm.projectInfo.tsFrontImages.find(x => x.htmlId === vm.target.attr('id'));
-      console.log('target', vm.target);
-      console.log('dataState', dragState);
-      dragState.selectObject = true;
+      currentTarget();
   }
 
   $scope.$on('doneDragging', () => {
@@ -177,7 +206,10 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       backText.y_position = vm.textContainer.prop('offsetTop');
     }
     $rootScope.startDragging = false;
-    vm.projectInfo.selectObject = false;
+    vm.projectInfo.tsFrontImages.forEach(x => x.selectObject = false);
+    vm.projectInfo.tsBackImages.forEach(x => x.selectObject = false);
+    vm.projectInfo.tsFrontText.forEach(x => x.selectObject = false);
+    vm.projectInfo.tsBackText.forEach(x => x.selectObject = false);
   });
 
   function rotateShirt () {
