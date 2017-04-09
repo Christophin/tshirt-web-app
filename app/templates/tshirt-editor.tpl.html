@@ -78,7 +78,7 @@
           ng-class="{clearDiv: tshirtVm.projectInfo.selectObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           </div>
-          <div id="{{frontText.htmlId}}" class="text"
+          <div id="{{frontText.htmlId}}" ng-class="{tshirtVm.currentFont:}" class="text"
           ng-mouseup="tshirtVm.getPosition($event)"
           >{{frontText.text}}</div>
         </div>
