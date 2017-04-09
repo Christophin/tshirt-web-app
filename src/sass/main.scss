@@ -97,6 +97,16 @@
       top: -19px;
       left: -22px;
     }
+
+    .resize-button {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      z-index: 90;
+      top: 99px;
+      left: 96px;
+      transform: scale(-1, 1);
+    }
     }
 
     .text {
@@ -138,6 +148,4 @@
   }
 }
 
-.ui-resizable-handle {
-
-}
+// .ui-icon { background-image: url("") !important; }

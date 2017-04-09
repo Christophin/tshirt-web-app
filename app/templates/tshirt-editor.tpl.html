@@ -46,9 +46,12 @@
           ng-class="{clearDiv: tshirtVm.projectInfo.snapShot, clearDiv: tshirtVm.projectInfo.selectObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           </div>
-          <img id="{{image.htmlId}}" class="clipart" resizable initwidth="{{ image.width }}" initheight="{{ image.height }}"
+            <img id="{{image.htmlId}}" resizable class="clipart"  initwidth="{{ image.width }}" initheight="{{ image.height }}"
             on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mousedown="tshirtVm.grabTarget($event)"
-          ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
+            ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
+          <!-- <div class="resize-button">
+            <i class="fa fa-expand" aria-hidden="true"></i>
+          </div> -->
         </div>
 
         <!--Back Images Array  -->
