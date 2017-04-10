@@ -39,7 +39,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
   function init () {
     if ($rootScope.savedProject != null) {
       vm.projectInfo = $rootScope.savedProject;
-      console.log($rootScope.savedProject)
     }
   }
 
@@ -50,15 +49,14 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
     if (vm.tshirtSide === true) {
       vm.projectInfo.tsFrontImages.push({
         url: image.url,
-        htmlId: `frontImage-${vm.projectInfo.tsFrontImages.length}`,
+        html_id: `frontImage-${vm.projectInfo.tsFrontImages.length}`,
       });
     } else {
       vm.projectInfo.tsBackImages.push({
         url: image.url,
-        htmlId: `backImage-${vm.projectInfo.tsBackImages.length}`,
+        html_id: `backImage-${vm.projectInfo.tsBackImages.length}`,
       });
     }
-    console.log(vm.projectInfo.tsFrontImages);
   });
 
   $scope.$on('tshirtUrl', (event, data) => {
@@ -73,14 +71,14 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
     if (vm.tshirtSide === true) {
       vm.projectInfo.tsFrontText.push({
         text: text,
-        htmlId: `frontText-${vm.projectInfo.tsFrontText.length}`,
+        html_id: `frontText-${vm.projectInfo.tsFrontText.length}`,
         currentFont: "",
 
       });
     } else {
       vm.projectInfo.tsBackText.push({
         text: text,
-        htmlId: `backText-${vm.projectInfo.tsBackText.length}`,
+        html_id: `backText-${vm.projectInfo.tsBackText.length}`,
         currentFont: ""
       });
     }
@@ -117,7 +115,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
   }
 
   $scope.$on('needImage', (event, data) => {
-    console.log(data);
     vm.projectInfo.store = data;
       vm.tshirtSide = true;
       vm.projectInfo.snapShot = true;
@@ -130,7 +127,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
             let images = Promise.all([front, back].map(uploadBlob));
             images.then(urls => {
                 let data = buildProduct(urls);
-                console.log(data);
                 $http.post(`${SERVER}/shopify/tossShirt`, data)
                    .then(shirt => console.log(shirt));
             })
@@ -147,9 +143,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
       additions.forEach(x => {
           x.find(y => {
-              if(y.htmlId === vm.target.attr('id')) {
-                console.log("Updating current target", y, vm.target);
-                // vm.currentObject = y;
+              if(y.html_id === vm.target.attr('id')) {
                 y.currentObject = true;
                   if (y.url) {
                       $rootScope.imageSelected = true;
@@ -163,7 +157,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
           });
 
       });
-      console.log(vm.currentObject);
 
   }
 
@@ -188,10 +181,10 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
   }
 
   $scope.$on('doneDragging', () => {
-    let frontImage = vm.projectInfo.tsFrontImages.find(x => x.htmlId === vm.target.attr('id'));
-    let backImage = vm.projectInfo.tsBackImages.find(x => x.htmlId === vm.target.attr('id'));
-    let frontText = vm.projectInfo.tsFrontText.find(x => x.htmlId === vm.target.attr('id'));
-    let backText = vm.projectInfo.tsBackText.find(x => x.htmlId === vm.target.attr('id'));
+    let frontImage = vm.projectInfo.tsFrontImages.find(x => x.html_id === vm.target.attr('id'));
+    let backImage = vm.projectInfo.tsBackImages.find(x => x.html_id === vm.target.attr('id'));
+    let frontText = vm.projectInfo.tsFrontText.find(x => x.html_id === vm.target.attr('id'));
+    let backText = vm.projectInfo.tsBackText.find(x => x.html_id === vm.target.attr('id'));
 
     if (frontImage) {
       frontImage.x_position = vm.container.prop('offsetLeft');
@@ -222,25 +215,25 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
 
   function frontDeleteImage ($event) {
     let target = angular.element($event.target.offsetParent.nextElementSibling.firstChild);
-    let frontDeleteImage = vm.projectInfo.tsFrontImages.findIndex(x => x.htmlId === target.attr('id'));
+    let frontDeleteImage = vm.projectInfo.tsFrontImages.findIndex(x => x.html_id === target.attr('id'));
     vm.projectInfo.tsFrontImages.splice(frontDeleteImage, 1);
   }
 
   function frontDeleteText ($event) {
     let target = angular.element($event.target.offsetParent.nextElementSibling.firstChild);
-    let frontDeleteText = vm.projectInfo.tsFrontText.findIndex(x => x.htmlId === target.attr('id'));
+    let frontDeleteText = vm.projectInfo.tsFrontText.findIndex(x => x.html_id === target.attr('id'));
     vm.projectInfo.tsFrontText.splice(frontDeleteText, 1);
   }
 
   function backDeleteImage ($event) {
     let target = angular.element($event.target.offsetParent.nextElementSibling.firstChild);
-    let backDeleteImage = vm.projectInfo.tsBackImages.findIndex(x => x.htmlId === target.attr('id'));
+    let backDeleteImage = vm.projectInfo.tsBackImages.findIndex(x => x.html_id === target.attr('id'));
     vm.projectInfo.tsBackImages.splice(backDeleteImage, 1);
   }
 
   function backDeleteText ($event) {
     let target = angular.element($event.target.offsetParent.nextElementSibling.firstChild);
-    let backDeleteText = vm.projectInfo.tsBackText.findIndex(x => x.htmlId === target.attr('id'));
+    let backDeleteText = vm.projectInfo.tsBackText.findIndex(x => x.html_id === target.attr('id'));
     vm.projectInfo.tsBackText.splice(backDeleteText, 1);
   }
 

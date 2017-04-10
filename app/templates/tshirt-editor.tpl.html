@@ -46,7 +46,7 @@
           ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || !image.currentObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           </div>
-            <img href="#add-art" id="{{image.htmlId}}" resizable class="clipart"  initwidth="{{ image.width }}" initheight="{{ image.height }}"
+            <img href="#add-art" id="{{image.html_id}}" resizable class="clipart"  initwidth="{{ image.width }}" initheight="{{ image.height }}"
             on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mousedown="tshirtVm.grabTarget($event)"
             ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
           <!-- <div class="resize-button">
@@ -64,7 +64,7 @@
         ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || !image.currentObject}">
           <i class="fa fa-minus-square" aria-hidden="true"></i>
         </div>
-          <img id="{{image.htmlId}}" class="clipart" resizable initwidth="{{ image.width }}" initheight="{{ image.height }}"
+          <img id="{{image.html_id}}" class="clipart" resizable initwidth="{{ image.width }}" initheight="{{ image.height }}"
             on-resize="tshirtVm.resize($evt, $ui)" ng-src="{{image.url}}" ng-mousedown="tshirtVm.grabTarget($event)" ng-mouseup="tshirtVm.getPosition($event)"
           ng-style="{'width':'{{image.width}}px','height':'{{image.height}}px'}"/>
         </div>
@@ -81,7 +81,7 @@
           ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || !frontText.currentObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           </div>
-          <div  id="{{frontText.htmlId}}"  ng-mousedown="tshirtVm.grabTarget($event)" class="text"
+          <div  id="{{frontText.html_id}}"  ng-mousedown="tshirtVm.grabTarget($event)" class="text"
           ng-mouseup="tshirtVm.getPosition($event)"
           >{{frontText.text}}</div>
         </div>
@@ -96,7 +96,7 @@
         ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || !backText.currentObject}">
           <i class="fa fa-minus-square" aria-hidden="true"></i>
         </div>
-          <div id="{{backText.htmlId}}" class="text"
+          <div id="{{backText.html_id}}" class="text"
           ng-mouseup="tshirtVm.getPosition($event)" ng-mousedown="tshirtVm.grabTarget($event)">{{backText.text}}</div>
         </div>
 
