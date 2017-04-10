@@ -153,9 +153,11 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
                 y.currentObject = true;
                   if (y.url) {
                       $rootScope.imageSelected = true;
+                      document.querySelector("[href='#add-art']").click();
                   }
                   if (y.text) {
                       $rootScope.textSelected = true;
+                      document.querySelector("[href='#add-text']").click();
                   }
               }
           });

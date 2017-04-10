@@ -78,7 +78,7 @@
         ng-style="{'top':'{{frontText.y_position}}px','left':'{{frontText.x_position}}px'}"
         ng-if="tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.snapShot}">
           <div class="delete-button" ng-click="tshirtVm.frontDeleteText($event)"
-          ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || frontText.currentObject}">
+          ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || !frontText.currentObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           </div>
           <div  id="{{frontText.htmlId}}"  ng-mousedown="tshirtVm.grabTarget($event)" class="text"
@@ -93,7 +93,7 @@
         ng-style="{'top':'{{backText.y_position}}px','left':'{{backText.x_position}}px'}"
         ng-if="!tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.snapShot}">
         <div class="delete-button" ng-click="tshirtVm.backDeleteText($event)"
-        ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || backText.currentObject}">
+        ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || !backText.currentObject}">
           <i class="fa fa-minus-square" aria-hidden="true"></i>
         </div>
           <div id="{{backText.htmlId}}" class="text"
