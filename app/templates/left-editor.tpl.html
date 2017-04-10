@@ -12,7 +12,29 @@
         <button>Add Text</button>
       </form>
     <div class="textOptions" ng-show="textSelected">
-        <h1>HELLO</h1>
+      <!-- Dropdown Trigger -->
+      <a class="dropdown-button btn" href data-activates="demoDropdown" dropdown data-hover="true">
+        Font Type
+      </a>
+
+      <!-- Dropdown Structure -->
+      <ul id="demoDropdown" class="dropdown-content">
+        <li class="roboto">
+          <a href ng-click="leftVm.changeFont(leftVm.fonts.roboto)">default</a>
+        </li>
+        <li class="spirax">
+          <a href ng-click="leftVm.changeFont(leftVm.fonts.spirax)">Spirax</a>
+        </li>
+        <li class="macondo">
+          <a href ng-click="leftVm.changeFont(leftVm.fonts.macondo)">Macondo</a>
+        </li>
+        <li class="press-start">
+          <a href ng-click="leftVm.changeFont(leftVm.fonts.pressStart)">Press Start 2P</a>
+        </li>
+        <li class="gloria-hallelujah">
+          <a href ng-click="leftVm.changeFont(leftVm.fonts.gloria)">Gloria Hallelujah</a>
+        </li>
+      </ul>
     </div>
 
     </div>

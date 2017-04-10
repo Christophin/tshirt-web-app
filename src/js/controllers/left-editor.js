@@ -7,6 +7,7 @@ function LeftSandboxController ($scope, $http, SERVER) {
     vm.addText = addText;
     vm.tossImage = tossImage;
     vm.showPicker = showPicker;
+    vm.changeFont = changeFont;
     vm.catData = null;
     vm.categories = {
         shapes: 'Shapes/Symbols',
@@ -29,6 +30,14 @@ function LeftSandboxController ($scope, $http, SERVER) {
         school: 'School',
         people: 'People',
         food: 'Food/Drink'
+    };
+
+    vm.fonts = {
+      roboto: 'roboto',
+      spirax: 'spirax',
+      macondo: 'macondo',
+      pressStart: 'pressStart',
+      gloria: 'gloria',
     };
 
     function showCategory (name) {
@@ -62,6 +71,12 @@ function LeftSandboxController ($scope, $http, SERVER) {
             $http.post(`${SERVER}/cliparts`, clipartUpload)
             .then (resp => console.log(resp));
         });
+    }
+
+    function changeFont (font) {
+      let selectedFont = font;
+      $scope.$emit('changeFont', selectedFont);
+      console.log(font);
     }
 }
 

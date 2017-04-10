@@ -110,7 +110,7 @@
     }
 
     .text {
-      font-size: 2em;
+      font-size: 1.1em;
       padding-left: 10px;
       padding-right: 10px;
       cursor: pointer;
@@ -150,6 +150,22 @@
 
 // .ui-icon { background-image: url("") !important; }
 
-.press-start  {
-  font-family: 'Press Start 2P', cursive !important;
+.spirax {
+  font-family: 'Spirax', cursive;
+}
+
+.pressStart {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.macondo {
+  font-family: 'Macondo', cursive;
+}
+
+.gloria {
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.roboto {
+  font-family: 'Roboto', sans-serif;
 }

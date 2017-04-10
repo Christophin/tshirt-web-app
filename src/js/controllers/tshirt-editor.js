@@ -74,7 +74,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       vm.projectInfo.tsFrontText.push({
         text: text,
         htmlId: `frontText-${vm.projectInfo.tsFrontText.length}`,
-        currentFont: "",
+        currentFont: ""
 
       });
     } else {
@@ -243,6 +243,18 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
     let backDeleteText = vm.projectInfo.tsBackText.findIndex(x => x.htmlId === target.attr('id'));
     vm.projectInfo.tsBackText.splice(backDeleteText, 1);
   }
+
+  $scope.$on('changeFont', (event, selectedFont) => {
+    let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
+    additions.forEach(x => {
+        x.find(y => {
+            if(y.htmlId === vm.target.attr('id')) {
+              // vm.currentObject = y;
+              y.currentFont = selectedFont;
+            }
+        });
+    });
+  });
 
 }
 

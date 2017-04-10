@@ -81,7 +81,8 @@
           ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || !frontText.currentObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           </div>
-          <div  id="{{frontText.htmlId}}"  ng-mousedown="tshirtVm.grabTarget($event)" class="text"
+          <div  id="{{frontText.htmlId}}"  ng-mousedown="tshirtVm.grabTarget($event)"
+          class="text {{frontText.currentFont}}"
           ng-mouseup="tshirtVm.getPosition($event)"
           >{{frontText.text}}</div>
         </div>
