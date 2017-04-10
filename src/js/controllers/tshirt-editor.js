@@ -50,12 +50,16 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       vm.projectInfo.tsFrontImages.push({
         url: image.url,
         html_id: `frontImage-${vm.projectInfo.tsFrontImages.length}`,
+        currentObject: true
       });
+      $rootScope.imageSelected = true;
     } else {
       vm.projectInfo.tsBackImages.push({
         url: image.url,
         html_id: `backImage-${vm.projectInfo.tsBackImages.length}`,
+        currentObject: true
       });
+      $rootScope.imageSelected = true;
     }
   });
 
@@ -73,14 +77,17 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
         text: text,
         html_id: `frontText-${vm.projectInfo.tsFrontText.length}`,
         currentFont: "",
-
+        currentObject: true
       });
+      $rootScope.textSelected = true;
     } else {
       vm.projectInfo.tsBackText.push({
         text: text,
         html_id: `backText-${vm.projectInfo.tsBackText.length}`,
-        currentFont: ""
+        currentFont: "",
+        currentObject: true
       });
+      $rootScope.currentObject = true;
     }
   });
 
