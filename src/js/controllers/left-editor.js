@@ -78,6 +78,8 @@ function LeftSandboxController ($scope, $http, SERVER) {
       $scope.$emit('changeFont', selectedFont);
       console.log(font);
     }
+
+    $scope.priceSlider = 150;
 }
 
 LeftSandboxController.$inject = ['$scope', '$http', 'SERVER'];

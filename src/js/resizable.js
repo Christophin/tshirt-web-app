@@ -7,7 +7,8 @@ function resizable () {
     link: function postLink(scope, elem, attrs) {
       let initHeight = attrs.initheight;
       let initWidth = attrs.initwidth;
-      elem.resizable({aspectRatio: true, handles: 'se'});
+      let container = document.querySelector("#drag-container");
+      elem.resizable({aspectRatio: true, handles: 'se', containment: container });
       console.log(elem.siblings('.ui-icon'));
       elem.siblings('.ui-icon').css('background-color','red !important');
 

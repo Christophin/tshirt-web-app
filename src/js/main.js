@@ -3,6 +3,7 @@ import 'angular-ui-router';
 import 'angular-cookies';
 import 'angular-dragdrop';
 import 'angular-materialize';
+import 'angularjs-slider';
 
 
 
@@ -24,7 +25,7 @@ import LoginController from './controllers/login';
 
 
 angular
-  .module('app', ['ui.router', 'ngCookies', 'ngDragDrop', 'ui.materialize'])
+  .module('app', ['ui.router', 'ngCookies', 'ngDragDrop', 'ui.materialize', 'rzModule'])
   .config(AppConfig)
   .directive('resizable', resizable)
   .run(setup)
