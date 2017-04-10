@@ -35,7 +35,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
   vm.container = null;
   vm.textContainer = null;
   vm.target = null;
-  vm.targetObject = null;
 
   function init () {
     if ($rootScope.savedProject != null) {
@@ -52,13 +51,11 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       vm.projectInfo.tsFrontImages.push({
         url: image.url,
         htmlId: `frontImage-${vm.projectInfo.tsFrontImages.length}`,
-        selectObject: false
       });
     } else {
       vm.projectInfo.tsBackImages.push({
         url: image.url,
         htmlId: `backImage-${vm.projectInfo.tsBackImages.length}`,
-        selectObject: false
       });
     }
     console.log(vm.projectInfo.tsFrontImages);
@@ -77,7 +74,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       vm.projectInfo.tsFrontText.push({
         text: text,
         htmlId: `frontText-${vm.projectInfo.tsFrontText.length}`,
-        selectObject: false,
         currentFont: "",
 
       });
@@ -85,7 +81,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       vm.projectInfo.tsBackText.push({
         text: text,
         htmlId: `backText-${vm.projectInfo.tsBackText.length}`,
-        selectObject: false,
         currentFont: ""
       });
     }
@@ -144,28 +139,39 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
   });
 
   function currentTarget()  {
+      vm.projectInfo.tsFrontImages.forEach(x => x.currentObject = false);
+      vm.projectInfo.tsBackImages.forEach(x => x.currentObject = false);
+      vm.projectInfo.tsFrontText.forEach(x => x.currentObject = false);
+      vm.projectInfo.tsBackText.forEach(x => x.currentObject = false);
+
       let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
       additions.forEach(x => {
           x.find(y => {
               if(y.htmlId === vm.target.attr('id')) {
-                  vm.currentObject = y;
+                console.log("Updating current target", y, vm.target);
+                // vm.currentObject = y;
+                y.currentObject = true;
+                  if (y.url) {
+                      $rootScope.imageSelected = true;
+                  }
+                  if (y.text) {
+                      $rootScope.textSelected = true;
+                  }
               }
           });
 
       });
       console.log(vm.currentObject);
-      vm.currentObject.selectObject = true;
-      if (vm.currentObject.url) {
-        $rootScope.imageSelected = true;
-      }
-      if (vm.currentObject.text) {
-          $rootScope.textSelected = true;
-      }
+
   }
 
   function clearTarget(event)  {
     if (vm.target[0] != event.target)  {
-        vm.currentObject = null;
+        let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
+        additions.forEach(x => {
+          x.forEach(y => y.currentObject = false);
+        });
+        //vm.currentObject = null;
         $rootScope.textSelected = false;
         $rootScope.imageSelected = false;
     }
@@ -206,10 +212,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       backText.y_position = vm.textContainer.prop('offsetTop');
     }
     $rootScope.startDragging = false;
-    vm.projectInfo.tsFrontImages.forEach(x => x.selectObject = false);
-    vm.projectInfo.tsBackImages.forEach(x => x.selectObject = false);
-    vm.projectInfo.tsFrontText.forEach(x => x.selectObject = false);
-    vm.projectInfo.tsBackText.forEach(x => x.selectObject = false);
   });
 
   function rotateShirt () {
