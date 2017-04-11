@@ -1,5 +1,5 @@
 
-function LeftSandboxController ($scope, $http, SERVER) {
+function LeftSandboxController ($scope, $http, SERVER, $rootScope, $interval) {
     let vm = this;
 
     vm.showCategory = showCategory;
@@ -8,7 +8,9 @@ function LeftSandboxController ($scope, $http, SERVER) {
     vm.tossImage = tossImage;
     vm.showPicker = showPicker;
     vm.changeFont = changeFont;
+    vm.fontSize = fontSize;
     vm.catData = null;
+
     vm.categories = {
         shapes: 'Shapes/Symbols',
         letters: 'Letters/Numbers',
@@ -39,6 +41,14 @@ function LeftSandboxController ($scope, $http, SERVER) {
       pressStart: 'pressStart',
       gloria: 'gloria',
     };
+
+    vm.slider = {
+      value: 30,
+      options: {
+        floor: 10,
+        ceil: 50
+        }
+      };
 
     function showCategory (name) {
         $http.get(`${SERVER}/cliparts?category=${name}`)
@@ -76,12 +86,15 @@ function LeftSandboxController ($scope, $http, SERVER) {
     function changeFont (font) {
       let selectedFont = font;
       $scope.$emit('changeFont', selectedFont);
-      console.log(font);
     }
 
-    $scope.priceSlider = 150;
+    function fontSize () {
+      $scope.$emit('fontSize', vm.slider.value);
+    }
+
+
 }
 
-LeftSandboxController.$inject = ['$scope', '$http', 'SERVER'];
+LeftSandboxController.$inject = ['$scope', '$http', 'SERVER' ,'$rootScope','$interval'];
 
 export default LeftSandboxController;

@@ -13,8 +13,11 @@
       </form>
     <div class="textOptions" ng-show="textSelected">
 
-        <rzslider rz-slider-model="priceSlider"></rzslider>
 
+        <div class="font-slider">
+        <h3>Font Size</h3>
+        <rzslider rz-slider-model="leftVm.slider.value" rz-slider-options="leftVm.slider.options" ng-mouseup="leftVm.fontSize(leftVm.slider.value)"></rzslider>
+        </div>
       <!-- Dropdown Trigger -->
       <a class="dropdown-button btn" href data-activates="demoDropdown" dropdown data-hover="true">
         Font Type

@@ -1,7 +1,7 @@
 import domtoimage from 'dom-to-image';
 // import $ from 'jquery';
 
-function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
+function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $interval) {
   let vm = this;
 
   $rootScope.textSelected = false;
@@ -74,14 +74,16 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
       vm.projectInfo.tsFrontText.push({
         text: text,
         htmlId: `frontText-${vm.projectInfo.tsFrontText.length}`,
-        currentFont: ""
+        currentFont: '',
+        fontSize: ''
 
       });
     } else {
       vm.projectInfo.tsBackText.push({
         text: text,
         htmlId: `backText-${vm.projectInfo.tsBackText.length}`,
-        currentFont: ""
+        currentFont: '',
+        fontSize: ''
       });
     }
   });
@@ -256,8 +258,23 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout) {
     });
   });
 
+  $scope.$on('fontSize', (event, value) => {
+    console.log('font size: ', value);
+    let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
+    additions.forEach(x => {
+        x.find(y => {
+            if(y.htmlId === vm.target.attr('id')) {
+              // vm.currentObject = y;
+              y.fontSize = value;
+            }
+        });
+    });
+    $scope.$apply();
+  });
+
+    //$interval(() => console.log('ROOT tshirt lisener:', $rootScope.fontSize),1000);
 }
 
-TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER', '$timeout'];
+TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER', '$timeout', '$interval'];
 
 export default TshirtEditorController;
