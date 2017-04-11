@@ -283,6 +283,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
     });
   });
 
+
 }
 
 TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER', '$timeout', '$interval'];
