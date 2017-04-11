@@ -1,5 +1,5 @@
 
-function LeftSandboxController ($scope, $http, SERVER) {
+function LeftSandboxController ($scope, $http, SERVER, $rootScope) {
     let vm = this;
 
     vm.showCategory = showCategory;
@@ -7,7 +7,13 @@ function LeftSandboxController ($scope, $http, SERVER) {
     vm.addText = addText;
     vm.tossImage = tossImage;
     vm.showPicker = showPicker;
+    vm.changeFont = changeFont;
+    vm.updateText = updateText;
+    vm.fontSize = fontSize;
+    vm.selectedAddText = selectedAddText;
+    vm.selectedUpdateText = selectedUpdateText;
     vm.catData = null;
+
     vm.categories = {
         shapes: 'Shapes/Symbols',
         letters: 'Letters/Numbers',
@@ -31,6 +37,22 @@ function LeftSandboxController ($scope, $http, SERVER) {
         food: 'Food/Drink'
     };
 
+    vm.fonts = {
+      roboto: 'roboto',
+      spirax: 'spirax',
+      macondo: 'macondo',
+      pressStart: 'pressStart',
+      gloria: 'gloria',
+    };
+
+    vm.slider = {
+      value: 30,
+      options: {
+        floor: 10,
+        ceil: 50
+        }
+      };
+
     function showCategory (name) {
         $http.get(`${SERVER}/cliparts?category=${name}`)
             .then(resp =>   {
@@ -48,6 +70,7 @@ function LeftSandboxController ($scope, $http, SERVER) {
 
     function addText(text) {
       $scope.$emit('addText', text);
+      vm.text = null;
     }
 
     function showPicker() {
@@ -63,8 +86,36 @@ function LeftSandboxController ($scope, $http, SERVER) {
             .then (resp => console.log(resp));
         });
     }
+
+    function changeFont (font) {
+      let selectedFont = font;
+      $scope.$emit('changeFont', selectedFont);
+    }
+
+    function fontSize () {
+      $scope.$emit('fontSize', vm.slider.value);
+    }
+
+    $scope.$on('textInput', (event,text) => {
+      vm.currentText = text;
+    });
+
+    function updateText (text) {
+      $scope.$emit('updateText', text);
+    }
+
+    function selectedAddText () {
+      if ($rootScope.textSelected === true) {
+        $rootScope.textSelected = false;
+      }
+    }
+
+    function selectedUpdateText () {
+      $rootScope.textSelected = true;
+    }
+
 }
 
-LeftSandboxController.$inject = ['$scope', '$http', 'SERVER'];
+LeftSandboxController.$inject = ['$scope', '$http', 'SERVER', '$rootScope'];
 
 export default LeftSandboxController;

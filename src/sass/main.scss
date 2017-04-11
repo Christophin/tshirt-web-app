@@ -1,4 +1,5 @@
 @import "../../node_modules/materialize-css/sass/materialize";
+@import "../../node_modules/angularjs-slider/dist/rzslider.scss";
 
 * {
   box-sizing: border-box;
@@ -61,7 +62,6 @@
       }
     }
   }
-
 }
 
 #right-editor {
@@ -110,7 +110,7 @@
     }
 
     .text {
-      font-size: 2em;
+      font-size: 20px;
       padding-left: 10px;
       padding-right: 10px;
       cursor: pointer;
@@ -150,6 +150,29 @@
 
 // .ui-icon { background-image: url("") !important; }
 
-.press-start  {
-  font-family: 'Press Start 2P', cursive !important;
+.spirax {
+  font-family: 'Spirax', cursive;
+}
+
+.pressStart {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.macondo {
+  font-family: 'Macondo', cursive;
+}
+
+.gloria {
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+#add-text {
+
+  .option-choice {
+    display: inline-block;
+  }
 }
