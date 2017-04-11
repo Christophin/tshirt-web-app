@@ -1,5 +1,5 @@
 
-function LeftSandboxController ($scope, $http, SERVER, $rootScope, $interval) {
+function LeftSandboxController ($scope, $http, SERVER, $rootScope) {
     let vm = this;
 
     vm.showCategory = showCategory;
@@ -8,7 +8,10 @@ function LeftSandboxController ($scope, $http, SERVER, $rootScope, $interval) {
     vm.tossImage = tossImage;
     vm.showPicker = showPicker;
     vm.changeFont = changeFont;
+    vm.updateText = updateText;
     vm.fontSize = fontSize;
+    vm.selectedAddText = selectedAddText;
+    vm.selectedUpdateText = selectedUpdateText;
     vm.catData = null;
 
     vm.categories = {
@@ -67,6 +70,7 @@ function LeftSandboxController ($scope, $http, SERVER, $rootScope, $interval) {
 
     function addText(text) {
       $scope.$emit('addText', text);
+      vm.text = null;
     }
 
     function showPicker() {
@@ -92,9 +96,26 @@ function LeftSandboxController ($scope, $http, SERVER, $rootScope, $interval) {
       $scope.$emit('fontSize', vm.slider.value);
     }
 
+    $scope.$on('textInput', (event,text) => {
+      vm.currentText = text;
+    });
+
+    function updateText (text) {
+      $scope.$emit('updateText', text);
+    }
+
+    function selectedAddText () {
+      if ($rootScope.textSelected === true) {
+        $rootScope.textSelected = false;
+      }
+    }
+
+    function selectedUpdateText () {
+      $rootScope.textSelected = true;
+    }
 
 }
 
-LeftSandboxController.$inject = ['$scope', '$http', 'SERVER' ,'$rootScope','$interval'];
+LeftSandboxController.$inject = ['$scope', '$http', 'SERVER', '$rootScope'];
 
 export default LeftSandboxController;

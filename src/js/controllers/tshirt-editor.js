@@ -160,6 +160,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
                   if (y.text) {
                       $rootScope.textSelected = true;
                       document.querySelector("[href='#add-text']").click();
+                      $scope.$broadcast('textInput', y.text);
                   }
               }
           });
@@ -259,7 +260,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
   });
 
   $scope.$on('fontSize', (event, value) => {
-    console.log('font size: ', value);
     let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
     additions.forEach(x => {
         x.find(y => {
@@ -269,10 +269,20 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
             }
         });
     });
-    $scope.$apply();
   });
 
-    //$interval(() => console.log('ROOT tshirt lisener:', $rootScope.fontSize),1000);
+  $scope.$on('updateText', (event, text) => {
+    let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
+    additions.forEach(x => {
+        x.find(y => {
+            if(y.htmlId === vm.target.attr('id')) {
+              // vm.currentObject = y;
+              y.text= text;
+            }
+        });
+    });
+  });
+  
 }
 
 TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER', '$timeout', '$interval'];

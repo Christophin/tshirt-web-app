@@ -7,13 +7,22 @@
         </ul>
     </div>
     <div id="add-text" class="col s12 text-ux">
-      <form ng-submit="leftVm.addText(text)">
-        <input class="input-text" type="text" placeholder="add text here" ng-model="text">
-        <button>Add Text</button>
-      </form>
+      <ul>
+        <li class="option-choice"><a href ng-click="leftVm.selectedAddText()">Add Text</a></li>
+        <li class="option-choice">|</li>
+        <li class="option-choice"><a href ng-click="leftVm.selectedUpdateText()">Update Text</a></li>
+      </ul>
+      <div class="adding-text" ng-hide="textSelected">
+        <form ng-submit="leftVm.addText(leftVm.text)">
+          <input class="input-text" type="text" placeholder="add text here" ng-model="leftVm.text">
+          <button >Add Text</button>
+        </form>
+      </div>
     <div class="textOptions" ng-show="textSelected">
-
-
+        <form ng-submit="leftVm.updateText(leftVm.currentText)">
+          <input class="input-text" type="text" ng-model="leftVm.currentText">
+          <button>Update Text</button>
+        </form>
         <div class="font-slider">
         <h3>Font Size</h3>
         <rzslider rz-slider-model="leftVm.slider.value" rz-slider-options="leftVm.slider.options" ng-mouseup="leftVm.fontSize(leftVm.slider.value)"></rzslider>
