@@ -75,7 +75,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
     if (vm.tshirtSide === true) {
       vm.projectInfo.tsFrontText.push({
         text: text,
-        htmlId: `frontText-${vm.projectInfo.tsFrontText.length}`,
+        html_id: `frontText-${vm.projectInfo.tsFrontText.length}`,
         currentFont: '',
         fontSize: '',
         currentObject: true
@@ -84,12 +84,12 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
     } else {
       vm.projectInfo.tsBackText.push({
         text: text,
-        htmlId: `backText-${vm.projectInfo.tsBackText.length}`,
+        html_id: `backText-${vm.projectInfo.tsBackText.length}`,
         currentFont: '',
         fontSize: '',
         currentObject: true
       });
-      $rootScope.currentObject = true;
+      $rootScope.textSelected = true;
     }
   });
 
@@ -251,7 +251,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
     let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
     additions.forEach(x => {
         x.find(y => {
-            if(y.htmlId === vm.target.attr('id')) {
+            if(y.html_id === vm.target.attr('id')) {
               // vm.currentObject = y;
               y.currentFont = selectedFont;
             }
@@ -263,7 +263,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
     let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
     additions.forEach(x => {
         x.find(y => {
-            if(y.htmlId === vm.target.attr('id')) {
+            if(y.html_id === vm.target.attr('id')) {
               // vm.currentObject = y;
               y.fontSize = value;
             }
@@ -275,7 +275,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
     let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
     additions.forEach(x => {
         x.find(y => {
-            if(y.htmlId === vm.target.attr('id')) {
+            if(y.html_id === vm.target.attr('id')) {
               // vm.currentObject = y;
               y.text= text;
             }
