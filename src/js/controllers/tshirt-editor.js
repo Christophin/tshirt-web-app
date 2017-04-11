@@ -75,30 +75,19 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
     if (vm.tshirtSide === true) {
       vm.projectInfo.tsFrontText.push({
         text: text,
-<<<<<<< HEAD
         htmlId: `frontText-${vm.projectInfo.tsFrontText.length}`,
         currentFont: '',
-        fontSize: ''
-
-=======
-        html_id: `frontText-${vm.projectInfo.tsFrontText.length}`,
-        currentFont: "",
+        fontSize: '',
         currentObject: true
->>>>>>> 6b33d967e7408793244df45c7db257da3c5d10f5
       });
       $rootScope.textSelected = true;
     } else {
       vm.projectInfo.tsBackText.push({
         text: text,
-<<<<<<< HEAD
         htmlId: `backText-${vm.projectInfo.tsBackText.length}`,
         currentFont: '',
-        fontSize: ''
-=======
-        html_id: `backText-${vm.projectInfo.tsBackText.length}`,
-        currentFont: "",
+        fontSize: '',
         currentObject: true
->>>>>>> 6b33d967e7408793244df45c7db257da3c5d10f5
       });
       $rootScope.currentObject = true;
     }
@@ -293,7 +282,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
         });
     });
   });
-  
+
 }
 
 TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER', '$timeout', '$interval'];
