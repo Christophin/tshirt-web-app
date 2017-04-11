@@ -12,30 +12,25 @@ function LeftSandboxController ($scope, $http, SERVER, $rootScope) {
     vm.fontSize = fontSize;
     vm.selectedAddText = selectedAddText;
     vm.selectedUpdateText = selectedUpdateText;
+    vm.startNewRow = startNewRow;
     vm.catData = null;
 
-    vm.categories = {
-        shapes: 'Shapes/Symbols',
-        letters: 'Letters/Numbers',
-        emojis: 'Emojis',
-        nature: 'Nature',
-        parties: 'Parties/Events',
-        occupations: 'Occupations',
-        music: 'Music',
-        greekLife: 'Greek Life',
-        charity: 'Charity',
-        religion: 'Religion',
-        sports: 'Sports/Games',
-        animals: 'Animals',
-        mascots: 'Mascots',
-        america: 'America',
-        military: 'Military',
-        colleges: 'Colleges',
-        transportation: 'Transportation',
-        school: 'School',
-        people: 'People',
-        food: 'Food/Drink'
-    };
+    vm.categories = [
+        {name: 'Shapes/Symbols'},
+        {name: 'Letters/Numbers'},
+        {name: 'Emojis'},
+        {name: 'Parties/Events'},
+        {name: 'Music'},
+        {name: 'Charity'},
+        {name: 'Religion'},
+        {name: 'Sports/Games'},
+        {name: 'Animals'},
+        {name: 'America'},
+        {name: 'Transportation'},
+        {name: 'School'},
+        {name: 'People'},
+        {name: 'Food/Drink'}
+    ];
 
     vm.fonts = {
       roboto: 'roboto',
@@ -52,6 +47,18 @@ function LeftSandboxController ($scope, $http, SERVER, $rootScope) {
         ceil: 50
         }
       };
+
+      // function for category spit
+      vm.columnBreak = 2; //Max number of colunms
+
+      function startNewRow (index, count) {
+        console.log(index, count);
+        return ((index) % count) === 0;
+      }
+      // $scope.startNewRow = function (index, count) {
+      //   console.log(index, count);
+      //   return ((index) % count) === 0;
+      // };
 
     function showCategory (name) {
         $http.get(`${SERVER}/cliparts?category=${name}`)

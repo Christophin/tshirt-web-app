@@ -73,15 +73,25 @@
             </ul>
         </div>
 
-        <div class="col s5" ng-hide="leftVm.catData || imageSelected">
-            <ul class="categories">
-                <li ng-repeat="(cat, catname) in leftVm.categories">
-                    <a href ng-click="leftVm.showCategory(catname)">
-                        {{ catname }}
+        <div class="col s12" ng-hide="leftVm.catData || imageSelected">
+            <table class="cat-list">
+                <tr ng-repeat="category in leftVm.categories" ng-switch on="$index % 2">
+                  <td ng-switch-when="0">
+                    <a href ng-click="leftVm.showCategory(category.name)">
+                      {{ leftVm.categories[$index].name }}
                     </a>
-                </li>
-            </ul>
+                  </td>
+                  <td ng-switch-when="0">
+                    <span ng-show="leftVm.categories[$index+1]">
+                      <a href ng-click="leftVm.showCategory(category.name)">
+                        {{ leftVm.categories[$index+1].name }}
+                      </a>
+                    </span>
+                  </td>
+                </tr>
+            </table>
         </div>
+
         <div class="selectedEdit" ng-show="imageSelected">
             HELLO
         </div>

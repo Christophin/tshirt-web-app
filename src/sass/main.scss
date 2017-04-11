@@ -5,7 +5,10 @@
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-
+  .col {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
 }
 
 #tshirt-editor {
@@ -18,7 +21,12 @@
 
 #left-editor {
   border: 0.5px lightgrey dotted;
-  height: 605px;
+  height: 400px;
+
+  .cat-list td {
+    padding: 1px;
+  }
+
 }
 
 .categories {
@@ -66,7 +74,8 @@
 
 #right-editor {
   border: 0.5px lightgrey dotted;
-  height: 605px;
+  height: 200px;
+
 }
 
 #drag-container {
@@ -175,4 +184,15 @@
   .option-choice {
     display: inline-block;
   }
+}
+
+.label {
+    float: left;
+    text-align: left;
+    display:inline;
+}
+.new-row {
+  clear:both;
+  // display:inline;
+  // text-align: left;
 }
