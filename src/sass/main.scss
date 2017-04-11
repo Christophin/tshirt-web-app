@@ -21,16 +21,29 @@
 
 #left-editor {
   border: 0.5px lightgrey dotted;
-  height: 400px;
+  height: 402.5px;
 
-  .cat-list td {
-    padding: 1px;
+  .cat-list {
+    margin-top: 70px;
+
+    td {
+      padding: 1px;
+      text-align: center;
+      font-size: 18px;
+    }
   }
 
-}
 
-.categories {
-  list-style: none;
+  #add-text {
+
+    .option-choice {
+      display: inline-block;
+    }
+  }
+
+  #add-art {
+    height: 352.5px;
+  }
 }
 
 #center-editor {
@@ -44,6 +57,7 @@
     object-fit: contain;
     z-index: 0;
   }
+
   #back-tshirt {
     width: 450px;
     height: 550px;
@@ -74,7 +88,7 @@
 
 #right-editor {
   border: 0.5px lightgrey dotted;
-  height: 200px;
+  height: 202.5px;
 
 }
 
@@ -179,12 +193,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
-#add-text {
 
-  .option-choice {
-    display: inline-block;
-  }
-}
 
 .label {
     float: left;
