@@ -33,7 +33,8 @@ body {
   border-bottom: 0px;
   border-style: solid;
   border-color: #DA2029;
-  height: 402.5px;
+  height: 405.5px;
+  background-color: white;
 
   .left-tab {
     background-color: #DA2029;
@@ -138,7 +139,7 @@ body {
 
 #center-editor {
   border: 2px;
-  height: 605px;
+  height: 608px;
   position: relative;
   border-style: solid;
   border-color: #DA2029;
@@ -293,6 +294,7 @@ body {
 }
 
 #swatch-list {
+  margin: 0px;
   .swatch  {
     width:25px;
     height: 25px;
@@ -330,6 +332,10 @@ body {
     margin: 0px 2px 0px 2px;
 }
 
+.currentCliparts {
+  overflow: auto;
+  height: 244px;
+}
 
 
 .label {
