@@ -12,28 +12,17 @@
 
   <div id="center-editor" class="col s6 editor-container" ng-click="tshirtVm.clearTarget($event)">
     <div id="option-button">
-      <div id="editor-button" class="fixed-action-btn horizontal click-to-toggle">
-        <a class="btn-floating btn-medium red">
-          <i class="fa fa-pencil" aria-hidden="true"></i>
-        </a>
-        <ul>
-          <li ng-click="tshirtVm.rotateShirt()">
-            <a class="alt-options btn-floating red">
-              <i class="fa fa-refresh" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li>
-            <a class="alt-options btn-floating yellow darken-1">
-              <i class="fa fa-download" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li>
-            <a class="alt-options btn-floating green">
-              <i class="fa fa-print" aria-hidden="true"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
+      <ul id="editor-options-list" class="row">
+        <li class="options-list col s4" ng-click="tshirtVm.rotateShirt()">
+          <i class="fa fa-refresh icon" aria-hidden="true"></i>
+        </li>
+        <li class="options-list col s4" ng-click="tshirtVm.downloadShirt()">
+          <i class="fa fa-download icon" aria-hidden="true"></i>
+        </li>
+        <li class="options-list col s4">
+          <i class="fa fa-print icon" aria-hidden="true"></i>
+        </li>
+      </ul>
     </div>
     <div id="tshirt-sandbox" >
       <img id="front-tshirt" ng-src="{{tshirtVm.frontTshirtUrl}}" ng-show="tshirtVm.tshirtSide"/>

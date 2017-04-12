@@ -30,6 +30,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
   vm.frontDeleteText = frontDeleteText;
   vm.backDeleteImage = backDeleteImage;
   vm.backDeleteText = backDeleteText;
+  vm.downloadShirt = downloadShirt;
   vm.shopifyFrontUrl = '';
   vm.shopifyBackUrl = '';
   vm.container = null;
@@ -115,6 +116,20 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
     return window.client.upload(blob).then(result => {
       return result.url;
     })
+  }
+
+  function downloadShirt () {
+    vm.projectInfo.snapShot = true;
+    angular.element($('.ui-icon').css('display', 'none'));
+    domtoimage.toJpeg(document.getElementById('tshirt-sandbox'), { quality: 0.95 })
+    .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'my-image-name.jpeg';
+        link.href = dataUrl;
+        link.click();
+        vm.projectInfo.snapShot = false;
+        angular.element($('.ui-icon').css('display', 'block'));
+    });
   }
 
   function buildProduct ([frontImg, backImg]) {
