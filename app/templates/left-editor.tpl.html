@@ -12,26 +12,38 @@
         <li class="option-choice">|</li>
         <li class="option-choice"><a href ng-click="leftVm.selectedUpdateText()">Update Text</a></li>
       </ul>
-      <div class="adding-text" ng-hide="textSelected">
+      <div class="adding-text row" ng-hide="textSelected">
         <form ng-submit="leftVm.addText(leftVm.text)">
-          <input class="input-text" type="text" placeholder="add text here" ng-model="leftVm.text">
-          <button >Add Text</button>
+          <input class="input-text col s12" type="text" placeholder="add text here" ng-model="leftVm.text">
+          <button class="btn col s12">Add Text</button>
         </form>
       </div>
-    <div class="textOptions" ng-show="textSelected">
+      <div class="adding-text row" ng-show="textSelected">
         <form ng-submit="leftVm.updateText(leftVm.currentText)">
-          <input class="input-text" type="text" ng-model="leftVm.currentText">
-          <button>Update Text</button>
+          <input class="input-text col s12" type="text" ng-model="leftVm.currentText"
+          placeholder="Select a text to edit it">
+          <button class="btn col s12">Update Text</button>
         </form>
-        <div class="font-slider">
-        <h3>Font Size</h3>
-        <rzslider rz-slider-model="leftVm.slider.value" rz-slider-options="leftVm.slider.options" ng-mouseup="leftVm.fontSize(leftVm.slider.value)"></rzslider>
+      </div>
+      <div class="linebreak center-align"></div>
+      <div class="text-options row valign-wrapper" ng-show="textSelected">
+        <div class="font-slider col s6">
+          <div class="slider-wrapper">
+            <h5>Font Size</h5>
+            <rzslider class="slider-css" rz-slider-model="leftVm.slider.value" rz-slider-options="leftVm.slider.options" ng-mouseup="leftVm.fontSize(leftVm.slider.value)"></rzslider>
+          </div>
         </div>
-      <!-- Dropdown Trigger -->
-      <a class="dropdown-button btn" href data-activates="demoDropdown" dropdown data-hover="true">
-        Font Type
-      </a>
+        <!-- Dropdown Trigger -->
+        <div class="font-type col s6">
+          <h5>Font Type</h5>
+          <div class="font-type-wrapper">
+            <a class="dropdown-button btn valign" href data-activates="demoDropdown" dropdown data-hover="true">
+              default (roboto)
+            </a>
+          </div>
+        </div>
 
+      </div>
       <!-- Dropdown Structure -->
       <ul id="demoDropdown" class="dropdown-content">
         <li class="roboto">

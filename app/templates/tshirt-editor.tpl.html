@@ -12,7 +12,24 @@
 
   <div id="center-editor" class="col s6 editor-container" ng-click="tshirtVm.clearTarget($event)">
     <div id="option-button">
-      <div id="editor-button" class="fixed-action-btn horizontal click-to-toggle">
+      <ul id="editor-options-list row">
+        <li class="options-list col s4">
+          <a ng-click="">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li class="options-list col s4">
+          <a ng-click="">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li class="options-list col s4">
+          <a ng-click="">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+      <!-- <div id="editor-button" class="fixed-action-btn toolbar horizontal click-to-toggle">
         <a class="btn-floating btn-medium red">
           <i class="fa fa-pencil" aria-hidden="true"></i>
         </a>
@@ -33,7 +50,7 @@
             </a>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
     <div id="tshirt-sandbox" >
       <img id="front-tshirt" ng-src="{{tshirtVm.frontTshirtUrl}}" ng-show="tshirtVm.tshirtSide"/>
