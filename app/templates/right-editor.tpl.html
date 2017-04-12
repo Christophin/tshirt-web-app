@@ -1,6 +1,6 @@
-
-<div class="swatches">
-  <h5 class=".center-align">Color T-Shirt</h5>
+<div class="linebreak center-align"></div>
+<div class="row swatches">
+  <h5 class="title-right-editor col s12 center-align">Color T-Shirt</h5>
   <ul id="swatch-list" class="list">
     <li id="{{data.id}}" class="swatch {{data.class}}"
       ng-repeat="(colorName, data) in rightVm.tshirtColor"
@@ -9,9 +9,9 @@
   </ul>
 </div>
 
-<div class="save">
+<div class="save row">
     <!-- Modal Trigger -->
-  <div class="col">
+  <div class="col s6">
       <a class='btn' data-target='demoModal' modal>Save Project</a>
   </div>
   <!-- Modal Structure -->
@@ -25,12 +25,12 @@
           ng-click="rightVm.saveProject(name)">Save</a>
       </div>
   </div>
-  <form class="submit" ng-submit="rightVm.shopifyUpload()">
+  <form class="col s6 submit btn" ng-submit="rightVm.shopifyUpload()" ng-hide="shopifyLinked">
     <button>Buy Shirt</button>
   </form>
     <div class="export">
         <form class="export"  ng-show="shopifyLinked">
-            <button data-target="exportModal" modal>Export to Shopfiy</button>
+            <button class="btn" data-target="exportModal" modal>Export to Shopfiy</button>
         </form>
     </div>
     <div id="exportModal" class="modal">
@@ -40,7 +40,6 @@
                 <input type="text" placeholder="Vendor" ng-model="data.vendor">
                 <input type="text" placeholder="Product Type" ng-model="data.product_type">
                 <input type="number" placeholder="Price" ng-model="data.price">
-
                 <button>Export to my Shopify database</button>
             </form>
         </div>
