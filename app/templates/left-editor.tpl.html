@@ -2,8 +2,8 @@
 <div class="row">
     <div class="col s12">
         <ul tabs reload="allTabContentLoaded" class="tabs-fixed-width">
-            <li class="tab col s3"><a href="#add-text">Add Text</a></li>
-            <li class="tab col s3"><a class="active" href="#add-art">Add Art</a></li>
+            <li class="tab col s3 left-tab"><a class="tab-text" href="#add-text">Add Text</a></li>
+            <li class="tab col s3 left-tab"><a class="active tab-text" href="#add-art">Add Art</a></li>
         </ul>
     </div>
     <div id="add-text" class="col s12 text-ux">
@@ -55,17 +55,24 @@
     </div>
     <div id="add-art" class="col s12 art-ux" >
       <div class="upload">
-        <input type="button" value="Upload" ng-click="leftVm.showPicker()" />
+        <h5 class="title">Upload your own image, logo, or clipart!</h5>
+        <button class="btn" value="Upload" ng-click="leftVm.showPicker()">Upload</button>
+        <div class="linebreak center-align"></div>
       </div>
 
-        <div class="currentCliparts" ng-show="leftVm.catData" ng-hide="imageSelected">
-            <div class="back">
-                <a href ng-click="leftVm.emptyCatData()">back</a>
+        <div class="col s12 currentCliparts" ng-show="leftVm.catData" >
+          <div class="row">
+            <div class="back left-align col s6">
+              Return to
+                <a href ng-click="leftVm.emptyCatData()">main menu</a>
             </div>
+            <div class="current-category col s6 right-align">
+              <h6>{{leftVm.currentCategory}}</h6>
+            </div>
+          </div>
             <!-- FOR UPLOADING FILES -->
-
             <ul>
-                <li ng-repeat="image in leftVm.catData">
+                <li class="col s3 " ng-repeat="image in leftVm.catData">
                     <a href ng-click="leftVm.tossImage(image)">
                         <img class="current-clipart" ng-src="{{image.url}}" alt="" />
                     </a>
@@ -73,15 +80,26 @@
             </ul>
         </div>
 
-        <div class="col s5" ng-hide="leftVm.catData || imageSelected">
-            <ul class="categories">
-                <li ng-repeat="(cat, catname) in leftVm.categories">
-                    <a href ng-click="leftVm.showCategory(catname)">
-                        {{ catname }}
+        <div class="col s12" ng-hide="leftVm.catData || imageSelected">
+            <h5 class="title">Select Your Category</h5>
+            <table class="cat-list">
+                <tr ng-repeat="category in leftVm.categories" ng-switch on="$index % 2">
+                  <td ng-switch-when="0">
+                    <a href ng-click="leftVm.showCategory(leftVm.categories[$index].name)">
+                      {{ leftVm.categories[$index].name }}
                     </a>
-                </li>
-            </ul>
+                  </td>
+                  <td ng-switch-when="0">
+                    <span ng-show="leftVm.categories[$index+1]">
+                      <a href ng-click="leftVm.showCategory(leftVm.categories[$index+1].name)">
+                        {{ leftVm.categories[$index+1].name }}
+                      </a>
+                    </span>
+                  </td>
+                </tr>
+            </table>
         </div>
+
         <div class="selectedEdit" ng-show="imageSelected">
             HELLO
         </div>

@@ -5,7 +5,10 @@
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-
+  .col {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
 }
 
 #tshirt-editor {
@@ -17,18 +20,93 @@
 }
 
 #left-editor {
-  border: 0.5px lightgrey dotted;
-  height: 605px;
-}
+  border-top: 1px;
+  border-left: 1px;
+  border-right: 1px;
+  border-bottom: 0px;
+  border-style: solid;
+  border-color: #DA2029;
+  height: 402.5px;
 
-.categories {
-  list-style: none;
+
+
+
+  .left-tab {
+    background-color: #DA2029;
+  }
+
+  .tab a {
+    color: white;
+  }
+
+  .active {
+    background-color: white !important;
+    border: none !important;
+    color: black !important;
+
+  }
+
+  .indicator {
+    display: none;
+  }
+
+  .cat-list {
+
+
+    td {
+      padding: 1px;
+      text-align: center;
+      font-size: 16px;
+    }
+  }
+
+
+  #add-text {
+
+    .option-choice {
+      display: inline-block;
+    }
+
+  }
+
+  #add-art {
+    height: 352.5px;
+
+    .upload {
+      margin-top: 15px;
+
+      .title {
+        font-size: 18px;
+      }
+
+      .linebreak {
+        border-bottom: 1px solid lightgrey;
+        margin: 20px 25px 10px 25px
+
+      }
+    }
+
+    .back {
+      padding-left: 15px !important;
+    }
+
+    .current-category h6 {
+      margin: 0px;
+      padding-top: 5px;
+      padding-right: 15px;
+      font-weight: bold;
+      color: #DA2029;
+      font-size: 18px;
+    }
+  }
 }
 
 #center-editor {
-  border: 0.5px lightgrey dotted;
+  border: 1px;
   height: 605px;
   position: relative;
+  border-style: solid;
+  border-color: #DA2029;
 
   #front-tshirt {
     width: 450px;
@@ -36,6 +114,7 @@
     object-fit: contain;
     z-index: 0;
   }
+
   #back-tshirt {
     width: 450px;
     height: 550px;
@@ -65,8 +144,23 @@
 }
 
 #right-editor {
-  border: 0.5px lightgrey dotted;
-  height: 605px;
+  height: 202.5px;
+  border-left: 1px;
+  border-top: 0px;
+  border-right: 1px;
+  border-bottom: 1px;
+  border-style: solid;
+  border-color: #DA2029;
+
+  .linebreak {
+    border-bottom: 1px solid lightgrey;
+    margin: 20px 25px 10px 25px
+  }
+
+  .title-right-editor {
+    margin-top: 0px;
+  }
+
 }
 
 #drag-container {
@@ -88,14 +182,16 @@
     border: 1px #EC2029;
     border-style: solid;
     position: absolute;
+    cursor: -webkit-grab;
 
     .delete-button {
       width: 25px;
       height: 25px;
       position: absolute;
       z-index: 90;
-      top: -19px;
-      left: -22px;
+      top: -3px;
+      left: -5px;
+      cursor: pointer;
     }
 
     .resize-button {
@@ -124,9 +220,14 @@
   }
 
 .current-clipart {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   float: left;
+  margin-left: 12px;
+}
+
+.current-clipart:hover {
+  border: 1px #EC2029 solid;
 }
 
 .clearDiv {
@@ -170,9 +271,15 @@
   font-family: 'Roboto', sans-serif;
 }
 
-#add-text {
 
-  .option-choice {
-    display: inline-block;
-  }
+
+.label {
+    float: left;
+    text-align: left;
+    display:inline;
+}
+.new-row {
+  clear:both;
+  // display:inline;
+  // text-align: left;
 }
