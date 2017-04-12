@@ -66,17 +66,31 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
   vm.shopifyUpload = shopifyUpload;
   vm.switchTshirt = switchTshirt;
   vm.exportProject = exportProject;
+  vm.updateTshirt = updateTshirt;
 
   function saveProject (name) {
     $scope.$emit('needShirt', name);
   }
+
+  function updateTshirt() {
+       console.log('inside updateTshirt');
+       $scope.$emit('updateTshirt') }
 
   function exportProject (data) {
     $scope.$emit('needImage', data);
       console.log(data)
   }
 
-  $scope.$on('projectInfo', (event, projectInfo) => {
+  $scope.$on('updateInfo', (event, updateInfo) => { 
+    console.log('inside updateInfo', updateInfo); 
+    $http.put(`${SERVER}/tshirt/${updateInfo.id}`)
+        .then(resp => { 
+          console.log(resp)
+         })
+   });
+
+
+    $scope.$on('projectInfo', (event, projectInfo) => {
     $http.post(`${SERVER}/tshirt`, projectInfo)
         .then(resp => {
           console.log(resp);

@@ -2,8 +2,9 @@ function ProfileController ($http, SERVER, $rootScope, $state, $cookies, $timeou
     let vm = this;
 
     vm.projects = [];
-    vm.loadProject = loadProject;
-    vm.linkShop = linkShop;
+     vm.loadProject = loadProject;
+     vm.linkShop = linkShop;
+     vm.deleteProject = deleteProject;
 
     function showProjects ()    {
         $http.get(`${SERVER}/tshirt`)
@@ -35,7 +36,17 @@ function ProfileController ($http, SERVER, $rootScope, $state, $cookies, $timeou
                 $rootScope.shopifyLinked = true;
             })
     }
-    CheckShopifyLinked()
+    CheckShopifyLinked();
+
+    function deleteProject(project) { 
+        $http.delete(`${SERVER}/tshirt/${project.id}`) 
+            .then(resp => { 
+                console.log(resp);
+                vm.projects = vm.projects.filter(x => {
+                    return x.id !== project.id;
+                });
+            }) 
+    } 
 }
 
 ProfileController.$inject = ['$http', 'SERVER', '$rootScope', '$state', '$cookies', '$timeout'];
