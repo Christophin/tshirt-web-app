@@ -98,6 +98,11 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
     $scope.$broadcast('projectInfo', vm.projectInfo);
   });
 
+  $scope.$on('updateTshirt', () => {
+       console.log('inside Tshirt editor');
+       $scope.$broadcast('updateInfo', vm.projectInfo)
+   });
+
   function createBlob (key) {
     return domtoimage.toBlob(document.getElementById('tshirt-sandbox'))
         .then((blob) => {
@@ -171,6 +176,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
   }
 
   function clearTarget(event)  {
+    if (vm.target === null) return;
     if (vm.target[0] != event.target)  {
         let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
         additions.forEach(x => {

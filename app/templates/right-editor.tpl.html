@@ -10,10 +10,13 @@
 </div>
 
 <div class="save row">
-    <!-- Modal Trigger -->
-  <div class="col s6">
-      <a class='btn' data-target='demoModal' modal>Save Project</a>
-  </div>
+    <!-- Modal Trigger --> 
+    <div class="col s6">
+         <a class='btn' data-target='demoModal' ng-show="!savedProject" modal>Save Project</a>
+     </div> 
+    <div class="col s6"> 
+        <a class='btn' ng-show="savedProject" ng-click="rightVm.updateTshirt()">Update Project</a> 
+    </div>
   <!-- Modal Structure -->
   <div id="demoModal" class="modal">
       <div class="modal-content">
