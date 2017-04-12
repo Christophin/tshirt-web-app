@@ -13,6 +13,7 @@ function LeftSandboxController ($scope, $http, SERVER, $rootScope) {
     vm.selectedAddText = selectedAddText;
     vm.selectedUpdateText = selectedUpdateText;
     vm.startNewRow = startNewRow;
+    vm.currentCategory = null;
     vm.catData = null;
 
     vm.categories = [
@@ -61,6 +62,7 @@ function LeftSandboxController ($scope, $http, SERVER, $rootScope) {
       // };
 
     function showCategory (name) {
+        vm.currentCategory = name;
         $http.get(`${SERVER}/cliparts?category=${name}`)
             .then(resp =>   {
                 vm.catData = resp.data;

@@ -61,10 +61,15 @@
       </div>
 
         <div class="col s12 currentCliparts" ng-show="leftVm.catData" >
-            <div class="back left-align">
+          <div class="row">
+            <div class="back left-align col s6">
               Return to
                 <a href ng-click="leftVm.emptyCatData()">main menu</a>
             </div>
+            <div class="current-category col s6 right-align">
+              <h6>{{leftVm.currentCategory}}</h6>
+            </div>
+          </div>
             <!-- FOR UPLOADING FILES -->
             <ul>
                 <li class="col s3 " ng-repeat="image in leftVm.catData">
@@ -80,13 +85,13 @@
             <table class="cat-list">
                 <tr ng-repeat="category in leftVm.categories" ng-switch on="$index % 2">
                   <td ng-switch-when="0">
-                    <a href ng-click="leftVm.showCategory(category.name)">
+                    <a href ng-click="leftVm.showCategory(leftVm.categories[$index].name)">
                       {{ leftVm.categories[$index].name }}
                     </a>
                   </td>
                   <td ng-switch-when="0">
                     <span ng-show="leftVm.categories[$index+1]">
-                      <a href ng-click="leftVm.showCategory(category.name)">
+                      <a href ng-click="leftVm.showCategory(leftVm.categories[$index+1].name)">
                         {{ leftVm.categories[$index+1].name }}
                       </a>
                     </span>

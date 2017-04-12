@@ -87,7 +87,16 @@
     }
 
     .back {
-      margin-left: 15px;
+      padding-left: 15px !important;
+    }
+
+    .current-category h6 {
+      margin: 0px;
+      padding-top: 5px;
+      padding-right: 15px;
+      font-weight: bold;
+      color: #DA2029;
+      font-size: 18px;
     }
   }
 }
@@ -173,14 +182,16 @@
     border: 1px #EC2029;
     border-style: solid;
     position: absolute;
+    cursor: -webkit-grab;
 
     .delete-button {
       width: 25px;
       height: 25px;
       position: absolute;
       z-index: 90;
-      top: -19px;
-      left: -22px;
+      top: -3px;
+      left: -5px;
+      cursor: pointer;
     }
 
     .resize-button {
