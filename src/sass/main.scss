@@ -156,15 +156,24 @@
   #option-button {
     position: relative;
     height: 50px;
-    // top: 10px;
-    // left: 400px;
-    background-color: #DA2029;
 
     #editor-options-list {
       margin: 0px;
 
       .options-list {
         display: inline-block !important;
+        cursor: pointer !important;
+        background-color: #DA2029;
+        height: 35px;
+      }
+
+      .options-list:hover {
+        background-color: #FF2029;
+      }
+
+      .icon {
+        margin-top: 10px;
+        color:white;
       }
     }
 
