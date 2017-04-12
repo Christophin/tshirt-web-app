@@ -80,7 +80,7 @@
             </ul>
         </div>
 
-        <div class="col s12" ng-hide="leftVm.catData || imageSelected">
+        <div class="col s12" ng-hide="leftVm.catData">
             <h5 class="title">Select Your Category</h5>
             <table class="cat-list">
                 <tr ng-repeat="category in leftVm.categories" ng-switch on="$index % 2">
@@ -100,8 +100,8 @@
             </table>
         </div>
 
-        <div class="selectedEdit" ng-show="imageSelected">
+        <!-- <div class="selectedEdit" ng-show="imageSelected">
             HELLO
-        </div>
+        </div> -->
     </div>
 </div>
