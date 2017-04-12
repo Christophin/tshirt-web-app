@@ -11,25 +11,29 @@
   }
 }
 
+body {
+  background-color: #F6F6F6;
+}
+
+.tabs-top {
+  margin-bottom: 0px;
+}
+
 #tshirt-editor {
   text-align: center;
   width: 1000px;
   height: 605px;
   margin-top: 50px;
-  border: 1px solid lightgrey;
 }
 
 #left-editor {
-  border-top: 1px;
-  border-left: 1px;
-  border-right: 1px;
+  border-top: 2px;
+  border-left: 2px;
+  border-right: 2px;
   border-bottom: 0px;
   border-style: solid;
   border-color: #DA2029;
   height: 402.5px;
-
-
-
 
   .left-tab {
     background-color: #DA2029;
@@ -133,11 +137,12 @@
 }
 
 #center-editor {
-  border: 1px;
+  border: 2px;
   height: 605px;
   position: relative;
   border-style: solid;
   border-color: #DA2029;
+  background-color: white;
 
   #front-tshirt {
     width: 450px;
@@ -154,12 +159,11 @@
   }
 
   #tshirt-sandbox {
-
+    background-color: white;
   }
 
   #option-button {
     position: relative;
-    height: 50px;
 
     #editor-options-list {
       margin: 0px;
@@ -194,12 +198,13 @@
 
 #right-editor {
   height: 202.5px;
-  border-left: 1px;
+  border-left: 2px;
   border-top: 0px;
-  border-right: 1px;
-  border-bottom: 1px;
+  border-right: 2px;
+  border-bottom: 2px;
   border-style: solid;
   border-color: #DA2029;
+  background-color: white;
 
   .linebreak {
     border-bottom: 1px solid lightgrey;
@@ -218,7 +223,7 @@
   border: 2px darkgrey solid;
   position: absolute;
   top: 135px;
-  left: 143px;
+  left: 138px;
 
   .clearCss {
     border: 0px !important;
@@ -320,6 +325,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.row .col.s6 {
+    width: 49%;
+    margin: 0px 2px 0px 2px;
+}
 
 
 
