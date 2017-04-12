@@ -11,8 +11,37 @@
   }
 }
 
+nav {
+  background-color: #DA2029;
+}
+
 body {
   background-color: #F6F6F6;
+}
+
+.banner {
+  height: 800px;
+  width: 100%;
+
+  .parallax-container {
+    height: 800px;
+
+    .banner-text {
+      font-size: 4em;
+      color: white;
+      text-align: center;
+      padding-top: 15%;
+    }
+
+    .banner-buttons {
+      margin-left: 30%;
+      margin-top: 25px;
+
+      .banner-click {
+        margin-left: 100px;
+      }
+    }
+  }
 }
 
 .tabs-top {
