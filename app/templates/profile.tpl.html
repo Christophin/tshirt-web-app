@@ -1,5 +1,7 @@
 <div id="saved-projects" class="save-projects">
 
+
+
   <!-- Modal Structure -->
   <div id="demoModal" class="modal">
     <div class="modal-content">
@@ -19,14 +21,17 @@
 <div class="profile-container">
   <h3 class="profile-list">Have a Shopify Site?</h3>
   <div class="col">
-    <a class="btn" data-target="demoModal" modal>Link My Shopfiy</a>
+    <a class="btn" data-target="demoModal" modal ng-hide="shopifyLinked">Link My Shopify</a>
+    <div class="linked" ng-show="shopifyLinked">Linked to Shopify</div>
   </div>
   <h3 class="profile-list">Your Projects:</h3>
   <ul id="saved-list">
     <li id="{{project.name}}" class="projects" ng-repeat="project in profileVm.projects">
-      <a href ng-click="profileVm.loadProject(project)">{{project.name}}</a>
-      <div class="delete-button profile-delete" ng-click="profileVm.deleteProject(project)"> 
+      <div class="delete-button trash-can" ng-click="profileVm.deleteProject(project)"> 
         <i class="fa fa-trash" aria-hidden="true" ng-hide="!project"></i> 
+      </div>
+      <div class="saved-project">
+        <a href ng-click="profileVm.loadProject(project)">{{project.name}}</a>
       </div>
     </li>
   </ul>
