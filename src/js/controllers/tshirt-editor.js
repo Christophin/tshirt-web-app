@@ -61,13 +61,15 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
   $timeout(init(), 500);
 
   $scope.$on('image', (event, image) =>  {
-
+    console.log('image from on', image);
     if (vm.tshirtSide === true) {
       vm.projectInfo.tsFrontImages.push({
         url: image.url,
         html_id: `frontImage-${vm.projectInfo.tsFrontImages.length}`,
         currentObject: true
       });
+      $scope.$apply();
+      console.log('form inside if', vm.projectInfo.tsFrontImages );
       $rootScope.imageSelected = true;
     } else {
       vm.projectInfo.tsBackImages.push({
@@ -115,9 +117,9 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
   });
 
   $scope.$on('updateTshirt', () => {
-       console.log('inside Tshirt editor');
-       $scope.$broadcast('updateInfo', vm.projectInfo)
-   });
+   console.log('inside Tshirt editor');
+   $scope.$broadcast('updateInfo', vm.projectInfo)
+ });
 
   function createBlob (key) {
     return domtoimage.toBlob(document.getElementById('tshirt-sandbox'))

@@ -74,6 +74,7 @@ function LeftSandboxController ($scope, $http, SERVER, $rootScope) {
     }
 
     function tossImage(image) {
+      console.log('image',image);
         $scope.$emit('image', image);
     }
 
@@ -85,14 +86,24 @@ function LeftSandboxController ($scope, $http, SERVER, $rootScope) {
     function showPicker() {
         window.client.pick({
         }).then(function(result) {
+          console.log(result.filesUploaded[0].url)
+          vm.customImage = {
+            url: result.filesUploaded[0].url,
+            currentObject: true
+          }
 
-            let clipartUpload = {
-              url: result.filesUploaded[0].url,
-              name: result.filesUploaded[0].filename,
-              category: 'Emojis'
-            };
-            $http.post(`${SERVER}/cliparts`, clipartUpload)
-            .then (resp => console.log(resp));
+          console.log(vm.customImage)
+
+          tossImage(vm.customImage);
+
+            // let clipartUpload = {
+            //   url: result.filesUploaded[0].url,
+            //   name: result.filesUploaded[0].filename,
+            //   category: 'Emojis'
+            // };
+            // $http.post(`${SERVER}/cliparts`, clipartUpload)
+            // .then (resp => console.log(resp));
+
         });
     }
 
