@@ -94,15 +94,15 @@ function LeftSandboxController ($scope, $http, SERVER, $rootScope) {
 
           console.log(vm.customImage)
 
-          // tossImage(vm.customImage);
+          tossImage(vm.customImage);
 
-            let clipartUpload = {
-              url: result.filesUploaded[0].url,
-              name: result.filesUploaded[0].filename,
-              category: 'Food/Drink'
-            };
-            $http.post(`${SERVER}/cliparts`, clipartUpload)
-            .then (resp => console.log(resp));
+            // let clipartUpload = {
+            //   url: result.filesUploaded[0].url,
+            //   name: result.filesUploaded[0].filename,
+            //   category: 'Food/Drink'
+            // };
+            // $http.post(`${SERVER}/cliparts`, clipartUpload)
+            // .then (resp => console.log(resp));
 
         });
     }
