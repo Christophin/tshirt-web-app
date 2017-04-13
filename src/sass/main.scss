@@ -9,7 +9,7 @@
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
-  font-family: 'Patrick Hand', cursive;
+  //
 
   .btn {
     // background-color: #79e8e3;
@@ -29,7 +29,7 @@ nav {
   }
 
   .nav-text a {
-    font-size: 20px;
+    font-size: 15px;
   }
 
 
@@ -51,19 +51,26 @@ body {
 }
 
 .banner {
-  height: 800px;
+  // height: 800px;
   width: 100%;
 
-  .parallax-container {
-    height: 800px;
+  .arrow-down {
+    color: white;
+    padding-top: 25px;
+  }
 
+  .parallax-container {
+    // height: 800px;
+    height: 100vh;
 
 
     .banner-text {
+      margin-top: 15%;
       font-size: 4em;
       color: white;
       text-align: center;
       padding-top: 15%;
+      font-family: 'Patrick Hand', cursive;
     }
 
     .banner-buttons {
@@ -75,6 +82,15 @@ body {
 
       .banner-click1 {
        margin-right: 100px;
+       height: 50px;
+       width: 300px;
+       font-weight: bold;
+      }
+
+      .banner-click2 {
+       height: 50px;
+       width: 300px;
+       font-weight: bold;
       }
     }
   }
@@ -91,6 +107,8 @@ body {
 
   .info-title {
     color: #DA2029;
+    font-family: 'Patrick Hand', cursive;
+
   }
 
   .info-text {
