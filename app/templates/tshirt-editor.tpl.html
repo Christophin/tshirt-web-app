@@ -14,13 +14,22 @@
     <div id="option-button">
       <ul id="editor-options-list" class="row">
         <li class="options-list col s4" ng-click="tshirtVm.rotateShirt()">
-          <i class="fa fa-refresh icon" aria-hidden="true"></i>
+          <ul>
+            <li><i class="fa fa-refresh icon" aria-hidden="true"></i></li>
+            <li>Rotate</li>
+          </ul>
         </li>
         <li class="options-list col s4" ng-click="tshirtVm.downloadShirt()">
-          <i class="fa fa-download icon" aria-hidden="true"></i>
+          <ul>
+            <li>  <i class="fa fa-download icon" aria-hidden="true"></i></li>
+            <li>Download</li>
+          </ul>
         </li>
         <li class="options-list col s4">
-          <i class="fa fa-print icon" aria-hidden="true"></i>
+          <ul>
+            <li>  <i class="fa fa-print icon" aria-hidden="true"></i></li>
+            <li>Print</li>
+          </ul>
         </li>
       </ul>
     </div>
@@ -30,13 +39,13 @@
 
       <!-- From Clipart -->
         <!--Front Images Array  -->
-      <div id="drag-container" class="stack-container" ng-class="{clearBorder: tshirtVm.projectInfo.snapShot}">
+      <div id="drag-container" class="stack-container" ng-class="{clearBorder: tshirtVm.projectInfo.snapShot || !startDragging}">
         <div class="drag-object" jqyoui-draggable="{ animate:true }" data-drag="true"
         data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
         ng-repeat="image in tshirtVm.projectInfo.tsFrontImages"
         ng-style="{'top':image.y_position + 'px','left':image.x_position + 'px'}"
         ng-if="tshirtVm.tshirtSide"
-        ng-class="{clearCss: tshirtVm.projectInfo.snapShot ||}">
+        ng-class="{clearCss: tshirtVm.projectInfo.snapShot || !image.currentObject}">
           <div class="delete-button" ng-click="tshirtVm.frontDeleteImage($event)"
           ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || !image.currentObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
@@ -54,7 +63,7 @@
         data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
         ng-repeat="image in tshirtVm.projectInfo.tsBackImages"
         ng-style="{'top':image.y_position + 'px','left': image.x_position + 'px'}"
-        ng-if="!tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.snapShot}">
+        ng-if="!tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.snapShot || !image.currentObject}">
         <div class="delete-button" ng-click="tshirtVm.backDeleteImage($event)"
         ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || !image.currentObject}">
           <i class="fa fa-minus-square" aria-hidden="true"></i>
@@ -71,13 +80,13 @@
         data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
         ng-repeat="frontText in tshirtVm.projectInfo.tsFrontText"
         ng-style="{'top':frontText.y_position + 'px','left':frontText.x_position + 'px'}"
-        ng-if="tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.snapShot}">
+        ng-if="tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.snapShot || !frontText.currentObject}">
           <div class="delete-button" ng-click="tshirtVm.frontDeleteText($event)"
           ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || !frontText.currentObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
           </div>
           <div  id="{{frontText.html_id}}"  ng-mousedown="tshirtVm.grabTarget($event)"
-          class="text {{frontText.currentFont}}" ng-style="{'font-size': frontText.fontSize + 'px'}"
+          class="text {{frontText.font}}" ng-style="{'font-size': frontText.font_size + 'px'}"
           ng-mouseup="tshirtVm.getPosition($event)"
           >{{frontText.text}}</div>
         </div>
@@ -87,12 +96,12 @@
         data-drop="true" data-jqyoui-options="{ containment: '#drag-container'}"
         ng-repeat="backText in tshirtVm.projectInfo.tsBackText"
         ng-style="{'top':backText.y_position + 'px','left':backText.x_position + 'px'}"
-        ng-if="!tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.snapShot}">
+        ng-if="!tshirtVm.tshirtSide" ng-class="{clearCss: tshirtVm.projectInfo.snapShot || !backText.currentObject}">
         <div class="delete-button" ng-click="tshirtVm.backDeleteText($event)"
         ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || !backText.currentObject}">
           <i class="fa fa-minus-square" aria-hidden="true"></i>
         </div>
-          <div id="{{backText.html_id}}" class="text {{backText.currentFont}}" ng-style="{'font-size': backText.fontSize + 'px'}"
+          <div id="{{backText.html_id}}" class="text {{backText.font}}" ng-style="{'font-size': backText.font_size + 'px'}"
           ng-mouseup="tshirtVm.getPosition($event)" ng-mousedown="tshirtVm.grabTarget($event)">{{backText.text}}</div>
         </div>
 

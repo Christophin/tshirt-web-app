@@ -12,8 +12,10 @@
   //
 
   .btn {
-    // background-color: #79e8e3;
+    //background-color:  #2F7A85 ;
   }
+
+
 }
 
 .container-width {
@@ -134,9 +136,11 @@ body {
   color: white;
   padding-top: 25px;
   margin-bottom: 0px;
+  font-family: 'Patrick Hand', cursive;
 
   h1 {
     font-size: 45px;
+    margin-bottom: 50px;
   }
 
   .gallery-container {
@@ -157,7 +161,7 @@ body {
     .landing-gallery1 {
       padding: 0px auto;
     }
-}
+  }
 }
 
 .tabs-top {
@@ -169,6 +173,7 @@ body {
   width: 1000px;
   height: 605px;
   margin-top: 50px;
+
 }
 
 #left-editor {
@@ -181,6 +186,9 @@ body {
   height: 405.5px;
   background-color: white;
 
+  .title {
+    color: #434343;
+  }
   .left-tab {
     background-color: #DA2029;
   }
@@ -192,7 +200,7 @@ body {
   .active {
     background-color: white !important;
     border: none !important;
-    color: black !important;
+    color: #434343 !important;
 
   }
 
@@ -243,6 +251,9 @@ body {
         }
       }
     }
+    .title {
+      color: #434343;
+    }
 
     .linebreak {
       border-bottom: 1px solid lightgrey;
@@ -258,6 +269,7 @@ body {
 
       .title {
         font-size: 18px;
+        color: #434343;
       }
 
       .linebreak {
@@ -319,6 +331,12 @@ body {
         cursor: pointer !important;
         background-color: #DA2029;
         height: 35px;
+        color: white;
+
+        li {
+          display: inline-block;
+          padding-left: 5px;
+        }
       }
 
       .options-list:hover {
@@ -359,6 +377,7 @@ body {
 
   .title-right-editor {
     margin-top: 0px;
+    color: #434343;
   }
 
 }
@@ -435,7 +454,7 @@ body {
 }
 
 .clearBorder {
-  border: 0px !important;
+  border: 1px transparent !important;
 }
 
 #swatch-list {
