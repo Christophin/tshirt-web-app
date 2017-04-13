@@ -36,7 +36,7 @@
         ng-repeat="image in tshirtVm.projectInfo.tsFrontImages"
         ng-style="{'top':image.y_position + 'px','left':image.x_position + 'px'}"
         ng-if="tshirtVm.tshirtSide"
-        ng-class="{clearCss: tshirtVm.projectInfo.snapShot}">
+        ng-class="{clearCss: tshirtVm.projectInfo.snapShot ||}">
           <div class="delete-button" ng-click="tshirtVm.frontDeleteImage($event)"
           ng-class="{clearDiv: tshirtVm.projectInfo.snapShot || !image.currentObject}">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
@@ -99,6 +99,8 @@
       </div>
     </div>
   </div>
+  <p class="trademark left-align">©-2017 KoalaTee's, LLC. All rights reserved.   The Iron Yard!™</p>
+
 
 
   <!-- RIGHT PANE -->

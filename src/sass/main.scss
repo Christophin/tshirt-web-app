@@ -9,14 +9,45 @@
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
+  font-family: 'Patrick Hand', cursive;
+
+  .btn {
+    // background-color: #79e8e3;
+  }
+}
+
+.container-width {
+  max-width: 1280px !important;
 }
 
 nav {
-  background-color: #DA2029;
+   background-color: #DA2029;
+  //background-color: #26A69A;
+
+  .nav-wrapper {
+    margin: 0px auto;
+  }
+
+  .nav-text a {
+    font-size: 20px;
+  }
+
+
 }
 
 body {
   background-color: #F6F6F6;
+}
+
+.logo-name {
+  font-family: 'Patrick Hand', cursive;
+  margin-left: 20px;
+  font-size: 35px;
+}
+
+.logo {
+  margin-top: 10px;
+  width: 65px;
 }
 
 .banner {
@@ -26,6 +57,8 @@ body {
   .parallax-container {
     height: 800px;
 
+
+
     .banner-text {
       font-size: 4em;
       color: white;
@@ -34,14 +67,79 @@ body {
     }
 
     .banner-buttons {
-      margin-left: 30%;
       margin-top: 25px;
 
-      .banner-click {
-        margin-left: 100px;
+      .banner-button {
+      display: inline-block;
+      }
+
+      .banner-click1 {
+       margin-right: 100px;
       }
     }
   }
+}
+
+.landing-info {
+  margin-top: 50px;
+  height: 400px;
+  max-width: 1200px;
+  padding-top: 38px;
+  .info-img {
+    width: 71px;
+  }
+
+  .info-title {
+    color: #DA2029;
+  }
+
+  .info-text {
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #383838;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .image-wrapper {
+    height: 75px;
+  }
+
+  .info-icon {
+    color: #DA2029;
+  }
+}
+
+.landing-content-1 {
+
+  background-color: #383838;
+  color: white;
+  padding-top: 25px;
+  margin-bottom: 0px;
+
+  h1 {
+    font-size: 45px;
+  }
+
+  .gallery-container {
+    margin: 0px auto;
+    padding-left: 140px;
+
+    .gallery-img img {
+    width: 250px;
+    }
+    .gallery-img {
+
+      height: 359px;
+      display: inline-block;
+      overflow: hidden;
+      margin: 0px auto;
+    }
+
+    .landing-gallery1 {
+      padding: 0px auto;
+    }
+}
 }
 
 .tabs-top {
@@ -378,6 +476,10 @@ body {
   // text-align: left;
 }
 
+.trademark {
+  color:  #EC2029;
+  padding-left: 15px;
+}
 
 .buy-shirt {
     margin-top: -21px !important;
@@ -385,4 +487,19 @@ body {
 
 .export-to-shop {
   margin-top: -21px !important;
+}
+
+.profile-container {
+  max-width: 1280px;
+  margin: 0px auto;
+
+  .projects {
+    font-size:20px;
+    padding-left: 15px;
+  }
+
+  .profile-delete {
+    display: inline-block;
+    cursor: pointer;
+  }
 }
