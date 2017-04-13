@@ -94,8 +94,8 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
       vm.projectInfo.tsFrontText.push({
         text: text,
         html_id: `frontText-${vm.projectInfo.tsFrontText.length}`,
-        currentFont: '',
-        fontSize: '',
+        font: '',
+        font_Size: '',
         currentObject: true
       });
       $rootScope.textSelected = true;
@@ -103,8 +103,8 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
       vm.projectInfo.tsBackText.push({
         text: text,
         html_id: `backText-${vm.projectInfo.tsBackText.length}`,
-        currentFont: '',
-        fontSize: '',
+        font: '',
+        font_size: '',
         currentObject: true
       });
       $rootScope.textSelected = true;
@@ -208,7 +208,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
   }
 
   function clearTarget(event)  {
-    if (vm.target === null) return;
+    if (vm.target === null) return
     if (vm.target[0] != event.target)  {
         let additions = [vm.projectInfo.tsFrontImages, vm.projectInfo.tsBackImages, vm.projectInfo.tsFrontText, vm.projectInfo.tsBackText];
         additions.forEach(x => {
@@ -217,6 +217,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
         //vm.currentObject = null;
         $rootScope.textSelected = false;
         $rootScope.imageSelected = false;
+
     }
   }
 
@@ -291,7 +292,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
         x.find(y => {
             if(y.html_id === vm.target.attr('id')) {
               // vm.currentObject = y;
-              y.currentFont = selectedFont;
+              y.font = selectedFont;
             }
         });
     });
@@ -303,7 +304,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
         x.find(y => {
             if(y.html_id === vm.target.attr('id')) {
               // vm.currentObject = y;
-              y.fontSize = value;
+              y.font_size = value;
             }
         });
     });
