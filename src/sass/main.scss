@@ -11,8 +11,37 @@
   }
 }
 
+nav {
+  background-color: #DA2029;
+}
+
 body {
   background-color: #F6F6F6;
+}
+
+.banner {
+  height: 800px;
+  width: 100%;
+
+  .parallax-container {
+    height: 800px;
+
+    .banner-text {
+      font-size: 4em;
+      color: white;
+      text-align: center;
+      padding-top: 15%;
+    }
+
+    .banner-buttons {
+      margin-left: 30%;
+      margin-top: 25px;
+
+      .banner-click {
+        margin-left: 100px;
+      }
+    }
+  }
 }
 
 .tabs-top {
@@ -33,7 +62,8 @@ body {
   border-bottom: 0px;
   border-style: solid;
   border-color: #DA2029;
-  height: 402.5px;
+  height: 405.5px;
+  background-color: white;
 
   .left-tab {
     background-color: #DA2029;
@@ -138,7 +168,7 @@ body {
 
 #center-editor {
   border: 2px;
-  height: 605px;
+  height: 608px;
   position: relative;
   border-style: solid;
   border-color: #DA2029;
@@ -293,6 +323,7 @@ body {
 }
 
 #swatch-list {
+  margin: 0px;
   .swatch  {
     width:25px;
     height: 25px;
@@ -330,6 +361,10 @@ body {
     margin: 0px 2px 0px 2px;
 }
 
+.currentCliparts {
+  overflow: auto;
+  height: 244px;
+}
 
 
 .label {
@@ -341,4 +376,12 @@ body {
   clear:both;
   // display:inline;
   // text-align: left;
+}
+
+.buy-shirt {
+    margin-top: -21px !important;
+}
+
+.export-to-shop {
+  margin-top: -21px !important;
 }
