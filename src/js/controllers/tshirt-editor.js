@@ -1,7 +1,7 @@
 import domtoimage from 'dom-to-image';
 // import $ from 'jquery';
 
-function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $interval) {
+function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $interval, $cookies) {
   let vm = this;
 
   $rootScope.textSelected = false;
@@ -41,7 +41,22 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
     if ($rootScope.savedProject != null) {
       vm.projectInfo = $rootScope.savedProject;
     }
+    let cookie = $cookies.get('access_token');
+    if (cookie) {
+      $rootScope.shopifyLinked = true
+    }
   }
+    function CheckShopifyLinked() {
+        $http.get(`${SERVER}/shopify/user`)
+            .then(resp => {
+                if (resp.data.token) {
+                    $cookies.put('access_token', resp.data.token);
+                    $http.defaults.headers.common['access_token'] = resp.data.token;
+                    $rootScope.shopifyLinked = true;
+                }
+            })
+    }
+    CheckShopifyLinked();
 
   $timeout(init(), 500);
 
@@ -309,6 +324,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
 
 }
 
-TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER', '$timeout', '$interval'];
+TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER', '$timeout', '$interval', '$cookies'];
 
 export default TshirtEditorController;

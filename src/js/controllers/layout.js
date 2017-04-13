@@ -1,4 +1,4 @@
-function LayoutController ($state, $cookies, $rootScope, $scope, $http) {
+function LayoutController ($state, $cookies, $rootScope, $scope, $http, SERVER) {
   let vm = this;
 
   $rootScope.startDragging = false;
@@ -31,6 +31,6 @@ function LayoutController ($state, $cookies, $rootScope, $scope, $http) {
 
 }
 
-LayoutController.$inject = ['$state', '$cookies', '$rootScope', '$scope', '$http'];
+LayoutController.$inject = ['$state', '$cookies', '$rootScope', '$scope', '$http', 'SERVER'];
 
 export default LayoutController;
