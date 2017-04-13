@@ -17,10 +17,12 @@
   </div>
   <ul id="saved-list">
     <li id="{{project.name}}" class="projects" ng-repeat="project in profileVm.projects">
-      <div class="delete-button" ng-click="profileVm.deleteProject(project)"> 
+      <div class="delete-button trash-can" ng-click="profileVm.deleteProject(project)"> 
         <i class="fa fa-trash" aria-hidden="true" ng-hide="!project"></i> 
       </div>
-      <a href ng-click="profileVm.loadProject(project)">{{project.name}}</a>
+      <div class="saved-project">
+        <a href ng-click="profileVm.loadProject(project)">{{project.name}}</a>
+      </div>
     </li>
   </ul>
 </div>
