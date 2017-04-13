@@ -1,13 +1,21 @@
+<div class="navbar-fixed">
 <nav>
-   <div class="nav-wrapper container">
-     <a href="#" class="brand-logo">Koala Tee's</a>
-     <ul id="nav-mobile" class="right hide-on-med-and-down">
-       <li><a href="#!/home">Home</a></li>
-       <li><a href="#!/custom">Customize a Tee</a></li>
-       <li><a href ng-click="layoutVm.goProfile()" ng-show="login">Profile</a></li>
-       <li><a href="#!/login" ng-hide="login">Sign Up/Login</a></li>
-       <li><a href ng-show="login" ng-click="layoutVm.logOut()">Log Out</a></li>
-     </ul>
-   </div>
+     <div class="nav-wrapper container-width ">
+       <a href="#" class="brand-logo">
+        <ul>
+          <li><img class="logo" src="./images/koalaTee-01.png"/></li>
+          <li class="logo-name">KOALA TEE'S</li>
+        </ul>
+       </a>
+
+       <ul id="nav-mobile" class="right hide-on-med-and-down">
+         <li class="nav-text"><a href="#!/home">HOME</a></li>
+         <li class="nav-text"><a href="#!/custom">DESIGN A TEE</a></li>
+         <li class="nav-text"><a href ng-click="layoutVm.goProfile()" ng-show="login">PROFILE</a></li>
+         <li class="nav-text"><a href="#!/login" ng-hide="login">SIGN UP/LOGIN</a></li>
+         <li class="nav-text"><a href ng-show="login" ng-click="layoutVm.logOut()">LOG OUT</a></li>
+       </ul>
+     </div>
  </nav>
+ </div>
 <div class="body-content" ng-mouseup="layoutVm.broadcastDoneDragging()" ui-view></div>
