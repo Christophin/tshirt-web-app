@@ -78,7 +78,7 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
 
   function exportProject (data) {
     $scope.$emit('needImage', data);
-      console.log(data)
+    $('#exportModal').modal('close');
   }
 
   $scope.$on('updateInfo', (event, updateInfo) => { 

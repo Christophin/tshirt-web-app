@@ -1,7 +1,7 @@
 import domtoimage from 'dom-to-image';
 // import $ from 'jquery';
 
-function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $interval, $cookies) {
+function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $interval, $cookies, $state) {
   let vm = this;
 
   $rootScope.textSelected = false;
@@ -162,19 +162,25 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
 
   $scope.$on('needImage', (event, data) => {
     vm.projectInfo.store = data;
+      vm.loading = true;
       vm.tshirtSide = true;
       vm.projectInfo.snapShot = true;
       angular.element($('.ui-icon').css('display', 'none'));
-      createBlob('frontBlob').then( (front) => {
+      createBlob('frontBlob').then( front => {
         vm.tshirtSide = false;
         $scope.$apply();
         angular.element($('.ui-icon').css('display', 'none'));
-        createBlob('backBlob').then( (back) => {
+        createBlob('backBlob').then( back => {
+            vm.tshirtSide = true;
             let images = Promise.all([front, back].map(uploadBlob));
             images.then(urls => {
                 let data = buildProduct(urls);
                 $http.post(`${SERVER}/shopify/tossShirt`, data)
-                   .then(shirt => console.log(shirt));
+                   .then(shirt => {
+                     vm.loading = false;
+                     vm.projectInfo.snapShot = false;
+                     Materialize.toast('Your shirt has been uploaded!', 4000)
+                   });
             })
         });
     });
@@ -325,6 +331,6 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
 
 }
 
-TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER', '$timeout', '$interval', '$cookies'];
+TshirtEditorController.$inject = ['$scope', '$rootScope', '$http', 'SERVER', '$timeout', '$interval', '$cookies', '$state'];
 
 export default TshirtEditorController;

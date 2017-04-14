@@ -33,6 +33,17 @@
         </li> -->
       </ul>
     </div>
+    <div class="preloader-wrapper active loading-icon" ng-show="tshirtVm.loading">
+      <div class="spinner-layer spinner-red-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+      </div>
+    </div>
     <div id="tshirt-sandbox" >
       <img id="front-tshirt" ng-src="{{tshirtVm.frontTshirtUrl}}" ng-show="tshirtVm.tshirtSide"/>
       <img id="back-tshirt" ng-src="{{tshirtVm.backTshirtUrl}}" ng-show="!tshirtVm.tshirtSide"/>
