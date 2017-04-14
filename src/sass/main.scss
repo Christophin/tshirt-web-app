@@ -12,7 +12,7 @@
   //
 
   .btn {
-    //background-color:  #2F7A85 ;
+    background-color:  #3692dd;
   }
 
 
@@ -209,12 +209,19 @@ body {
   }
 
   .cat-list {
+    a {
+      color: #DA2029;
+    }
 
+    a:hover {
+      color: #434343;
+    }
 
     td {
       padding: 1px;
       text-align: center;
       font-size: 16px;
+
     }
   }
 
@@ -332,6 +339,8 @@ body {
         background-color: #DA2029;
         height: 35px;
         color: white;
+        width: 243px;
+        margin: 0px;
 
         li {
           display: inline-block;
@@ -534,6 +543,7 @@ body {
     font-size:20px;
     padding-left: 15px;
   }
+
 
   .profile-delete li {
     display: inline-block;
