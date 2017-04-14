@@ -21,7 +21,7 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
   };
 
   vm.frontTshirtUrl = './images/tshirts/White Front T-Shirt-450x550.png';
-  vm.backTshirtUrl = './images/tshirts/White Back T-Shirt.png';
+  vm.backTshirtUrl = './images/tshirts/White Back T-Shirt-450x550.png';
   vm.tshirtSide = true;
   vm.clearTarget = clearTarget;
   vm.grabTarget = grabTarget;
