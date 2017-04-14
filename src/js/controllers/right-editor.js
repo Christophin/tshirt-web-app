@@ -11,12 +11,13 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
     },
     sportsGrey: {
       url: './images/tshirts/Sport Grey Front T-Shirt-450x550.png',
-      backUrl: './images/tshirts/Sports Grey Back T-Shirt.png',
+      backUrl: './images/tshirts/Sport Grey Back T-Shirt-450x550.png',
       class: 'grey',
       id: 'sports-grey'
     },
     black: {
-      url: 'https://skpsoft.com/baby/wp-content/uploads/2016/09/default-thumbnail.jpg',
+      url: './images/tshirts/Black Front T-Shirt-450x550.png',
+      backUrl: './images/tshirts/Black Back T-Shirt-450x550.png',
       class: 'black',
       id: 'black'
     },
@@ -26,7 +27,8 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
       id: 'dark-heather'
     },
     royal: {
-      url: 'https://skpsoft.com/baby/wp-content/uploads/2016/09/default-thumbnail.jpg',
+      url: './images/tshirts/Royal Front T-Shirt-450x550.png',
+      backUrl: './images/tshirts/Royal Back T-Shirt-450x550.png',
       class: 'light-blue darken-4',
       id: 'royal'
     },
@@ -56,7 +58,8 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
       id: 'neon-green'
     },
     neonOrange: {
-      url: 'https://skpsoft.com/baby/wp-content/uploads/2016/09/default-thumbnail.jpg',
+      url: './images/tshirts/Orange Front T-Shirt-450x550.png',
+      backUrl: './images/tshirts/Orange Back T-Shirt-450x550.png',
       class: 'orange accent-4',
       id: 'neon-orange'
     },
@@ -73,8 +76,8 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
   }
 
   function updateTshirt() {
-       console.log('inside updateTshirt');
-       $scope.$emit('updateTshirt') }
+   console.log('inside updateTshirt');
+   $scope.$emit('updateTshirt') }
 
   function exportProject (data) {
     $scope.$emit('needImage', data);
@@ -86,8 +89,8 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
     $http.put(`${SERVER}/tshirt/${updateInfo.id}`)
         .then(resp => { 
           console.log(resp)
-         })
-   });
+ })
+ });
 
 
     $scope.$on('projectInfo', (event, projectInfo) => {
