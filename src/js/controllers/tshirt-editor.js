@@ -17,7 +17,8 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
     tsFrontText: [],
     tsBackText: [],
     snapShot: false,
-    store: {}
+    store: {},
+    preview_url: ''
   };
 
   vm.frontTshirtUrl = './images/tshirts/White Front T-Shirt-450x550.png';
@@ -113,7 +114,15 @@ function TshirtEditorController ($scope, $rootScope, $http, SERVER, $timeout, $i
 
   $scope.$on('needShirt', (name) => {
     vm.projectInfo.name = name.targetScope.name;
-    $scope.$broadcast('projectInfo', vm.projectInfo);
+    vm.projectInfo.snapShot = true;
+    angular.element($('.ui-icon').css('display', 'none'));
+    createBlob('preview_url').then( blob => uploadBlob(blob))
+    .then( result => {
+      vm.projectInfo.snapShot = false;
+      angular.element($('.ui-icon').css('display', 'block'));
+      vm.projectInfo.preview_url = result;
+      $scope.$broadcast('projectInfo', vm.projectInfo);
+    }); 
   });
 
   $scope.$on('updateTshirt', () => {

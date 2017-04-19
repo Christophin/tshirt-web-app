@@ -11,12 +11,15 @@
 
 <div class="save row">
     <!-- Modal Trigger --> 
-    <div class="col s6" ng-show="!savedProject">
- <a class='btn' data-target='demoModal' ng-show="!savedProject" modal>Save Project</a>
+    <div class="col s6">
+   <a class='btn' data-target='demoModal' modal>Save Project</a>
  </div> 
-    <div class="col s6" ng-show="savedProject"> 
+    <!-- <div class="col s6" ng-show="!savedProject">
+ <a class='btn' data-target='demoModal' ng-show="!savedProject" modal>Save Project</a>
+ </div>  -->
+    <!-- <div class="col s6" ng-show="savedProject"> 
         <a class='btn' ng-show="savedProject" ng-click="rightVm.updateTshirt()">Update Project</a> 
-    </div>
+    </div> -->
   <!-- Modal Structure -->
   <div id="demoModal" class="modal">
       <div class="modal-content">
@@ -28,11 +31,11 @@
           ng-click="rightVm.saveProject(name)">Save</a>
       </div>
   </div>
-  <form class="col s6 submit buy-shirt" ng-submit="rightVm.shopifyUpload()" ng-hide="shopifyLinked">
+  <!-- <form class="col s6 submit buy-shirt" ng-submit="rightVm.shopifyUpload()" ng-hide="shopifyLinked">
     <button class=" btn">Buy Shirt</button>
-  </form>
+  </form> -->
     <div class="export col s6 export-to-shop" ng-show="shopifyLinked">
-        <form class="export"  >
+        <form class="export">
             <button class="btn" data-target="exportModal" modal>Export to Shopfiy</button>
         </form>
     </div>

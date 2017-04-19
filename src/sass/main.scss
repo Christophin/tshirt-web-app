@@ -486,6 +486,7 @@ body {
 
 .pressStart {
   font-family: 'Press Start 2P', cursive;
+  // src: url('../fonts/font-selection/PressStart2P.ttf');
 }
 
 .macondo {
@@ -539,6 +540,18 @@ body {
   max-width: 1280px;
   margin: 0px auto;
 
+  .linked {
+    font-weight: bold;
+    color: #EC2029;
+    font-size: 20px;
+    margin-top: 15px;
+  }
+
+  .linebreak {
+    border: 1px solid lightgray;
+    margin-top: 20px;
+  }
+
   .projects {
     font-size:20px;
     padding-left: 15px;
@@ -556,4 +569,37 @@ body {
   top: 178px;
   left: 217px;
   z-index: 9999;
+}
+
+.card {
+  margin: 20px;
+
+  .card-content {
+    padding: 0px;
+
+    .card-title {
+      margin: 0px;
+    }
+  }
+  .card-options {
+
+    .options {
+      background-color: #EC2029;
+
+      .option {
+        display: inline-block;
+        margin: 0px;
+        color: white;
+        height: 35px;
+        width: 50%;
+        line-height: 36px;
+      }
+
+      .option:hover {
+        background-color: #FF2029;
+        cursor: pointer;
+      }
+    }
+  }
+
 }

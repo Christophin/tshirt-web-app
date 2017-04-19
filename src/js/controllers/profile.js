@@ -2,9 +2,10 @@ function ProfileController ($http, SERVER, $rootScope, $state, $cookies, $timeou
     let vm = this;
 
     vm.projects = [];
-     vm.loadProject = loadProject;
-     vm.linkShop = linkShop;
-     vm.deleteProject = deleteProject;
+ vm.loadProject = loadProject;
+ vm.linkShop = linkShop;
+ vm.deleteProject = deleteProject;
+
 
     function showProjects ()    {
         $http.get(`${SERVER}/tshirt`)
@@ -35,6 +36,7 @@ function ProfileController ($http, SERVER, $rootScope, $state, $cookies, $timeou
                     $cookies.put('access_token', resp.data.token);
                     $http.defaults.headers.common['access_token'] = resp.data.token;
                     $rootScope.shopifyLinked = true;
+                    vm.shopName = resp.data.shop_name;
                 }
             })
     }
