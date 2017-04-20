@@ -22,7 +22,8 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
       id: 'black'
     },
     darkHeather: {
-      url: '.https://skpsoft.com/baby/wp-content/uploads/2016/09/default-thumbnail.jpg',
+      url: './images/tshirts/Dark Heather Front T-Shirt-450x550.png',
+      backUrl: './images/tshirts/Dark Heather Back T-Shirt-450x550.png',
       class: 'blue-grey',
       id: 'dark-heather'
     },
@@ -33,27 +34,28 @@ function RightSandboxController ($scope, $http, SERVER, $state, $cookies) {
       id: 'royal'
     },
     skyBlue: {
-      url: 'https://skpsoft.com/baby/wp-content/uploads/2016/09/default-thumbnail.jpg',
+      url: './images/tshirts/Sky Blue Front T-Shirt-450x550.png',
+      backUrl: './images/tshirts/Sky Blue Back T-Shirt-450x550.png',
       class: 'blue lighten-3',
       id: 'sky-blue'
     },
     floBlue: {
-      url: 'https://skpsoft.com/baby/wp-content/uploads/2016/09/default-thumbnail.jpg',
+      url: './images/tshirts/Flo-Blue Front T-Shirt-450x550.png',
       class: 'blue accent-1',
       id: 'flo-blue'
     },
     seafoam: {
-      url: 'https://skpsoft.com/baby/wp-content/uploads/2016/09/default-thumbnail.jpg',
+      url: './images/tshirts/SeaFoam Front T-Shirt-450x550.png',
       class: 'cyan darken-3',
       id: 'sports-grey'
     },
     neonPink: {
-      url: 'https://skpsoft.com/baby/wp-content/uploads/2016/09/default-thumbnail.jpg',
+      url: './images/tshirts/Pink Front T-Shirt-450x550.png',
       class: 'pink lighten-2',
       id: 'sports-grey'
     },
     neonGreen: {
-      url: 'https://skpsoft.com/baby/wp-content/uploads/2016/09/default-thumbnail.jpg',
+      url: './images/tshirts/Grren Front T-Shirt-450x550.png',
       class: 'lime accent-1',
       id: 'neon-green'
     },
